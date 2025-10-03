@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABC Remodelers | Premier Home Remodeling Experts</title>
+    <meta name="description" content="ABC Remodelers - Chicago's premier home remodeling experts with 18 years of experience in kitchen, bathroom, and whole home renovations.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -23,6 +23,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -139,6 +143,8 @@
             font-weight: 700;
             color: var(--primary-dark);
             text-decoration: none;
+            display: flex;
+            align-items: center;
         }
 
         .logo span {
@@ -162,6 +168,22 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
         }
 
         .nav-links a:hover {
@@ -171,6 +193,8 @@
         .hamburger {
             display: none;
             cursor: pointer;
+            background: none;
+            border: none;
         }
 
         /* Hero Section */
@@ -213,6 +237,16 @@
             margin: 0 10px;
         }
 
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
         @keyframes fadeUp {
             from {
                 opacity: 0;
@@ -221,6 +255,18 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
             }
         }
 
@@ -243,21 +289,88 @@
             transition: var(--transition);
             text-align: center;
             padding: 40px 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--primary-gold);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .service-card:hover:before {
+            height: 100%;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            color: var(--primary-dark);
+        }
+
+        .service-card:hover .service-icon,
+        .service-card:hover h3,
+        .service-card:hover p {
+            color: var(--primary-dark);
         }
 
         .service-icon {
             font-size: 2.5rem;
             color: var(--primary-gold);
             margin-bottom: 1.5rem;
+            transition: var(--transition);
         }
 
         .service-card h3 {
             font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .service-card p {
+            transition: var(--transition);
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-us {
+            background: var(--primary-dark);
+            color: var(--white);
+        }
+
+        .why-choose-us h2 {
+            color: var(--white);
+        }
+
+        .why-choose-us h2:after {
+            background: var(--primary-gold);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
             margin-bottom: 1rem;
         }
 
@@ -352,9 +465,60 @@
             transform: translateY(0);
         }
 
+        /* Process Section */
+        .process {
+            background: var(--primary-light);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .process-steps:before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: var(--primary-gold);
+            z-index: 1;
+        }
+
+        .process-step {
+            text-align: center;
+            width: 20%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .process-step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
         /* Testimonials Section */
         .testimonials {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('assets/testimonial-bg.jpg') no-repeat center center/cover;
             color: var(--white);
         }
 
@@ -473,6 +637,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            box-shadow: var(--shadow);
         }
 
         .about-experience h3 {
@@ -485,6 +650,53 @@
             text-transform: uppercase;
             font-size: 0.9rem;
             letter-spacing: 1px;
+        }
+
+        .certifications {
+            margin-top: 30px;
+        }
+
+        .certifications h4 {
+            margin-bottom: 15px;
+        }
+
+        .certifications p {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .certifications p:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-gold);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
         /* Contact Section */
@@ -522,7 +734,8 @@
         }
 
         .contact-form input,
-        .contact-form textarea {
+        .contact-form textarea,
+        .contact-form select {
             width: 100%;
             padding: 12px 15px;
             margin-bottom: 20px;
@@ -533,7 +746,8 @@
         }
 
         .contact-form input:focus,
-        .contact-form textarea:focus {
+        .contact-form textarea:focus,
+        .contact-form select:focus {
             outline: none;
             border-color: var(--primary-gold);
         }
@@ -701,7 +915,53 @@
             margin-bottom: 20px;
         }
 
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(201, 167, 77, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-gold);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Image Optimization */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .process-steps:before {
+                width: 70%;
+                left: 15%;
+            }
+        }
+
         @media (max-width: 992px) {
             h1 {
                 font-size: 3rem;
@@ -718,6 +978,15 @@
             
             .about-img {
                 margin-bottom: 50px;
+            }
+            
+            .process-step {
+                width: 50%;
+                margin-bottom: 40px;
+            }
+            
+            .process-steps:before {
+                display: none;
             }
         }
 
@@ -738,6 +1007,7 @@
                 justify-content: flex-start;
                 padding-top: 50px;
                 transition: var(--transition);
+                z-index: 999;
             }
             
             .nav-links.active {
@@ -750,6 +1020,7 @@
             
             .hamburger {
                 display: block;
+                z-index: 1000;
             }
             
             .hamburger span {
@@ -783,6 +1054,10 @@
             
             .portfolio-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .process-step {
+                width: 100%;
             }
         }
 
@@ -819,10 +1094,19 @@
             .about-experience h3 {
                 font-size: 2rem;
             }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loader" id="pageLoader">
+        <div class="loader-spinner"></div>
+    </div>
+
     <!-- Header & Navigation -->
     <header>
         <div class="container">
@@ -831,16 +1115,18 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#why-choose-us">Why Choose Us</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a href="#process">Our Process</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <div class="hamburger">
+                <button class="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </nav>
         </div>
     </header>
@@ -854,6 +1140,9 @@
                 <a href="#contact" class="btn">Request a Free Consultation</a>
                 <a href="#portfolio" class="btn btn-light">View Our Work</a>
             </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
@@ -908,6 +1197,57 @@
         </div>
     </section>
 
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us section-padding" id="why-choose-us">
+        <div class="container">
+            <h2>Why Choose ABC Remodelers</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>18 Years of Excellence</h3>
+                    <p>Nearly two decades of transforming homes with exceptional craftsmanship and attention to detail.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Team</h3>
+                    <p>Our skilled craftsmen, designers, and project managers collaborate to bring your vision to life.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Quality Guarantee</h3>
+                    <p>We stand behind our work with comprehensive warranties and a commitment to your satisfaction.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>On-Time Completion</h3>
+                    <p>We respect your time and complete projects on schedule with minimal disruption to your life.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Transparent Process</h3>
+                    <p>Clear communication, detailed proposals, and no hidden costs throughout your project.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-roller"></i>
+                    </div>
+                    <h3>Premium Materials</h3>
+                    <p>We use only the highest quality materials from trusted suppliers for lasting beauty and durability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Portfolio Section -->
     <section class="portfolio section-padding" id="portfolio">
         <div class="container">
@@ -921,46 +1261,80 @@
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-item" data-category="kitchen">
-                    <img src="assets/kit.jpg" alt="Modern Kitchen Renovation" class="portfolio-img">
+                    <img src="assets/kit.jpg" alt="Modern Kitchen Renovation" class="portfolio-img" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Modern Kitchen</h3>
                         <p>Complete transformation with custom cabinetry and premium appliances</p>
                     </div>
                 </div>
                 <div class="portfolio-item" data-category="bathroom">
-                    <img src="assets/bath.jpg" alt="Luxury Bathroom" class="portfolio-img">
+                    <img src="assets/bath.jpg" alt="Luxury Bathroom" class="portfolio-img" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Spa Bathroom</h3>
                         <p>Luxurious master bath with freestanding tub and custom tile work</p>
                     </div>
                 </div>
                 <div class="portfolio-item" data-category="whole-home">
-                    <img src="assets/home.jpg" alt="Whole Home Remodel" class="portfolio-img">
+                    <img src="assets/home.jpg" alt="Whole Home Remodel" class="portfolio-img" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Traditional Home</h3>
                         <p>Complete whole-home renovation preserving historical details</p>
                     </div>
                 </div>
                 <div class="portfolio-item" data-category="addition">
-                    <img src="assets/kitc.jpg" alt="Home Addition" class="portfolio-img">
+                    <img src="assets/kitc.jpg" alt="Home Addition" class="portfolio-img" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Second Story Addition</h3>
                         <p>Expanded living space with seamless architectural integration</p>
                     </div>
                 </div>
                 <div class="portfolio-item" data-category="kitchen">
-                    <img src="assets/kitchenn.jpg" alt="Contemporary Kitchen" class="portfolio-img">
+                    <img src="assets/kitchenn.jpg" alt="Contemporary Kitchen" class="portfolio-img" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Contemporary Kitchen</h3>
                         <p>Open concept design with waterfall island and professional grade appliances</p>
                     </div>
                 </div>
                 <div class="portfolio-item" data-category="bathroom">
-                    <img src="assets/ki.jpg" alt="Powder Room" class="portfolio-img">
+                    <img src="assets/ki.jpg" alt="Powder Room" class="portfolio-img" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Powder Room</h3>
                         <p>Elegant powder room with custom vanity and designer fixtures</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process section-padding" id="process">
+        <div class="container">
+            <h2>Our Process</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Consultation</h3>
+                    <p>We discuss your vision, needs, and budget to understand your project goals.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Design & Planning</h3>
+                    <p>Our designers create detailed plans and 3D renderings of your future space.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Material Selection</h3>
+                    <p>We help you choose premium materials that match your style and budget.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Construction</h3>
+                    <p>Our skilled craftsmen bring the design to life with precision and care.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>Final Walkthrough</h3>
+                    <p>We ensure every detail meets your expectations before project completion.</p>
                 </div>
             </div>
         </div>
@@ -974,7 +1348,7 @@
                 <div class="testimonial-slide active">
                     <p class="testimonial-text">"ABC Remodelers transformed our outdated kitchen into a stunning modern space we absolutely love. Their attention to detail and professionalism exceeded our expectations. The project was completed on time and within budget."</p>
                     <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson" class="author-img">
+                        <img src="assets/client1.jpg" alt="Sarah Johnson" class="author-img" loading="lazy">
                         <div class="author-info">
                             <h4>Sarah Johnson</h4>
                             <p>Barrington Hills, IL</p>
@@ -984,7 +1358,7 @@
                 <div class="testimonial-slide">
                     <p class="testimonial-text">"We added a second story to our home and ABC Remodelers made the process seamless. Their team was respectful, clean, and highly skilled. The quality of their work is exceptional and we couldn't be happier with our expanded living space."</p>
                     <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Thompson" class="author-img">
+                        <img src="assets/client2.jpg" alt="Michael Thompson" class="author-img" loading="lazy">
                         <div class="author-info">
                             <h4>Michael Thompson</h4>
                             <p>Glenview, IL</p>
@@ -994,7 +1368,7 @@
                 <div class="testimonial-slide">
                     <p class="testimonial-text">"From design to completion, ABC Remodelers demonstrated expertise and craftsmanship. Our master bathroom now feels like a luxury spa. They listened to our ideas and incorporated them beautifully while offering valuable suggestions."</p>
                     <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jennifer Lee" class="author-img">
+                        <img src="assets/client3.jpg" alt="Jennifer Lee" class="author-img" loading="lazy">
                         <div class="author-info">
                             <h4>Jennifer Lee</h4>
                             <p>Evanston, IL</p>
@@ -1016,7 +1390,7 @@
             <h2>Our Story</h2>
             <div class="about-content">
                 <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3" alt="ABC Remodelers Team">
+                    <img src="assets/team.jpg" alt="ABC Remodelers Team" loading="lazy">
                     <div class="about-experience">
                         <h3>18</h3>
                         <p>Years of Excellence</p>
@@ -1029,12 +1403,36 @@
                     <p>As a fully licensed and insured contractor, we maintain the highest standards of professionalism and integrity. We're proud to be recognized with multiple industry awards and maintain an A+ rating with the Better Business Bureau.</p>
                     <div class="certifications">
                         <h4>Certifications & Affiliations</h4>
-                        <p>• National Association of Home Builders (NAHB)</p>
-                        <p>• National Kitchen & Bath Association (NKBA)</p>
-                        <p>• EPA Lead-Safe Certified Firm</p>
-                        <p>• Better Business Bureau A+ Rating</p>
+                        <p>National Association of Home Builders (NAHB)</p>
+                        <p>National Kitchen & Bath Association (NKBA)</p>
+                        <p>EPA Lead-Safe Certified Firm</p>
+                        <p>Better Business Bureau A+ Rating</p>
                     </div>
                     <a href="#contact" class="btn" style="margin-top: 20px;">Learn More About Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats section-padding">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>650+</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <h3>18</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>25+</h3>
+                    <p>Industry Awards</p>
                 </div>
             </div>
         </div>
@@ -1131,7 +1529,9 @@
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#why-choose-us">Why Choose Us</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#process">Our Process</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -1179,6 +1579,14 @@
     </div>
 
     <script>
+        // Page Loader
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('pageLoader');
+            setTimeout(function() {
+                loader.classList.add('hidden');
+            }, 1000);
+        });
+
         // Sticky Header
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
@@ -1196,6 +1604,22 @@
         hamburger.addEventListener('click', function() {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
+            
+            // Prevent body scrolling when menu is open
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
         });
 
         // Smooth Scrolling for Navigation Links
@@ -1208,10 +1632,6 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
-                    // Close mobile menu if open
-                    hamburger.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    
                     window.scrollTo({
                         top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
@@ -1237,8 +1657,14 @@
                 portfolioItems.forEach(item => {
                     if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                         item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                        }, 50);
                     } else {
-                        item.style.display = 'none';
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
                     }
                 });
             });
@@ -1248,6 +1674,7 @@
         const indicators = document.querySelectorAll('.indicator');
         const slides = document.querySelectorAll('.testimonial-slide');
         let currentSlide = 0;
+        let slideInterval;
 
         function showSlide(n) {
             slides.forEach(slide => slide.classList.remove('active'));
@@ -1261,16 +1688,31 @@
             indicators[currentSlide].classList.add('active');
         }
 
+        function startSlideShow() {
+            slideInterval = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 5000);
+        }
+
+        function stopSlideShow() {
+            clearInterval(slideInterval);
+        }
+
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
+                stopSlideShow();
                 showSlide(index);
+                startSlideShow();
             });
         });
 
-        // Auto-advance testimonials
-        setInterval(() => {
-            showSlide(currentSlide + 1);
-        }, 5000);
+        // Start the carousel
+        startSlideShow();
+
+        // Pause carousel on hover
+        const carousel = document.querySelector('.testimonial-carousel');
+        carousel.addEventListener('mouseenter', stopSlideShow);
+        carousel.addEventListener('mouseleave', startSlideShow);
 
         // Form Validation
         const contactForm = document.getElementById('contactForm');
@@ -1324,6 +1766,33 @@
                 modal.style.display = 'none';
             }
         });
+
+        // Scroll Indicator
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        
+        scrollIndicator.addEventListener('click', function() {
+            document.querySelector('#services').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Image Lazy Loading Enhancement
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
     </script>
 </body>
 </html>
