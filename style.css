@@ -622,3 +622,20 @@ footer a:hover {
 #about .shadow-lg {
   box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
 }
+
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease-out;
+  overflow: hidden;
+}
+.faq-item.active .faq-content {
+  grid-template-rows: 1fr;
+  padding-top: 8px;
+}
+.faq-toggle {
+  transition: transform 0.2s;
+}
+.faq-item.active .faq-toggle {
+  transform: rotate(45deg);
+}
