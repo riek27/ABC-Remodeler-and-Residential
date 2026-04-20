@@ -400,23 +400,58 @@
 
   <script src="script.js"></script>
   <script>
-    // Blog Read More / Read Less toggle
-    function toggleBlogPost(btn) {
-      const card = btn.closest('.blog-card');
-      const content = card.querySelector('.blog-full-content');
-      const btnText = btn.querySelector('span');
-      const icon = btn.querySelector('svg');
-      
-      card.classList.toggle('expanded');
-      
-      if (card.classList.contains('expanded')) {
-        btnText.textContent = 'Read Less';
-        icon.style.transform = 'rotate(180deg)';
-      } else {
-        btnText.textContent = 'Read More';
-        icon.style.transform = 'rotate(0deg)';
-      }
+    <script>
+  (function() {
+    // ---- Blog Read More / Read Less Fix ----
+    function initBlogCards() {
+      document.querySelectorAll('.blog-card').forEach(card => {
+        const btn = card.querySelector('.read-more-btn');
+        const content = card.querySelector('.blog-full-content');
+        if (!btn || !content) return;
+
+        // Reset inline max-height
+        content.style.maxHeight = '0';
+        card.classList.remove('expanded');
+        
+        // Update button text & icon if needed
+        const btnText = btn.querySelector('span');
+        const icon = btn.querySelector('svg');
+        if (btnText) btnText.textContent = 'Read More';
+        if (icon) icon.style.transform = 'rotate(0deg)';
+
+        // Remove old listeners by cloning
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+
+        newBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const isExpanded = card.classList.contains('expanded');
+          
+          card.classList.toggle('expanded');
+          
+          if (!isExpanded) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            if (newBtn.querySelector('span')) newBtn.querySelector('span').textContent = 'Read Less';
+            if (newBtn.querySelector('svg')) newBtn.querySelector('svg').style.transform = 'rotate(180deg)';
+          } else {
+            content.style.maxHeight = '0';
+            if (newBtn.querySelector('span')) newBtn.querySelector('span').textContent = 'Read More';
+            if (newBtn.querySelector('svg')) newBtn.querySelector('svg').style.transform = 'rotate(0deg)';
+          }
+        });
+      });
     }
+
+    // Ensure blog cards are ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBlogCards);
+    } else {
+      initBlogCards();
+    }
+    
+    window.refreshBlog = initBlogCards;
+  })();
+</script>
     
     // Ensure back to top and navbar scroll work (already in script.js but fine)
   </script>
