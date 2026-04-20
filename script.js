@@ -62,67 +62,42 @@
     });
   });
 
-  // ---------- FAQ Accordion (Dynamic Height – Fix for Cutting Text) ----------
+  // ---------- FAQ Accordion (CSS Grid Method – flawless) ----------
 function initFaqItems() {
   document.querySelectorAll('.faq-item').forEach(item => {
     const toggleBtn = item.querySelector('.faq-toggle');
-    const content = item.querySelector('.faq-content');
-    if (!toggleBtn || !content) return;
+    const contentWrapper = item.querySelector('.faq-content');
+    if (!toggleBtn || !contentWrapper) return;
 
-    // Clean up any previous listeners
+    // Remove any existing click listeners by cloning
     const newToggle = toggleBtn.cloneNode(true);
     toggleBtn.parentNode.replaceChild(newToggle, toggleBtn);
 
-    // Set initial collapsed state
-    content.style.maxHeight = '0';
+    // Set initial state
+    item.classList.remove('active');
     newToggle.textContent = '+';
 
     newToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      const faq = item;
-      const isActive = faq.classList.contains('active');
+      const isActive = item.classList.contains('active');
       
-      // Close other FAQs? (Optional – currently independent)
-      // If you want only one open at a time, uncomment the next line:
-      // document.querySelectorAll('.faq-item.active').forEach(f => f !== faq && toggleFaq(f));
+      // Optional: close other FAQs (comment out to keep independent)
+      // document.querySelectorAll('.faq-item.active').forEach(f => {
+      //   if (f !== item) f.classList.remove('active');
+      // });
       
-      faq.classList.toggle('active');
-      
-      if (faq.classList.contains('active')) {
-        // Use scrollHeight for accurate full content height
-        content.style.maxHeight = content.scrollHeight + 'px';
-        newToggle.textContent = '−';
-      } else {
-        content.style.maxHeight = '0';
-        newToggle.textContent = '+';
-      }
+      item.classList.toggle('active');
+      newToggle.textContent = item.classList.contains('active') ? '−' : '+';
     });
   });
 }
 
-// Also support inline onclick (legacy) with full height
-window.toggleFaq = function(element) {
-  const faq = element.closest('.faq-item');
-  if (!faq) return;
-  const content = faq.querySelector('.faq-content');
-  const toggle = faq.querySelector('.faq-toggle');
-  const isActive = faq.classList.contains('active');
-  
-  faq.classList.toggle('active');
-  
-  if (!isActive) {
-    content.style.maxHeight = content.scrollHeight + 'px';
-    if (toggle) toggle.textContent = '−';
-  } else {
-    content.style.maxHeight = '0';
-    if (toggle) toggle.textContent = '+';
-  }
-};
-
-// Call this function after DOM is ready
-document.addEventListener('DOMContentLoaded', initFaqItems);
-// Also run immediately in case script loads later
-initFaqItems();
+// Run on DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initFaqItems);
+} else {
+  initFaqItems();
+}
 
   // ---------- Blog Read More / Read Less ----------
   function initBlogCards() {
