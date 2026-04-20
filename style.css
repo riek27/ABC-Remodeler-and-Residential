@@ -180,26 +180,50 @@ body {
 }
 
 /* ============================================
-   FAQ ACCORDION
+   FAQ ACCORDION – ROBUST FIX
    ============================================ */
+.faq-item {
+  border-bottom: 1px solid #e2e8f0;
+}
 
 .faq-content {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+  padding: 0 !important;
 }
 
 .faq-item.active .faq-content {
-  max-height: 300px; /* enough for content */
-  padding-top: 10px;
+  grid-template-rows: 1fr;
+  padding-top: 12px !important;
+  padding-bottom: 4px !important;
+}
+
+.faq-content > div {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .faq-toggle {
   transition: transform 0.3s ease;
+  user-select: none;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eff6ff;
+  border-radius: 9999px;
+  color: #2563eb;
+  font-size: 18px;
+  font-weight: 300;
 }
 
 .faq-item.active .faq-toggle {
   transform: rotate(45deg);
+  background-color: #dbeafe;
 }
 
 /* ============================================
@@ -481,30 +505,6 @@ footer a:hover {
   color: #60a5fa;
 }
 
-/* ============================================
-   FAQ ACCORDION (improved)
-   ============================================ */
-.faq-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0 !important; /* padding controlled by active state */
-}
-
-.faq-item.active .faq-content {
-  /* max-height set dynamically via JS */
-  padding-top: 12px !important;
-  padding-bottom: 4px !important;
-}
-
-.faq-toggle {
-  transition: transform 0.3s ease;
-  user-select: none;
-}
-
-.faq-item.active .faq-toggle {
-  transform: rotate(45deg);
-}
 
 /* ============================================
    BLOG READ MORE (improved)
