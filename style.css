@@ -333,6 +333,15 @@ body {
   background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,58,138,0.75) 45%, rgba(30,58,138,0.65) 70%, rgba(15,23,42,0.88) 100%);
   z-index: 1;
 }
+/* ============================================
+   HOMEPAGE HERO BACKGROUND IMAGE (only index.html)
+   ============================================ */
+#home .hero-bg {
+  background-image: url('assets/frame.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 /* ============================================
    FORM FOCUS STATES
@@ -511,4 +520,28 @@ footer a:hover {
   /* max-height set dynamically via JS */
   margin-top: 1rem;
   margin-bottom: 0.5rem;
+}
+
+/* FAQ Accordion – fully expandable */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 !important;
+}
+
+.faq-item.active .faq-content {
+  /* max-height is set dynamically via JS to scrollHeight */
+  padding-top: 12px !important;
+  padding-bottom: 4px !important;
+}
+
+.faq-toggle {
+  transition: transform 0.3s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.faq-item.active .faq-toggle {
+  transform: rotate(45deg);
 }
