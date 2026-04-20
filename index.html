@@ -709,35 +709,65 @@
     </div>
   </section>
 
-  <!-- FAQs Section -->
-  <section id="faqs" class="py-16 sm:py-20 bg-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-10 reveal">
-        <div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-4 py-1.5 mb-4">
-          <span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.18em]">FAQS</span>
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-black text-surface-900 mb-3 leading-tight">
-          Frequently Asked <span class="text-gradient">Questions</span>
-        </h2>
-        <p class="text-surface-500 text-sm">
-          Got questions about our Houston web design services? We've got answers. If you don't find what you're looking for, feel free to <a href="contact.html" class="text-brand-600 font-semibold hover:underline">contact us</a>.
-        </p>
-        <a href="faqs.html" class="mt-3 inline-flex items-center gap-1.5 text-brand-600 font-semibold text-sm hover:gap-2 transition-all">
-          View All FAQs
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
+ <!-- FAQs Section (Static – No Accordion) -->
+<section id="faqs" class="py-16 sm:py-20 bg-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-10 reveal">
+      <div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-4 py-1.5 mb-4">
+        <span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.18em]">FAQS</span>
       </div>
-      
-      <div class="space-y-1.5 reveal">
-        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">How long does it take to build a website?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">Most projects are completed within 2-4 weeks from start to launch. Simple websites can be delivered in as little as 10 business days. Complex projects with custom functionality may take 6-8 weeks.</div></div>
-        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">Do you specialize in contractor & roofing websites?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">Absolutely! We specialize in building websites for contractors, roofers, remodelers, and pool builders across Houston. We understand your industry's unique needs and target audience.</div></div>
-        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">Will my website be optimized for Houston SEO?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">Yes! Every website we build comes with our signature Houston SEO optimization baked in, including local keyword targeting, Google Business Profile setup, and location-specific content strategy.</div></div>
-        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">Can you update my website content after launch?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">Of course! We build all websites with user-friendly CMS platforms (WordPress, Webflow) so you can easily update content yourself. We also offer maintenance plans for ongoing support.</div></div>
-        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">What areas of Houston do you serve?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">We serve the entire Houston metropolitan area including Downtown, The Woodlands, Sugar Land, Katy, Pearland, Cypress, Spring, The Heights, Memorial, Bellaire, Humble, Pasadena, and all surrounding communities.</div></div>
-        <div class="faq-item py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">Do you offer payment plans or financing?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">Yes! We offer flexible payment plans. Typically 50% upfront, 25% at design approval, and 25% at launch. We can also discuss custom payment arrangements for larger projects.</div></div>
+      <h2 class="text-2xl sm:text-3xl font-black text-surface-900 mb-3 leading-tight">
+        Frequently Asked <span class="text-gradient">Questions</span>
+      </h2>
+      <p class="text-surface-500 text-sm">
+        Got questions about our Houston web design services? We've got answers. If you don't find what you're looking for, feel free to <a href="contact.html" class="text-brand-600 font-semibold hover:underline">contact us</a>.
+      </p>
+      <a href="faqs.html" class="mt-3 inline-flex items-center gap-1.5 text-brand-600 font-semibold text-sm hover:gap-2 transition-all">
+        View All FAQs
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+
+    <!-- FAQ List – All Answers Visible -->
+    <div class="space-y-6 reveal">
+      <!-- FAQ 1 -->
+      <div class="border-b border-surface-100 pb-4">
+        <h3 class="text-sm font-bold text-surface-900 mb-2">How long does it take to build a website?</h3>
+        <p class="text-surface-500 text-sm leading-relaxed">Most projects are completed within 1-4 weeks from start to launch. Simple websites can be delivered in as little as 10 business days. Complex projects with custom functionality may take 6-8 weeks.</p>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="border-b border-surface-100 pb-4">
+        <h3 class="text-sm font-bold text-surface-900 mb-2">Do you specialize in contractor & roofing websites?</h3>
+        <p class="text-surface-500 text-sm leading-relaxed">Absolutely! We specialize in building websites for contractors, roofers, remodelers, and pool builders across Houston. We understand your industry's unique needs and target audience.</p>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="border-b border-surface-100 pb-4">
+        <h3 class="text-sm font-bold text-surface-900 mb-2">Will my website be optimized for Houston SEO?</h3>
+        <p class="text-surface-500 text-sm leading-relaxed">Yes! Every website we build comes with our signature Houston SEO optimization baked in, including local keyword targeting, Google Business Profile setup, and location-specific content strategy.</p>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="border-b border-surface-100 pb-4">
+        <h3 class="text-sm font-bold text-surface-900 mb-2">Can you update my website content after launch?</h3>
+        <p class="text-surface-500 text-sm leading-relaxed">Yes. We  offer maintenance plans for ongoing support start at $99/month depend on your plan.</p>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="border-b border-surface-100 pb-4">
+        <h3 class="text-sm font-bold text-surface-900 mb-2">What areas of Houston do you serve?</h3>
+        <p class="text-surface-500 text-sm leading-relaxed">We serve the entire Houston metropolitan area including Downtown, The Woodlands, Sugar Land, Katy, Pearland, Cypress, Spring, The Heights, Memorial, Bellaire, Humble, Pasadena, and all surrounding communities.</p>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="pb-4">
+        <h3 class="text-sm font-bold text-surface-900 mb-2">Do you offer payment plans or financing?</h3>
+        <p class="text-surface-500 text-sm leading-relaxed">Yes! We offer flexible payment plans. Typically 50% upfront, and 50% at launch. We can also discuss custom payment arrangements for larger projects.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Blog Section -->
   <section id="blog" class="py-16 sm:py-20 bg-surface-50/60">
