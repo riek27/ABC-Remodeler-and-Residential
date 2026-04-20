@@ -471,3 +471,44 @@ img {
 footer a:hover {
   color: #60a5fa;
 }
+
+/* ============================================
+   FAQ ACCORDION (improved)
+   ============================================ */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 !important; /* padding controlled by active state */
+}
+
+.faq-item.active .faq-content {
+  /* max-height set dynamically via JS */
+  padding-top: 12px !important;
+  padding-bottom: 4px !important;
+}
+
+.faq-toggle {
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.faq-item.active .faq-toggle {
+  transform: rotate(45deg);
+}
+
+/* ============================================
+   BLOG READ MORE (improved)
+   ============================================ */
+.blog-full-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  margin: 0;
+}
+
+.blog-card.expanded .blog-full-content {
+  /* max-height set dynamically via JS */
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
