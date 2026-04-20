@@ -896,47 +896,84 @@
 <!-- Global JavaScript -->
 <script src="script.js"></script>
 
-<!-- INDEX PAGE FAQ FIX – GUARANTEED -->
+<!-- INDEX FAQ FIX - ABSOLUTE GUARANTEE -->
 <script>
 (function() {
-  // Force FAQ functionality for index page only
-  function fixIndexFaqs() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    if (!faqItems.length) return;
+  // 1. Inject required CSS (if not already present)
+  if (!document.getElementById('faq-guarantee-css')) {
+    const style = document.createElement('style');
+    style.id = 'faq-guarantee-css';
+    style.textContent = `
+      .faq-content {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s ease;
+        overflow: hidden;
+      }
+      .faq-item.active .faq-content {
+        grid-template-rows: 1fr;
+        padding-top: 12px;
+      }
+      .faq-toggle {
+        transition: transform 0.2s;
+        cursor: pointer;
+        user-select: none;
+      }
+      .faq-item.active .faq-toggle {
+        transform: rotate(45deg);
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
-    faqItems.forEach(item => {
+  // 2. Robust FAQ initialization
+  function initFaqs() {
+    // Select all FAQ items – adjust selector if needed
+    const faqItems = document.querySelectorAll('.faq-item');
+    if (!faqItems.length) {
+      console.warn('No .faq-item elements found.');
+      return;
+    }
+
+    faqItems.forEach((item, index) => {
+      // Find toggle and content within this item
       const toggle = item.querySelector('.faq-toggle');
       const content = item.querySelector('.faq-content');
-      if (!toggle || !content) return;
+      
+      if (!toggle || !content) {
+        console.warn(`FAQ item ${index} missing .faq-toggle or .faq-content`);
+        return;
+      }
 
-      // Clean up any existing inline handlers
+      // Remove any conflicting onclick attributes
       item.removeAttribute('onclick');
+      
+      // Reset to collapsed state
+      item.classList.remove('active');
+      toggle.textContent = '+';
+      
+      // Clean up old listeners by cloning
       const newToggle = toggle.cloneNode(true);
       toggle.parentNode.replaceChild(newToggle, toggle);
-
-      // Reset state
-      item.classList.remove('active');
-      content.style.maxHeight = ''; // clear any inline max-height
-      newToggle.textContent = '+';
-
+      
+      // Attach fresh click listener
       newToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isActive = item.classList.contains('active');
+        const faq = item;
+        const isActive = faq.classList.contains('active');
         
-        // Optional: close other FAQs (uncomment for accordion)
-        // faqItems.forEach(f => { if (f !== item) f.classList.remove('active'); });
-
-        item.classList.toggle('active');
-        newToggle.textContent = item.classList.contains('active') ? '−' : '+';
+        // Toggle the active class
+        faq.classList.toggle('active');
+        newToggle.textContent = faq.classList.contains('active') ? '−' : '+';
       });
     });
   }
 
-  // Run after DOM ready
+  // Run after DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fixIndexFaqs);
+    document.addEventListener('DOMContentLoaded', initFaqs);
   } else {
-    fixIndexFaqs();
+    initFaqs();
   }
 })();
 </script>
