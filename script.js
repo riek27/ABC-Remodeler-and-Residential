@@ -62,58 +62,67 @@
     });
   });
 
-  // ---------- FAQ Accordion (dynamic height) ----------
-  function initFaqItems() {
-    document.querySelectorAll('.faq-item').forEach(item => {
-      const toggleBtn = item.querySelector('.faq-toggle');
-      const content = item.querySelector('.faq-content');
-      if (!toggleBtn || !content) return;
+  // ---------- FAQ Accordion (Dynamic Height – Fix for Cutting Text) ----------
+function initFaqItems() {
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const toggleBtn = item.querySelector('.faq-toggle');
+    const content = item.querySelector('.faq-content');
+    if (!toggleBtn || !content) return;
 
-      // Remove any existing listener by cloning
-      const newToggle = toggleBtn.cloneNode(true);
-      toggleBtn.parentNode.replaceChild(newToggle, toggleBtn);
+    // Clean up any previous listeners
+    const newToggle = toggleBtn.cloneNode(true);
+    toggleBtn.parentNode.replaceChild(newToggle, toggleBtn);
 
-      newToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const faq = item;
-        const isActive = faq.classList.contains('active');
-        
-        // Close others? (optional – currently independent)
-        faq.classList.toggle('active');
-        
-        const faqContent = faq.querySelector('.faq-content');
-        if (faq.classList.contains('active')) {
-          faqContent.style.maxHeight = faqContent.scrollHeight + 'px';
-          newToggle.textContent = '−';
-        } else {
-          faqContent.style.maxHeight = '0';
-          newToggle.textContent = '+';
-        }
-      });
+    // Set initial collapsed state
+    content.style.maxHeight = '0';
+    newToggle.textContent = '+';
 
-      // Ensure collapsed initially
-      content.style.maxHeight = '0';
-      newToggle.textContent = '+';
+    newToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const faq = item;
+      const isActive = faq.classList.contains('active');
+      
+      // Close other FAQs? (Optional – currently independent)
+      // If you want only one open at a time, uncomment the next line:
+      // document.querySelectorAll('.faq-item.active').forEach(f => f !== faq && toggleFaq(f));
+      
+      faq.classList.toggle('active');
+      
+      if (faq.classList.contains('active')) {
+        // Use scrollHeight for accurate full content height
+        content.style.maxHeight = content.scrollHeight + 'px';
+        newToggle.textContent = '−';
+      } else {
+        content.style.maxHeight = '0';
+        newToggle.textContent = '+';
+      }
     });
-  }
+  });
+}
 
-  // Also support inline onclick (legacy)
-  window.toggleFaq = function(element) {
-    const faq = element.closest('.faq-item');
-    if (!faq) return;
-    const content = faq.querySelector('.faq-content');
-    const toggle = faq.querySelector('.faq-toggle');
-    const isActive = faq.classList.contains('active');
-    
-    faq.classList.toggle('active');
-    if (!isActive) {
-      content.style.maxHeight = content.scrollHeight + 'px';
-      if (toggle) toggle.textContent = '−';
-    } else {
-      content.style.maxHeight = '0';
-      if (toggle) toggle.textContent = '+';
-    }
-  };
+// Also support inline onclick (legacy) with full height
+window.toggleFaq = function(element) {
+  const faq = element.closest('.faq-item');
+  if (!faq) return;
+  const content = faq.querySelector('.faq-content');
+  const toggle = faq.querySelector('.faq-toggle');
+  const isActive = faq.classList.contains('active');
+  
+  faq.classList.toggle('active');
+  
+  if (!isActive) {
+    content.style.maxHeight = content.scrollHeight + 'px';
+    if (toggle) toggle.textContent = '−';
+  } else {
+    content.style.maxHeight = '0';
+    if (toggle) toggle.textContent = '+';
+  }
+};
+
+// Call this function after DOM is ready
+document.addEventListener('DOMContentLoaded', initFaqItems);
+// Also run immediately in case script loads later
+initFaqItems();
 
   // ---------- Blog Read More / Read Less ----------
   function initBlogCards() {
