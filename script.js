@@ -1,6 +1,6 @@
 /**
  * Solidframe Web - Global JavaScript
- * Handles interactivity across all pages: navigation, modals, accordions, reveals, forms.
+ * Enhanced with robust FAQ & Blog toggles, mobile menu, reveal animations.
  */
 
 (function() {
@@ -14,21 +14,15 @@
   const mobileMenu = document.getElementById('mobileMenu');
   const body = document.body;
 
-  // ---------- Navbar Scroll Effect & Back to Top ----------
+  // ---------- Navbar Scroll & Back to Top ----------
   function handleScroll() {
-    // Navbar background
-    if (nav) {
-      nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
-    }
-    // Back to top button
-    if (backToTop) {
-      backToTop.classList.toggle('visible', window.scrollY > 400);
-    }
+    if (nav) nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
+    if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 400);
   }
   window.addEventListener('scroll', handleScroll);
-  handleScroll(); // initial call
+  handleScroll();
 
-  // ---------- Mobile Menu Toggle ----------
+  // ---------- Mobile Menu ----------
   function openMobileMenu() {
     if (!mobileMenu) return;
     mobileMenu.style.transform = 'translateX(0)';
@@ -45,26 +39,20 @@
     body.classList.remove('menu-open');
   }
 
-  if (menuToggle) {
-    menuToggle.addEventListener('click', openMobileMenu);
-  }
-  if (menuClose) {
-    menuClose.addEventListener('click', closeMobileMenu);
-  }
+  if (menuToggle) menuToggle.addEventListener('click', openMobileMenu);
+  if (menuClose) menuClose.addEventListener('click', closeMobileMenu);
 
-  // Close mobile menu when clicking on any mobile nav link (.mob-link)
   document.querySelectorAll('.mob-link').forEach(link => {
     link.addEventListener('click', closeMobileMenu);
   });
 
-  // Close mobile menu on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && mobileMenu && mobileMenu.style.transform === 'translateX(0px)') {
       closeMobileMenu();
     }
   });
 
-  // ---------- Mobile Dropdown Accordion (Services inside mobile menu) ----------
+  // Mobile dropdown accordion
   document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
     const toggle = dropdown.querySelector('.mobile-dropdown-toggle');
     if (!toggle) return;
@@ -74,153 +62,170 @@
     });
   });
 
-  // ---------- FAQ Accordion (used on faqs.html and pricing.html) ----------
+  // ---------- FAQ Accordion (dynamic height) ----------
+  function initFaqItems() {
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const toggleBtn = item.querySelector('.faq-toggle');
+      const content = item.querySelector('.faq-content');
+      if (!toggleBtn || !content) return;
+
+      // Remove any existing listener by cloning
+      const newToggle = toggleBtn.cloneNode(true);
+      toggleBtn.parentNode.replaceChild(newToggle, toggleBtn);
+
+      newToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const faq = item;
+        const isActive = faq.classList.contains('active');
+        
+        // Close others? (optional – currently independent)
+        faq.classList.toggle('active');
+        
+        const faqContent = faq.querySelector('.faq-content');
+        if (faq.classList.contains('active')) {
+          faqContent.style.maxHeight = faqContent.scrollHeight + 'px';
+          newToggle.textContent = '−';
+        } else {
+          faqContent.style.maxHeight = '0';
+          newToggle.textContent = '+';
+        }
+      });
+
+      // Ensure collapsed initially
+      content.style.maxHeight = '0';
+      newToggle.textContent = '+';
+    });
+  }
+
+  // Also support inline onclick (legacy)
   window.toggleFaq = function(element) {
-    if (!element) return;
-    const faqItem = element.closest('.faq-item');
-    if (!faqItem) return;
+    const faq = element.closest('.faq-item');
+    if (!faq) return;
+    const content = faq.querySelector('.faq-content');
+    const toggle = faq.querySelector('.faq-toggle');
+    const isActive = faq.classList.contains('active');
     
-    const isActive = faqItem.classList.contains('active');
-    
-    // Optional: close others? No, we let multiple be open as per design.
-    faqItem.classList.toggle('active');
-    
-    const content = faqItem.querySelector('.faq-content');
-    const toggleIcon = faqItem.querySelector('.faq-toggle');
-    
-    if (content) {
-      if (!isActive) {
-        content.style.maxHeight = content.scrollHeight + 'px';
-      } else {
-        content.style.maxHeight = '0';
-      }
-    }
-    if (toggleIcon) {
-      toggleIcon.textContent = isActive ? '+' : '−';
+    faq.classList.toggle('active');
+    if (!isActive) {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      if (toggle) toggle.textContent = '−';
+    } else {
+      content.style.maxHeight = '0';
+      if (toggle) toggle.textContent = '+';
     }
   };
 
-  // Attach click handlers to existing FAQ items (for pages that load with them)
-  document.querySelectorAll('.faq-item').forEach(item => {
-    // Avoid duplicate listeners; we use the onclick attribute in HTML, but ensure consistency
-    const header = item.querySelector('.flex, .faq-toggle')?.parentElement;
-    if (header) {
-      header.addEventListener('click', (e) => {
-        // Prevent if clicking on a link inside
-        if (e.target.tagName === 'A') return;
-        toggleFaq(item);
-      });
-    }
-  });
-
   // ---------- Blog Read More / Read Less ----------
+  function initBlogCards() {
+    document.querySelectorAll('.blog-card').forEach(card => {
+      const btn = card.querySelector('.read-more-btn');
+      const content = card.querySelector('.blog-full-content');
+      if (!btn || !content) return;
+
+      // Remove existing listeners
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+
+      newBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isExpanded = card.classList.contains('expanded');
+        card.classList.toggle('expanded');
+        
+        const btnText = newBtn.querySelector('span');
+        const icon = newBtn.querySelector('svg');
+        
+        if (!isExpanded) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          if (btnText) btnText.textContent = 'Read Less';
+          if (icon) icon.style.transform = 'rotate(180deg)';
+        } else {
+          content.style.maxHeight = '0';
+          if (btnText) btnText.textContent = 'Read More';
+          if (icon) icon.style.transform = 'rotate(0deg)';
+        }
+      });
+
+      // Ensure collapsed initially
+      content.style.maxHeight = '0';
+    });
+  }
+
+  // Expose global toggle for inline usage
   window.toggleBlogPost = function(btn) {
     const card = btn.closest('.blog-card');
     if (!card) return;
-    
     const content = card.querySelector('.blog-full-content');
     const btnText = btn.querySelector('span');
     const icon = btn.querySelector('svg');
+    const isExpanded = card.classList.contains('expanded');
     
     card.classList.toggle('expanded');
-    
-    if (card.classList.contains('expanded')) {
+    if (!isExpanded) {
+      content.style.maxHeight = content.scrollHeight + 'px';
       if (btnText) btnText.textContent = 'Read Less';
       if (icon) icon.style.transform = 'rotate(180deg)';
     } else {
+      content.style.maxHeight = '0';
       if (btnText) btnText.textContent = 'Read More';
       if (icon) icon.style.transform = 'rotate(0deg)';
     }
   };
 
-  // Attach to existing read-more buttons (if not using inline onclick)
-  document.querySelectorAll('.read-more-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      toggleBlogPost(this);
-    });
-  });
-
-  // ---------- Scroll Reveal Animation (Intersection Observer) ----------
+  // ---------- Scroll Reveal ----------
   const revealElements = document.querySelectorAll('.reveal');
-  if (revealElements.length > 0) {
-    const revealObserver = new IntersectionObserver((entries) => {
+  if (revealElements.length) {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-    
-    revealElements.forEach(el => revealObserver.observe(el));
+    revealElements.forEach(el => observer.observe(el));
   }
 
-  // ---------- Form Handling (Quote / Contact) ----------
-  function handleFormSubmit(form, successElement) {
+  // ---------- Form Handling ----------
+  function handleForm(form, successEl) {
+    if (!form || !successEl) return;
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      // Basic validation could be added here
       form.style.display = 'none';
-      if (successElement) {
-        successElement.classList.remove('hidden');
-      }
-      // Optional: console log or send data
+      successEl.classList.remove('hidden');
       console.log('Form submitted:', new FormData(form));
     });
   }
+  handleForm(document.getElementById('quoteForm'), document.getElementById('formDone'));
+  handleForm(document.getElementById('contactForm'), document.getElementById('formSuccess'));
 
-  const quoteForm = document.getElementById('quoteForm');
-  const formDone = document.getElementById('formDone');
-  if (quoteForm && formDone) {
-    handleFormSubmit(quoteForm, formDone);
-  }
-
-  const contactForm = document.getElementById('contactForm');
-  const formSuccess = document.getElementById('formSuccess');
-  if (contactForm && formSuccess) {
-    handleFormSubmit(contactForm, formSuccess);
-  }
-
-  // ---------- Smooth Scroll for Anchor Links (enhance) ----------
+  // ---------- Smooth Scroll ----------
   document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
-      if (!href || href === '#') return;
-      
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        e.preventDefault();
-        const headerOffset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-        
-        // Close mobile menu after clicking anchor
-        closeMobileMenu();
-      }
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      closeMobileMenu();
     });
   });
 
-  // ---------- Additional: Dropdown hover for touch devices? Not needed, CSS handles.
-  // Ensure any other interactive elements.
-
-  // ---------- Initialize any pre-expanded FAQ? Not needed.
-
-  // ---------- Fix for back to top click ----------
+  // Back to top click
   if (backToTop) {
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
-  // ---------- Expose functions globally for inline onclick usage ----------
-  window.toggleFaq = toggleFaq;
-  window.toggleBlogPost = toggleBlogPost;
-  window.closeMobileMenu = closeMobileMenu;
+  // ---------- Initialize everything ----------
+  initFaqItems();
+  initBlogCards();
+
+  // Re-run initialization if content changes dynamically (e.g., after form success)
+  // Not needed for static pages, but safe.
+  window.refreshToggles = function() {
+    initFaqItems();
+    initBlogCards();
+  };
 
 })();
