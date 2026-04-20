@@ -1,1798 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABC Remodelers | Premier Home Remodeling Experts</title>
-    <meta name="description" content="ABC Remodelers - Chicago's premier home remodeling experts with 18 years of experience in kitchen, bathroom, and whole home renovations.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-dark: #1a1a1a;
-            --primary-gold: #c9a74d;
-            --primary-light: #f8f8f8;
-            --text-dark: #333;
-            --text-light: #777;
-            --white: #ffffff;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        h2:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--primary-gold);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section-padding {
-            padding: 100px 0;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-            border: none;
-            border-radius: 0;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background: #b3933f;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-light {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-light:hover {
-            background: var(--white);
-            color: var(--primary-dark);
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 10px 0;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo span {
-            color: var(--primary-gold);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--primary-dark);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-gold);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-gold);
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/homes.jpg') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeUp 1s ease 0.5s forwards;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeUp 1s ease 0.7s forwards;
-        }
-
-        .hero-btns {
-            opacity: 0;
-            animation: fadeUp 1s ease 0.9s forwards;
-        }
-
-        .hero-btns .btn {
-            margin: 0 10px;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white);
-            font-size: 1.5rem;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) translateX(-50%);
-            }
-            40% {
-                transform: translateY(-10px) translateX(-50%);
-            }
-            60% {
-                transform: translateY(-5px) translateX(-50%);
-            }
-        }
-
-        /* Services Section */
-        .services {
-            background: var(--primary-light);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: var(--white);
-            border-radius: 0;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-            padding: 40px 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background: var(--primary-gold);
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .service-card:hover:before {
-            height: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            color: var(--primary-dark);
-        }
-
-        .service-card:hover .service-icon,
-        .service-card:hover h3,
-        .service-card:hover p {
-            color: var(--primary-dark);
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary-gold);
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            transition: var(--transition);
-        }
-
-        .service-card p {
-            transition: var(--transition);
-        }
-
-        /* Why Choose Us Section */
-        .why-choose-us {
-            background: var(--primary-dark);
-            color: var(--white);
-        }
-
-        .why-choose-us h2 {
-            color: var(--white);
-        }
-
-        .why-choose-us h2:after {
-            background: var(--primary-gold);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-item {
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary-gold);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-item h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Portfolio Section */
-        .portfolio-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .filter-btn {
-            padding: 8px 20px;
-            margin: 5px;
-            background: none;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--primary-dark);
-            color: var(--white);
-            border-color: var(--primary-dark);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            height: 300px;
-            cursor: pointer;
-        }
-
-        .portfolio-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .portfolio-item:hover .portfolio-img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 26, 26, 0.8);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-            color: var(--white);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-overlay h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            transform: translateY(20px);
-            transition: var(--transition);
-        }
-
-        .portfolio-overlay p {
-            transform: translateY(20px);
-            transition: var(--transition);
-            transition-delay: 0.1s;
-        }
-
-        .portfolio-item:hover .portfolio-overlay h3,
-        .portfolio-item:hover .portfolio-overlay p {
-            transform: translateY(0);
-        }
-
-        /* Process Section */
-        .process {
-            background: var(--primary-light);
-        }
-
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 50px;
-            position: relative;
-        }
-
-        .process-steps:before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 10%;
-            width: 80%;
-            height: 2px;
-            background: var(--primary-gold);
-            z-index: 1;
-        }
-
-        .process-step {
-            text-align: center;
-            width: 20%;
-            position: relative;
-            z-index: 2;
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 20px;
-            position: relative;
-        }
-
-        .process-step h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('assets/sit.jpg') no-repeat center center/cover;
-            color: var(--white);
-        }
-
-        .testimonials h2 {
-            color: var(--white);
-        }
-
-        .testimonials h2:after {
-            background: var(--primary-gold);
-        }
-
-        .testimonial-carousel {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonial-slide {
-            padding: 0 20px;
-            text-align: center;
-            display: none;
-            animation: fadeIn 1s ease;
-        }
-
-        .testimonial-slide.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .testimonial-text {
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .author-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-            border: 2px solid var(--primary-gold);
-        }
-
-        .author-info h4 {
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-
-        .author-info p {
-            color: #ccc;
-            font-size: 0.9rem;
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            margin: 0 5px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .indicator.active {
-            background: var(--primary-gold);
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-img {
-            position: relative;
-        }
-
-        .about-img img {
-            width: 100%;
-            border-radius: 0;
-            box-shadow: var(--shadow);
-        }
-
-        .about-experience {
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-            padding: 30px;
-            text-align: center;
-            width: 150px;
-            height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: var(--shadow);
-        }
-
-        .about-experience h3 {
-            font-size: 2.5rem;
-            margin-bottom: 0;
-        }
-
-        .about-experience p {
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .certifications {
-            margin-top: 30px;
-        }
-
-        .certifications h4 {
-            margin-bottom: 15px;
-        }
-
-        .certifications p {
-            margin-bottom: 5px;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .certifications p:before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--primary-gold);
-        }
-
-        /* Stats Section */
-        .stats {
-            background: var(--primary-dark);
-            color: var(--white);
-            padding: 80px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
-            color: var(--primary-gold);
-            margin-bottom: 10px;
-        }
-
-        .stat-item p {
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--primary-light);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--primary-gold);
-            margin-right: 15px;
-            margin-top: 5px;
-        }
-
-        .contact-details h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .contact-form input,
-        .contact-form textarea,
-        .contact-form select {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus,
-        .contact-form select:focus {
-            outline: none;
-            border-color: var(--primary-gold);
-        }
-
-        .contact-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary-dark);
-            color: var(--white);
-            padding: 80px 0 0;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--primary-gold);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-gold);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            margin-right: 10px;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-
-        .newsletter input {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            margin-bottom: 15px;
-        }
-
-        .newsletter input::placeholder {
-            color: #ccc;
-        }
-
-        .newsletter .btn {
-            width: 100%;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding: 20px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ccc;
-            font-size: 0.9rem;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            max-width: 900px;
-            max-height: 90vh;
-            position: relative;
-            background: var(--white);
-            border-radius: 0;
-            overflow: hidden;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--primary-dark);
-            color: var(--white);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: var(--transition);
-        }
-
-        .modal-close:hover {
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-        }
-
-        .modal-body {
-            padding: 40px;
-            max-height: calc(90vh - 80px);
-            overflow-y: auto;
-        }
-
-        .modal-img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        /* Loading Animation */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-spinner {
-            width: 80px;
-            height: 80px;
-            border: 5px solid rgba(201, 167, 77, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--primary-gold);
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Image Optimization */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .process-steps:before {
-                width: 70%;
-                left: 15%;
-            }
-        }
-
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 3rem;
-            }
-            
-            h2 {
-                font-size: 2.2rem;
-            }
-            
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-img {
-                margin-bottom: 50px;
-            }
-            
-            .process-step {
-                width: 50%;
-                margin-bottom: 40px;
-            }
-            
-            .process-steps:before {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 0;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: var(--white);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 50px;
-                transition: var(--transition);
-                z-index: 999;
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .hamburger {
-                display: block;
-                z-index: 1000;
-            }
-            
-            .hamburger span {
-                display: block;
-                width: 25px;
-                height: 3px;
-                background: var(--primary-dark);
-                margin: 5px 0;
-                transition: var(--transition);
-            }
-            
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-            
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .process-step {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .section-padding {
-                padding: 60px 0;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-            }
-            
-            .hero-btns .btn {
-                display: block;
-                margin: 10px auto;
-                width: 80%;
-            }
-            
-            .about-experience {
-                width: 120px;
-                height: 120px;
-                padding: 20px;
-            }
-            
-            .about-experience h3 {
-                font-size: 2rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solidframe Web | #1 Houston Web Design Agency for Contractors</title>
+<meta name="description" content="Solidframe Web designs stunning, high-converting websites for roofing companies, remodelers, pool builders & general contractors across Houston, Texas. 250+ websites delivered. Get a free quote today.">
+<meta name="keywords" content="Houston web design, Houston web design agency, roofing website Houston, remodeling contractor website, pool builder website Houston, Houston SEO, contractor web design Texas">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="geo.region" content="US-TX">
+<meta name="geo.placename" content="Houston">
+<meta name="geo.position" content="29.7604;-95.3698">
+<link rel="canonical" href="https://www.solidframeweb.com/">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af',900:'#1e3a8a',950:'#0f172a'},surface:{50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',300:'#cbd5e1',400:'#94a3b8',500:'#64748b',600:'#475569',700:'#334155',800:'#1e293b',900:'#0f172a'}},fontFamily:{sans:['Inter','system-ui','sans-serif']}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.anim-up{animation:fadeUp .7s ease-out both}
+.anim-fade{animation:fadeIn .5s ease-out both}
+.reveal{opacity:0;transform:translateY(24px);transition:all .7s cubic-bezier(.16,1,.3,1)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+.hero-section{position:relative;min-height:100vh;overflow:hidden;background:#0f172a}
+.hero-bg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;background-repeat:no-repeat}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,0.85)0%,rgba(30,58,138,0.6)40%,rgba(30,58,138,0.5)60%,rgba(15,23,42,0.8)100%)}
+
+.glass-f{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px)}
+.glass-b{background:rgba(255,255,255,0.08);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.12)}
+.t-grad{background:linear-gradient(135deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.btn-m{background:linear-gradient(135deg,#3b82f6,#2563eb);transition:all .3s;position:relative;overflow:hidden}
+.btn-m::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#60a5fa,#3b82f6);opacity:0;transition:opacity .3s}
+.btn-m:hover::after{opacity:1}
+.btn-m:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(59,130,246,.45)}
+.btn-m>*{position:relative;z-index:1}
+.btn-o{border:1.5px solid rgba(255,255,255,.25);transition:all .3s}
+.btn-o:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.45);transform:translateY(-2px)}
+
+.card-h{transition:all .35s cubic-bezier(.16,1,.3,1)}
+.card-h:hover{transform:translateY(-4px);box-shadow:0 14px 35px rgba(0,0,0,.07)}
+
+.dw{position:relative}
+.dm{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%) translateY(4px);opacity:0;visibility:hidden;transition:all .2s;z-index:50;min-width:270px}
+.dw:hover .dm{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+.faq-c{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s ease}
+.faq-i.open .faq-c{max-height:200px;padding-top:8px}
+.faq-ic{transition:transform .3s}
+.faq-i.open .faq-ic{transform:rotate(45deg)}
+
+.mq{animation:marquee 22s linear infinite}
+.mp:hover .mq{animation-play-state:paused}
+
+input:focus,select:focus,textarea:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+.nav-s{background:rgba(15,23,42,.96)!important;backdrop-filter:blur(16px)!important;border-bottom:1px solid rgba(255,255,255,.06)!important}
+
+@media(max-width:1023px){.hero-section{min-height:auto;padding-top:80px;padding-bottom:40px}}
+</style>
 </head>
-<body>
-    <!-- Loading Screen -->
-    <div class="loader" id="pageLoader">
-        <div class="loader-spinner"></div>
-    </div>
+<body class="bg-white text-surface-800 antialiased">
 
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">ABC <span>Remodelers</span></a>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#why-choose-us">Why Choose Us</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#process">Our Process</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
-        </div>
-    </header>
+<!-- Top Bar -->
+<div class="bg-brand-950 text-white/70 text-[11px] py-2 hidden md:block border-b border-white/5">
+<div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+<div class="flex items-center gap-4"><span>📍 Serving All of Houston, TX & Surrounding Areas</span><span class="text-white/20">|</span><span>Mon - Fri: 9:00 AM - 6:00 PM CST</span></div>
+<a href="mailto:info@solidframeweb.com" class="hover:text-white transition-colors">✉ info@solidframeweb.com</a>
+</div>
+</div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Crafting Exceptional Living Spaces</h1>
-            <p>Transforming homes with unparalleled craftsmanship, attention to detail, and a commitment to excellence since 2005.</p>
-            <div class="hero-btns">
-                <a href="#contact" class="btn">Request a Free Consultation</a>
-                <a href="#portfolio" class="btn btn-light">View Our Work</a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+<!-- Navigation -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="flex items-center justify-between h-14 sm:h-16">
+<a href="#" class="flex items-center gap-2 shrink-0">
+<div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-sky-400 rounded-lg flex items-center justify-center shadow-lg"><span class="text-white font-black text-xs">SF</span></div>
+<div class="leading-none"><div class="text-base font-bold text-white">Solid<span class="text-brand-400">frame</span></div><div class="text-[8px] text-white/40 tracking-[0.15em] uppercase -mt-0.5">Web</div></div>
+</a>
+<div class="hidden xl:flex items-center gap-6">
+<a href="#home" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Home</a>
+<a href="#about" class="text-white/80 hover:text-white text-sm font-medium transition-colors">About</a>
+<div class="dw">
+<button class="text-white/80 hover:text-white text-sm font-medium transition-colors flex items-center gap-1 group">Services <svg class="w-3.5 h-3.5 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+<div class="dm bg-white rounded-xl shadow-2xl p-3 border border-gray-100">
+<a href="#services" class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-brand-50 transition-colors"><div class="w-9 h-9 bg-brand-100 rounded-lg flex items-center justify-center text-base">🎨</div><div><div class="font-semibold text-surface-800 text-sm">Custom Web Design</div><div class="text-xs text-surface-400">Pixel-perfect designs</div></div></a>
+<a href="#services" class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-brand-50 transition-colors"><div class="w-9 h-9 bg-brand-100 rounded-lg flex items-center justify-center text-base">💻</div><div><div class="font-semibold text-surface-800 text-sm">Web Development</div><div class="text-xs text-surface-400">Fast & scalable</div></div></a>
+<a href="#services" class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-brand-50 transition-colors"><div class="w-9 h-9 bg-brand-100 rounded-lg flex items-center justify-center text-base">🔍</div><div><div class="font-semibold text-surface-800 text-sm">Houston SEO</div><div class="text-xs text-surface-400">Dominate search</div></div></a>
+<a href="#services" class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-brand-50 transition-colors"><div class="w-9 h-9 bg-brand-100 rounded-lg flex items-center justify-center text-base">📱</div><div><div class="font-semibold text-surface-800 text-sm">Mobile Optimization</div><div class="text-xs text-surface-400">Fully responsive</div></div></a>
+<a href="#services" class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-brand-50 transition-colors"><div class="w-9 h-9 bg-brand-100 rounded-lg flex items-center justify-center text-base">📈</div><div><div class="font-semibold text-surface-800 text-sm">Digital Marketing</div><div class="text-xs text-surface-400">Google Ads & Social</div></div></a>
+<a href="#services" class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-brand-50 transition-colors"><div class="w-9 h-9 bg-brand-100 rounded-lg flex items-center justify-center text-base">🛠️</div><div><div class="font-semibold text-surface-800 text-sm">Website Maintenance</div><div class="text-xs text-surface-400">Security & updates</div></div></a>
+</div>
+</div>
+<a href="#process" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Process</a>
+<a href="#pricing" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Pricing</a>
+<a href="#faqs" class="text-white/80 hover:text-white text-sm font-medium transition-colors">FAQs</a>
+<a href="#blog" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Blog</a>
+<a href="#contact" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Contact</a>
+</div>
+<div class="hidden xl:flex items-center gap-3">
+<a href="tel:8325550190" class="text-white/80 hover:text-white text-sm font-semibold transition-colors">📞 (832) 555-0190</a>
+<a href="#quote" class="btn-m px-5 py-2 rounded-lg text-white text-sm font-semibold shadow-lg"><span>Get Free Quote →</span></a>
+</div>
+<button id="menuToggle" class="xl:hidden p-1.5 text-white rounded-lg hover:bg-white/10 transition-colors" aria-label="Menu">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+</button>
+</div>
+</div>
+</nav>
 
-    <!-- Services Section -->
-    <section class="services section-padding" id="services">
-        <div class="container">
-            <h2>Our Premium Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>Custom Home Remodeling</h3>
-                    <p>Complete home transformations tailored to your lifestyle and preferences, using the finest materials and craftsmanship.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Kitchen Renovations</h3>
-                    <p>Luxurious kitchen designs that blend functionality with aesthetics, creating the heart of your home.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-bath"></i>
-                    </div>
-                    <h3>Bathroom Remodels</h3>
-                    <p>Spa-like bathroom retreats designed for relaxation and elegance, with attention to every detail.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-plus-square"></i>
-                    </div>
-                    <h3>Home Additions</h3>
-                    <p>Seamless home expansions that increase your living space while enhancing your property's value.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-drafting-compass"></i>
-                    </div>
-                    <h3>Custom Cabinetry</h3>
-                    <p>Handcrafted cabinetry and built-ins that maximize space and reflect your personal style.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Luxury Finishes</h3>
-                    <p>Premium finishes and details that elevate your space with sophistication and timeless appeal.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Mobile Menu Overlay (full screen, hides everything behind) -->
+<div id="mobileMenu" class="fixed inset-0 z-[100] bg-brand-950 transform translate-x-full transition-transform duration-300">
+<div class="flex flex-col h-full p-5">
+<div class="flex justify-between items-center mb-6 pb-4 border-b border-white/10">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-sky-400 rounded-lg flex items-center justify-center"><span class="text-white font-black text-xs">SF</span></div>
+<div class="text-white text-base font-bold">Solid<span class="text-brand-400">frame</span> <span class="text-white/30 text-[10px] tracking-wider">Web</span></div>
+</div>
+<button id="menuClose" class="p-1.5 text-white rounded-lg hover:bg-white/10" aria-label="Close">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+</button>
+</div>
+<nav class="flex flex-col gap-0.5 flex-1 overflow-y-auto">
+<a href="#home" class="mob-link text-white/90 hover:text-white hover:bg-white/5 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+<a href="#about" class="mob-link text-white/90 hover:text-white hover:bg-white/5 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors">About</a>
+<a href="#services" class="mob-link text-white/90 hover:text-white hover:bg-white/5 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors">Services</a>
+<a href="#process" class="mob-link text-white/90 hover:text-white hover:bg-white/5 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors">Process</a>
+<a href="#pricing" class="mob-link text-white/90 hover:text-white hover:bg-white/5 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors">Pricing</a>
+<a href="#testimonials" class="mob-link text-white/90 hover:text-white hover:bg-white/5 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors">Testimonials</a>
+<a href="#faqs" class="mob-link text-white/90 hover:text-white hover:bg-white/5 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors">FAQs</a>
+<a href="#blog" class="mob-link text-white/90 hover:text-white hover:bg-white/5 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors">Blog</a>
+<a href="#contact" class="mob-link text-white/90 hover:text-white hover:bg-white/5 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors">Contact</a>
+</nav>
+<div class="pt-4 border-t border-white/10 space-y-2.5">
+<a href="tel:8325550190" class="flex items-center gap-2 text-white/60 py-1.5 text-sm">📞 (832) 555-0190</a>
+<a href="#quote" class="btn-m block text-center py-2.5 rounded-lg text-white font-semibold text-sm mob-link">Get Free Quote →</a>
+</div>
+</div>
+</div>
 
-    <!-- Why Choose Us Section -->
-    <section class="why-choose-us section-padding" id="why-choose-us">
-        <div class="container">
-            <h2>Why Choose ABC Remodelers</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>18 Years of Excellence</h3>
-                    <p>Nearly two decades of transforming homes with exceptional craftsmanship and attention to detail.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Expert Team</h3>
-                    <p>Our skilled craftsmen, designers, and project managers collaborate to bring your vision to life.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3>Quality Guarantee</h3>
-                    <p>We stand behind our work with comprehensive warranties and a commitment to your satisfaction.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>On-Time Completion</h3>
-                    <p>We respect your time and complete projects on schedule with minimal disruption to your life.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Transparent Process</h3>
-                    <p>Clear communication, detailed proposals, and no hidden costs throughout your project.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-paint-roller"></i>
-                    </div>
-                    <h3>Premium Materials</h3>
-                    <p>We use only the highest quality materials from trusted suppliers for lasting beauty and durability.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+<div class="hero-bg-img" role="img" aria-label="Modern Houston Texas skyline office building"></div>
+<div class="hero-overlay"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full py-6 sm:py-10">
+<div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+<!-- Left Content -->
+<div class="anim-up">
+<div class="glass-b rounded-full px-4 py-1.5 inline-flex items-center gap-2 mb-5">
+<span class="text-sm">🏆</span><span class="text-white/90 text-xs font-semibold">Voted #1 Houston Web Design Agency</span>
+</div>
+<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3rem] xl:text-[3.5rem] font-black text-white leading-[1.08] mb-4">
+We Build Websites That <span class="t-grad">Dominate Houston</span> & Drive Real Results
+</h1>
+<p class="text-base sm:text-lg text-white/70 mb-6 max-w-xl leading-relaxed">
+Solidframe Web designs stunning, high-converting websites for <strong class="text-white">roofing companies, remodelers, pool builders & general contractors</strong> across Houston, Texas. More leads. More clients. More revenue.
+</p>
+<div class="flex flex-wrap gap-4 mb-6">
+<div class="text-center"><div class="text-2xl font-black text-white">250+</div><div class="text-[10px] text-white/40 font-medium">Websites Delivered</div></div>
+<div class="w-px bg-white/15 hidden sm:block"></div>
+<div class="text-center"><div class="text-2xl font-black text-sky-400">98%</div><div class="text-[10px] text-white/40 font-medium">Client Satisfaction</div></div>
+<div class="w-px bg-white/15 hidden sm:block"></div>
+<div class="text-center"><div class="text-2xl font-black text-amber-400">300%</div><div class="text-[10px] text-white/40 font-medium">Avg. Lead Increase</div></div>
+</div>
+<div class="flex flex-col sm:flex-row gap-3">
+<a href="#pricing" class="btn-m px-6 py-2.5 rounded-lg font-bold text-white shadow-xl text-center text-sm"><span>View Pricing Plans</span></a>
+<a href="tel:8325550190" class="btn-o px-6 py-2.5 rounded-lg font-bold text-white text-center text-sm">📞 Call Us Now</a>
+</div>
+</div>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio section-padding" id="portfolio">
-        <div class="container">
-            <h2>Our Portfolio</h2>
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="kitchen">Kitchens</button>
-                <button class="filter-btn" data-filter="bathroom">Bathrooms</button>
-                <button class="filter-btn" data-filter="addition">Additions</button>
-                <button class="filter-btn" data-filter="whole-home">Whole Home</button>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item" data-category="kitchen">
-                    <img src="assets/kit.jpg" alt="Modern Kitchen Renovation" class="portfolio-img" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Modern Kitchen</h3>
-                        <p>Complete transformation with custom cabinetry and premium appliances</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="bathroom">
-                    <img src="assets/bath.jpg" alt="Luxury Bathroom" class="portfolio-img" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Spa Bathroom</h3>
-                        <p>Luxurious master bath with freestanding tub and custom tile work</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="whole-home">
-                    <img src="assets/home.jpg" alt="Whole Home Remodel" class="portfolio-img" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Traditional Home</h3>
-                        <p>Complete whole-home renovation preserving historical details</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="addition">
-                    <img src="assets/kitc.jpg" alt="Home Addition" class="portfolio-img" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Second Story Addition</h3>
-                        <p>Expanded living space with seamless architectural integration</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="kitchen">
-                    <img src="assets/kitchenn.jpg" alt="Contemporary Kitchen" class="portfolio-img" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Contemporary Kitchen</h3>
-                        <p>Open concept design with waterfall island and professional grade appliances</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="bathroom">
-                    <img src="assets/ki.jpg" alt="Powder Room" class="portfolio-img" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Powder Room</h3>
-                        <p>Elegant powder room with custom vanity and designer fixtures</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Right: Quote Form -->
+<div id="quote" class="anim-up" style="animation-delay:.15s">
+<div class="glass-f rounded-2xl shadow-2xl p-5 sm:p-6 max-w-sm lg:max-w-md">
+<div class="mb-4">
+<div class="inline-flex items-center gap-2 bg-brand-50 rounded-full px-3 py-1 mb-1.5">
+<span>🚀</span><span class="text-brand-700 text-[10px] font-bold uppercase tracking-wider">Get Your Free Quote</span>
+</div>
+<p class="text-surface-400 text-[11px]">We respond within 24 hours — no obligations</p>
+</div>
+<form id="quoteForm" class="space-y-2.5">
+<div class="grid grid-cols-2 gap-2.5">
+<div>
+<label class="block text-[10px] font-bold text-surface-700 mb-1">FULL NAME <span class="text-red-500">*</span></label>
+<input type="text" required placeholder="Full Name" class="w-full px-3 py-2 rounded-lg bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-xs">
+</div>
+<div>
+<label class="block text-[10px] font-bold text-surface-700 mb-1">EMAIL <span class="text-red-500">*</span></label>
+<input type="email" required placeholder="Email" class="w-full px-3 py-2 rounded-lg bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-xs">
+</div>
+</div>
+<div>
+<label class="block text-[10px] font-bold text-surface-700 mb-1">PHONE NUMBER <span class="text-red-500">*</span></label>
+<input type="tel" required placeholder="Phone Number" class="w-full px-3 py-2 rounded-lg bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-xs">
+</div>
+<div>
+<label class="block text-[10px] font-bold text-surface-700 mb-1">SERVICE NEEDED</label>
+<select class="w-full px-3 py-2 rounded-lg bg-surface-50 border border-surface-200 text-surface-600 text-xs appearance-none cursor-pointer">
+<option value="">Select a service...</option>
+<option>Custom Web Design</option>
+<option>Web Development</option>
+<option>Houston SEO Services</option>
+<option>Mobile Optimization</option>
+<option>Digital Marketing</option>
+<option>Website Maintenance</option>
+<option>Complete Package</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold text-surface-700 mb-1">YOUR MESSAGE</label>
+<textarea rows="2" placeholder="Tell us about your project..." class="w-full px-3 py-2 rounded-lg bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-xs resize-none"></textarea>
+</div>
+<button type="submit" class="btn-m w-full py-2.5 rounded-lg font-bold text-white shadow-lg text-sm"><span class="flex items-center justify-center gap-1.5">🚀 Get My Free Quote</span></button>
+<p class="text-[10px] text-center text-surface-400">🔒 Your information is 100% secure and will never be shared.</p>
+</form>
+<div id="formDone" class="hidden text-center py-4">
+<div class="text-3xl mb-2">✅</div>
+<div class="text-base font-bold text-surface-900">Quote Request Received!</div>
+<div class="text-surface-500 text-xs mt-1">We'll get back to you within 24 hours. Thank you!</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- Process Section -->
-    <section class="process section-padding" id="process">
-        <div class="container">
-            <h2>Our Process</h2>
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3>Consultation</h3>
-                    <p>We discuss your vision, needs, and budget to understand your project goals.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3>Design & Planning</h3>
-                    <p>Our designers create detailed plans and 3D renderings of your future space.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3>Material Selection</h3>
-                    <p>We help you choose premium materials that match your style and budget.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3>Construction</h3>
-                    <p>Our skilled craftsmen bring the design to life with precision and care.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">5</div>
-                    <h3>Final Walkthrough</h3>
-                    <p>We ensure every detail meets your expectations before project completion.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Logo Marquee -->
+<section class="py-8 bg-white border-b border-surface-100">
+<div class="text-center mb-5 reveal"><p class="text-surface-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-0.5">TRUSTED BY</p><h2 class="text-lg font-bold text-surface-900">Houston's Top Contractors & Businesses</h2></div>
+<div class="relative overflow-hidden">
+<div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10"></div>
+<div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10"></div>
+<div class="flex mp">
+<div class="mq flex items-center gap-4 px-3">
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏗️</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Houston Roof Pros</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏊</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Blue Haven Pools</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏠</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Williams Remodeling</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🔧</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Texas General Contracting</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏗️</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Lone Star Roofing</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏠</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Premier Remodelers</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏊</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Aqua Pools Houston</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🔧</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">H-Town Builders</span></div>
+<!-- Duplicate -->
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏗️</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Houston Roof Pros</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏊</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Blue Haven Pools</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏠</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Williams Remodeling</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🔧</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Texas General Contracting</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏗️</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Lone Star Roofing</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏠</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Premier Remodelers</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🏊</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">Aqua Pools Houston</span></div>
+<div class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-surface-50 rounded-lg border border-surface-100"><span class="text-sm">🔧</span><span class="font-semibold text-surface-700 text-[11px] whitespace-nowrap">H-Town Builders</span></div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials section-padding" id="testimonials">
-        <div class="container">
-            <h2>What Our Clients Say</h2>
-            <div class="testimonial-carousel">
-                <div class="testimonial-slide active">
-                    <p class="testimonial-text">"ABC Remodelers transformed our outdated kitchen into a stunning modern space we absolutely love. Their attention to detail and professionalism exceeded our expectations. The project was completed on time and within budget."</p>
-                    <div class="testimonial-author">
-                        <img src="assets/client1.jpg" alt="Sarah Johnson" class="author-img" loading="lazy">
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Barrington Hills, IL</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-slide">
-                    <p class="testimonial-text">"We added a second story to our home and ABC Remodelers made the process seamless. Their team was respectful, clean, and highly skilled. The quality of their work is exceptional and we couldn't be happier with our expanded living space."</p>
-                    <div class="testimonial-author">
-                        <img src="assets/client2.jpg" alt="Michael Thompson" class="author-img" loading="lazy">
-                        <div class="author-info">
-                            <h4>Michael Thompson</h4>
-                            <p>Glenview, IL</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-slide">
-                    <p class="testimonial-text">"From design to completion, ABC Remodelers demonstrated expertise and craftsmanship. Our master bathroom now feels like a luxury spa. They listened to our ideas and incorporated them beautifully while offering valuable suggestions."</p>
-                    <div class="testimonial-author">
-                        <img src="assets/client3.jpg" alt="Jennifer Lee" class="author-img" loading="lazy">
-                        <div class="author-info">
-                            <h4>Jennifer Lee</h4>
-                            <p>Evanston, IL</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-indicators">
-                <div class="indicator active" data-slide="0"></div>
-                <div class="indicator" data-slide="1"></div>
-                <div class="indicator" data-slide="2"></div>
-            </div>
-        </div>
-    </section>
+<!-- Who We Serve -->
+<section class="py-14 sm:py-16 bg-surface-50/50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-2xl mx-auto mb-10 reveal">
+<div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-3 py-1 mb-3"><span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.15em]">WHO WE SERVE</span></div>
+<h2 class="text-2xl sm:text-3xl font-black text-surface-900 mb-3 leading-tight">Houston's Most Trusted <span class="t-grad">Web Design</span> for Contractors</h2>
+<p class="text-surface-500 text-sm">We specialize in building powerful, lead-generating websites for Houston's top trade businesses — helping you stand out and win more bids online.</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="card-h bg-white rounded-xl p-5 shadow-sm border border-surface-100 reveal"><div class="w-10 h-10 bg-gradient-to-br from-orange-100 to-orange-50 rounded-lg flex items-center justify-center text-xl mb-3">🏗️</div><h3 class="text-sm font-bold text-surface-900 mb-1.5">Roofing Companies</h3><p class="text-surface-500 text-xs leading-relaxed">High-converting roofing websites designed to generate storm damage leads and emergency repair calls across Houston.</p></div>
+<div class="card-h bg-white rounded-xl p-5 shadow-sm border border-surface-100 reveal"><div class="w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-50 rounded-lg flex items-center justify-center text-xl mb-3">🏠</div><h3 class="text-sm font-bold text-surface-900 mb-1.5">Remodeling Contractors</h3><p class="text-surface-500 text-xs leading-relaxed">Showcase your stunning kitchen, bathroom & home remodeling projects with beautiful portfolio-driven websites.</p></div>
+<div class="card-h bg-white rounded-xl p-5 shadow-sm border border-surface-100 reveal"><div class="w-10 h-10 bg-gradient-to-br from-cyan-100 to-cyan-50 rounded-lg flex items-center justify-center text-xl mb-3">🏊</div><h3 class="text-sm font-bold text-surface-900 mb-1.5">Pool Builders</h3><p class="text-surface-500 text-xs leading-relaxed">Luxury pool builder websites that attract high-value custom pool, spa, and outdoor living projects in Houston.</p></div>
+<div class="card-h bg-white rounded-xl p-5 shadow-sm border border-surface-100 reveal"><div class="w-10 h-10 bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-lg flex items-center justify-center text-xl mb-3">🔧</div><h3 class="text-sm font-bold text-surface-900 mb-1.5">General Contractors</h3><p class="text-surface-500 text-xs leading-relaxed">Professional contractor websites that build trust, showcase capabilities, and drive consistent commercial & residential leads.</p></div>
+</div>
+</div>
+</section>
 
-    <!-- About Section -->
-    <section class="about section-padding" id="about">
-        <div class="container">
-            <h2>Our Story</h2>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="assets/team.jpg" alt="ABC Remodelers Team" loading="lazy">
-                    <div class="about-experience">
-                        <h3>18</h3>
-                        <p>Years of Excellence</p>
-                    </div>
-                </div>
-                <div class="about-text">
-                    <h3>Premier Remodeling Contractor Serving Chicagoland Since 2005</h3>
-                    <p>Founded by John and Michael Anderson, ABC Remodelers has been transforming homes across the Chicago metropolitan area for nearly two decades. Our commitment to quality craftsmanship, attention to detail, and exceptional customer service has made us the preferred choice for discerning homeowners.</p>
-                    <p>We believe that your home should be a reflection of your lifestyle and personal taste. Our team of skilled craftsmen, designers, and project managers work collaboratively to bring your vision to life while ensuring the process is seamless and enjoyable.</p>
-                    <p>As a fully licensed and insured contractor, we maintain the highest standards of professionalism and integrity. We're proud to be recognized with multiple industry awards and maintain an A+ rating with the Better Business Bureau.</p>
-                    <div class="certifications">
-                        <h4>Certifications & Affiliations</h4>
-                        <p>National Association of Home Builders (NAHB)</p>
-                        <p>National Kitchen & Bath Association (NKBA)</p>
-                        <p>EPA Lead-Safe Certified Firm</p>
-                        <p>Better Business Bureau A+ Rating</p>
-                    </div>
-                    <a href="#contact" class="btn" style="margin-top: 20px;">Learn More About Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- About Section -->
+<section id="about" class="py-14 sm:py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="grid lg:grid-cols-2 gap-10 items-center">
+<div class="reveal">
+<div class="relative">
+<div class="aspect-[4/3] bg-gradient-to-br from-brand-100 to-brand-50 rounded-2xl overflow-hidden flex items-center justify-center">
+<div class="text-center"><div class="text-5xl mb-2">👨‍💻</div><div class="text-brand-800 font-bold text-base">Solidframe Web Team</div><div class="text-brand-600 text-xs">Collaborating on web design in Houston Texas</div></div>
+</div>
+<div class="absolute -bottom-3 right-4 bg-white rounded-xl p-3 shadow-lg border border-surface-100"><div class="flex items-center gap-2.5"><div class="w-9 h-9 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600 font-bold text-xs">4+</div><div><div class="text-surface-800 font-bold text-xs">YEARS EXPERIENCE</div><div class="text-surface-400 text-[10px]">Web Analytics & SEO Results</div></div></div></div>
+</div>
+</div>
+<div class="reveal">
+<div class="inline-flex items-center gap-2 bg-brand-50 rounded-full px-3 py-1 mb-3"><span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.15em]">ABOUT SOLIDFRAME WEB</span></div>
+<h2 class="text-2xl sm:text-3xl font-black text-surface-900 mb-3 leading-tight">Houston's Premier <span class="t-grad">Web Design Agency</span> for Trade Businesses</h2>
+<p class="text-surface-600 text-sm leading-relaxed mb-3">Founded in Houston, Texas, Solidframe Web is a full-service web design & development agency dedicated to helping local contractors, roofers, remodelers, and pool builders dominate their market online. We don't just build websites — we build <strong class="text-surface-900">revenue-generating machines</strong>.</p>
+<p class="text-surface-500 text-xs leading-relaxed mb-6">Our deep understanding of the Houston market, combined with cutting-edge design, blazing-fast code, and proven SEO strategies, ensures your business ranks higher, looks professional, and converts more visitors into paying customers.</p>
+<div class="grid sm:grid-cols-2 gap-2 mb-6">
+<div class="flex items-center gap-2"><div class="w-5 h-5 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">Houston SEO Experts</span></div>
+<div class="flex items-center gap-2"><div class="w-5 h-5 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">Mobile-First Design</span></div>
+<div class="flex items-center gap-2"><div class="w-5 h-5 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">Lightning-Fast Speed</span></div>
+<div class="flex items-center gap-2"><div class="w-5 h-5 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">Lead Generation Focus</span></div>
+<div class="flex items-center gap-2"><div class="w-5 h-5 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">24/7 Priority Support</span></div>
+<div class="flex items-center gap-2"><div class="w-5 h-5 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">Transparent Pricing</span></div>
+</div>
+<a href="#quote" class="btn-m inline-flex items-center gap-2 px-6 py-2.5 rounded-lg font-bold text-white shadow-lg text-sm"><span>Let's Build Your Website →</span></a>
+</div>
+</div>
+<!-- Bottom Stats -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10 pt-8 border-t border-surface-100">
+<div class="text-center reveal"><div class="text-2xl font-black text-surface-900 mb-0.5">🌐 250+</div><div class="text-surface-400 text-[11px] font-medium">Websites Designed</div></div>
+<div class="text-center reveal"><div class="text-2xl font-black text-brand-600 mb-0.5">😊 200+</div><div class="text-surface-400 text-[11px] font-medium">Happy Clients</div></div>
+<div class="text-center reveal"><div class="text-2xl font-black text-amber-500 mb-0.5">📈 300%</div><div class="text-surface-400 text-[11px] font-medium">Avg. Lead Increase</div></div>
+<div class="text-center reveal"><div class="text-2xl font-black text-brand-500 mb-0.5">⭐ 5.0</div><div class="text-surface-400 text-[11px] font-medium">Google Rating</div></div>
+</div>
+</div>
+</section>
 
-    <!-- Stats Section -->
-    <section class="stats section-padding">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>650+</h3>
-                    <p>Projects Completed</p>
-                </div>
-                <div class="stat-item">
-                    <h3>98%</h3>
-                    <p>Client Satisfaction</p>
-                </div>
-                <div class="stat-item">
-                    <h3>18</h3>
-                    <p>Years Experience</p>
-                </div>
-                <div class="stat-item">
-                    <h3>25+</h3>
-                    <p>Industry Awards</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Services Section -->
+<section id="services" class="py-14 sm:py-16 bg-surface-50/50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-2xl mx-auto mb-10 reveal">
+<div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-3 py-1 mb-3"><span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.15em]">OUR SERVICES</span></div>
+<h2 class="text-2xl sm:text-3xl font-black text-surface-900 mb-3 leading-tight">Complete <span class="t-grad">Web Solutions</span> for Houston Businesses</h2>
+<p class="text-surface-500 text-sm">From custom design to SEO domination, we provide everything your contracting business needs to thrive online.</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+<div class="card-h bg-white rounded-xl p-5 shadow-sm border border-surface-100 reveal">
+<div class="w-10 h-10 bg-brand-100 rounded-lg flex items-center justify-center text-xl mb-3">🎨</div>
+<h3 class="text-sm font-bold text-surface-900 mb-1.5">Custom Web Design</h3>
+<p class="text-surface-500 text-xs mb-3 leading-relaxed">Bespoke, pixel-perfect website designs tailored to your brand identity and Houston market positioning.</p>
+<ul class="space-y-1.5">
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Unique brand-aligned design</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Wireframes & mockups</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Unlimited revisions</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Conversion-optimized layouts</li>
+</ul>
+</div>
+<div class="card-h bg-white rounded-xl p-5 shadow-sm border border-surface-100 reveal">
+<div class="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-xl mb-3">💻</div>
+<h3 class="text-sm font-bold text-surface-900 mb-1.5">Web Development</h3>
+<p class="text-surface-500 text-xs mb-3 leading-relaxed">Fast, secure, and scalable websites built with modern technologies for peak performance.</p>
+<ul class="space-y-1.5">
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Lightning-fast load speeds</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Secure & reliable hosting</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>CMS integration</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Cross-browser compatibility</li>
+</ul>
+</div>
+<div class="card-h bg-white rounded-xl p-5 shadow-sm border border-surface-100 reveal">
+<div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-xl mb-3">🔍</div>
+<h3 class="text-sm font-bold text-surface-900 mb-1.5">Houston SEO Services</h3>
+<p class="text-surface-500 text-xs mb-3 leading-relaxed">Dominate local search results and rank on page one for Houston keywords that drive real business.</p>
+<ul class="space-y-1.5">
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Local SEO optimization</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Google Business Profile</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Keyword research & strategy</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Monthly reporting</li>
+</ul>
+</div>
+<div class="card-h bg-white rounded-xl p-5 shadow-sm border border-surface-100 reveal">
+<div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-xl mb-3">📱</div>
+<h3 class="text-sm font-bold text-surface-900 mb-1.5">Mobile Optimization</h3>
+<p class="text-surface-500 text-xs mb-3 leading-relaxed">Every website we build is fully responsive and optimized for mobile — because most Houston customers search on their phones.</p>
+<ul class="space-y-1.5">
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Responsive design</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Touch-friendly navigation</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Mobile-first indexing</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Performance optimized</li>
+</ul>
+</div>
+<div class="card-h bg-white rounded-xl p-5 shadow-sm border border-surface-100 reveal">
+<div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center text-xl mb-3">📈</div>
+<h3 class="text-sm font-bold text-surface-900 mb-1.5">Digital Marketing</h3>
+<p class="text-surface-500 text-xs mb-3 leading-relaxed">Comprehensive digital marketing strategies to amplify your reach across Houston and generate qualified leads.</p>
+<ul class="space-y-1.5">
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Google Ads management</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Social media marketing</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Email campaigns</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Analytics & tracking</li>
+</ul>
+</div>
+<div class="card-h bg-white rounded-xl p-5 shadow-sm border border-surface-100 reveal">
+<div class="w-10 h-10 bg-rose-100 rounded-lg flex items-center justify-center text-xl mb-3">🛠️</div>
+<h3 class="text-sm font-bold text-surface-900 mb-1.5">Website Maintenance</h3>
+<p class="text-surface-500 text-xs mb-3 leading-relaxed">Keep your Houston website secure, updated, and performing at its best with our ongoing maintenance plans.</p>
+<ul class="space-y-1.5">
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Regular updates & backups</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Security monitoring</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Performance optimization</li>
+<li class="flex items-center gap-1.5 text-[11px] text-surface-600"><svg class="w-3.5 h-3.5 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Priority support</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- Contact Section -->
-    <section class="contact section-padding" id="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Start Your Transformation Today</h3>
-                    <p>Contact us to schedule a complimentary consultation. We'll discuss your project vision, provide initial insights, and explain our process.</p>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Our Office</h4>
-                            <p>123 Remodeling Way, Suite 100<br>Chicago, IL 60601</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Phone</h4>
-                            <p>(847) 555-1234</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <p>info@abcremodelers.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Business Hours</h4>
-                            <p>Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 2:00 PM</p>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#"><i class="fab fa-houzz"></i></a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="tel" placeholder="Your Phone">
-                        <select required>
-                            <option value="" disabled selected>Select Service</option>
-                            <option value="kitchen">Kitchen Remodeling</option>
-                            <option value="bathroom">Bathroom Remodeling</option>
-                            <option value="addition">Home Addition</option>
-                            <option value="whole-home">Whole Home Remodel</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <textarea placeholder="Tell us about your project..." required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Process Section -->
+<section id="process" class="py-14 sm:py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-2xl mx-auto mb-10 reveal">
+<div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-3 py-1 mb-3"><span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.15em]">OUR PROCESS</span></div>
+<h2 class="text-2xl sm:text-3xl font-black text-surface-900 mb-3 leading-tight">How We Build Your <span class="t-grad">Dream Website</span></h2>
+<p class="text-surface-500 text-sm">Our proven 4-step process ensures your Houston website is delivered on time, on budget, and exceeds expectations.</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 relative">
+<div class="hidden lg:block absolute top-10 left-[12%] right-[12%] h-[2px] bg-gradient-to-r from-brand-200 via-brand-400 to-brand-200"></div>
+<div class="text-center reveal relative"><div class="relative z-10 w-12 h-12 bg-gradient-to-br from-brand-500 to-brand-700 rounded-xl flex items-center justify-center text-white font-black text-base mx-auto mb-3 shadow-lg">1</div><div class="text-2xl mb-2">💬</div><h3 class="text-xs font-bold text-surface-900 mb-1.5">Discovery & Strategy</h3><p class="text-surface-500 text-[11px] leading-relaxed px-2">We learn about your business, goals, competitors, and target Houston audience to craft a winning strategy.</p></div>
+<div class="text-center reveal relative"><div class="relative z-10 w-12 h-12 bg-gradient-to-br from-violet-500 to-violet-700 rounded-xl flex items-center justify-center text-white font-black text-base mx-auto mb-3 shadow-lg">2</div><div class="text-2xl mb-2">🎨</div><h3 class="text-xs font-bold text-surface-900 mb-1.5">Design & Prototype</h3><p class="text-surface-500 text-[11px] leading-relaxed px-2">Our designers create stunning mockups and interactive prototypes for your approval before development begins.</p></div>
+<div class="text-center reveal relative"><div class="relative z-10 w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center text-white font-black text-base mx-auto mb-3 shadow-lg">3</div><div class="text-2xl mb-2">⚡</div><h3 class="text-xs font-bold text-surface-900 mb-1.5">Development & SEO</h3><p class="text-surface-500 text-[11px] leading-relaxed px-2">We build your website with clean code, blazing speed, and Houston-focused SEO baked into every page.</p></div>
+<div class="text-center reveal relative"><div class="relative z-10 w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-700 rounded-xl flex items-center justify-center text-white font-black text-base mx-auto mb-3 shadow-lg">4</div><div class="text-2xl mb-2">🚀</div><h3 class="text-xs font-bold text-surface-900 mb-1.5">Launch & Grow</h3><p class="text-surface-500 text-[11px] leading-relaxed px-2">We launch your site, provide training, and offer ongoing support to ensure continued growth and success.</p></div>
+</div>
+</div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>ABC Remodelers</h3>
-                    <p>Premier residential remodeling contractors serving the Chicagoland area with exceptional craftsmanship and unparalleled service since 2005.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#"><i class="fab fa-houzz"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#why-choose-us">Why Choose Us</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#process">Our Process</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Kitchen Remodeling</a></li>
-                        <li><a href="#">Bathroom Remodeling</a></li>
-                        <li><a href="#">Home Additions</a></li>
-                        <li><a href="#">Whole Home Remodels</a></li>
-                        <li><a href="#">Custom Cabinetry</a></li>
-                        <li><a href="#">Luxury Finishes</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe to our newsletter for remodeling tips, trends, and special offers.</p>
-                    <div class="newsletter">
-                        <input type="email" placeholder="Your Email Address">
-                        <button class="btn">Subscribe</button>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 ABC Remodelers. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
+<!-- Testimonials -->
+<section id="testimonials" class="py-14 sm:py-16 bg-brand-950 relative overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(59,130,246,0.08),transparent_60%)]"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+<div class="text-center max-w-2xl mx-auto mb-10 reveal">
+<div class="inline-flex items-center gap-2 bg-brand-500/10 rounded-full px-3 py-1 mb-3 border border-brand-500/20"><span class="text-brand-400 font-bold text-[10px] uppercase tracking-[0.15em]">TESTIMONIALS</span></div>
+<h2 class="text-2xl sm:text-3xl font-black text-white mb-3 leading-tight">What Houston Clients <span class="t-grad">Say About Us</span></h2>
+<p class="text-white/50 text-sm">Don't just take our word for it. Here's what our clients across Houston, Texas have to say about working with Solidframe Web.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-5">
+<div class="glass-b rounded-xl p-5 reveal card-h">
+<div class="flex gap-0.5 mb-2.5"><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span></div>
+<p class="text-white/70 text-xs leading-relaxed mb-3.5 italic">"Solidframe Web completely transformed our online presence. Our roofing website now ranks #1 in Houston for 'roofing company Houston' and we've seen a 300% increase in leads. Absolutely phenomenal work!"</p>
+<div class="flex items-center gap-2.5 pt-2.5 border-t border-white/10">
+<div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-brand-700 rounded-full flex items-center justify-center text-white font-bold text-xs">MR</div>
+<div><div class="text-white font-semibold text-xs">Mike Rodriguez</div><div class="text-white/40 text-[10px]">Owner, Houston Roof Pros</div></div>
+</div>
+</div>
+<div class="glass-b rounded-xl p-5 reveal card-h">
+<div class="flex gap-0.5 mb-2.5"><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span></div>
+<p class="text-white/70 text-xs leading-relaxed mb-3.5 italic">"As a pool builder in Houston, I needed a website that showcased our luxury builds. Solidframe delivered beyond expectations. We've booked 15 new pool projects directly from the website in just 3 months!"</p>
+<div class="flex items-center gap-2.5 pt-2.5 border-t border-white/10">
+<div class="w-8 h-8 bg-gradient-to-br from-sky-500 to-sky-700 rounded-full flex items-center justify-center text-white font-bold text-xs">SJ</div>
+<div><div class="text-white font-semibold text-xs">Sarah Johnson</div><div class="text-white/40 text-[10px]">CEO, Blue Haven Pools Houston</div></div>
+</div>
+</div>
+<div class="glass-b rounded-xl p-5 reveal card-h">
+<div class="flex gap-0.5 mb-2.5"><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span><span class="text-amber-400 text-sm">★</span></div>
+<p class="text-white/70 text-xs leading-relaxed mb-3.5 italic">"Professional, responsive, and incredibly talented. They understood our remodeling business and created a website that truly represents our craftsmanship. Highly recommend to any Houston contractor!"</p>
+<div class="flex items-center gap-2.5 pt-2.5 border-t border-white/10">
+<div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-full flex items-center justify-center text-white font-bold text-xs">DW</div>
+<div><div class="text-white font-semibold text-xs">David Williams</div><div class="text-white/40 text-[10px]">Founder, Williams Remodeling TX</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- Project Modal -->
-    <div class="modal" id="projectModal">
-        <div class="modal-content">
-            <div class="modal-close">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="modal-body">
-                <img src="" alt="Project Image" class="modal-img">
-                <h3 class="modal-title"></h3>
-                <p class="modal-description"></p>
-                <div class="modal-details"></div>
-            </div>
-        </div>
-    </div>
+<!-- FAQs -->
+<section id="faqs" class="py-14 sm:py-16 bg-white">
+<div class="max-w-2xl mx-auto px-4 sm:px-6">
+<div class="text-center mb-8 reveal">
+<div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-3 py-1 mb-3"><span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.15em]">FAQS</span></div>
+<h2 class="text-2xl sm:text-3xl font-black text-surface-900 mb-3 leading-tight">Frequently Asked <span class="t-grad">Questions</span></h2>
+<p class="text-surface-500 text-sm">Got questions about our Houston web design services? We've got answers. If you don't find what you're looking for, feel free to <a href="#contact" class="text-brand-600 font-semibold hover:underline">contact us</a>.</p>
+<a href="#quote" class="mt-3 inline-flex items-center gap-1 text-brand-600 font-semibold text-sm hover:gap-2 transition-all">Ask a Question →</a>
+</div>
+<div class="space-y-0 reveal">
+<div class="faq-i border-b border-surface-100 py-3.5 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-center gap-3"><h3 class="text-sm font-bold text-surface-900">How long does it take to build a website?</h3><div class="faq-ic w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-c text-surface-500 text-xs leading-relaxed">Most projects are completed within 2-4 weeks from start to launch. Simple websites can be delivered in as little as 10 business days.</div></div>
+<div class="faq-i border-b border-surface-100 py-3.5 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-center gap-3"><h3 class="text-sm font-bold text-surface-900">Do you specialize in contractor & roofing websites?</h3><div class="faq-ic w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-c text-surface-500 text-xs leading-relaxed">Absolutely! We specialize in building websites for contractors, roofers, remodelers, and pool builders across Houston.</div></div>
+<div class="faq-i border-b border-surface-100 py-3.5 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-center gap-3"><h3 class="text-sm font-bold text-surface-900">Will my website be optimized for Houston SEO?</h3><div class="faq-ic w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-c text-surface-500 text-xs leading-relaxed">Yes! Every website we build comes with our signature Houston SEO optimization baked in, including local keyword targeting.</div></div>
+<div class="faq-i border-b border-surface-100 py-3.5 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-center gap-3"><h3 class="text-sm font-bold text-surface-900">Can you update my website content after launched?</h3><div class="faq-ic w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-c text-surface-500 text-xs leading-relaxed">Of course! We build all websites with user-friendly CMS platforms so you can easily update content yourself.</div></div>
+<div class="faq-i border-b border-surface-100 py-3.5 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-center gap-3"><h3 class="text-sm font-bold text-surface-900">What areas of Houston do you serve?</h3><div class="faq-ic w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-c text-surface-500 text-xs leading-relaxed">We serve the entire Houston metropolitan area including Downtown, The Woodlands, Sugar Land, Katy, Pearland, Cypress, Spring, The Heights, and more.</div></div>
+<div class="faq-i py-3.5 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-center gap-3"><h3 class="text-sm font-bold text-surface-900">Do you offer payment plans or financing?</h3><div class="faq-ic w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-c text-surface-500 text-xs leading-relaxed">Yes! We offer flexible payment plans. Typically 50% upfront, 25% at design approval, and 25% at launch. We can also discuss custom payment arrangements.</div></div>
+</div>
+</div>
+</section>
 
-    <script>
-        // Page Loader
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('pageLoader');
-            setTimeout(function() {
-                loader.classList.add('hidden');
-            }, 1000);
-        });
+<!-- Blog Section -->
+<section id="blog" class="py-14 sm:py-16 bg-surface-50/50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 reveal">
+<div>
+<div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-3 py-1 mb-3"><span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.15em]">OUR BLOG</span></div>
+<h2 class="text-xl sm:text-2xl font-black text-surface-900">Latest Insights & Tips</h2>
+<p class="text-surface-500 text-xs mt-1">Stay updated with the latest web design, SEO, and digital marketing tips for Houston contractors.</p>
+</div>
+<a href="#" class="mt-2 sm:mt-0 inline-flex items-center gap-1 text-brand-600 font-semibold text-xs hover:gap-2 transition-all">View All Posts →</a>
+</div>
+<div class="grid md:grid-cols-3 gap-5">
+<article class="card-h bg-white rounded-xl overflow-hidden shadow-sm border border-surface-100 reveal">
+<div class="h-32 bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center relative"><span class="text-3xl">🔍</span><div class="absolute top-2.5 left-2.5 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-brand-600">SEO TIPS</div></div>
+<div class="p-4">
+<div class="flex items-center gap-2 text-[10px] text-surface-400 mb-1.5"><span>📅 Dec 15, 2024</span><span>⏱️ 8 min read</span></div>
+<h3 class="text-xs font-bold text-surface-900 mb-1.5 leading-tight hover:text-brand-600 transition-colors">10 SEO Strategies Every Houston Roofing Company Needs in 2025</h3>
+<p class="text-surface-500 text-[11px] leading-relaxed mb-2.5">Discover the proven SEO tactics that top Houston roofing companies use to rank on Google's first page.</p>
+<a href="#" class="inline-flex items-center gap-1 text-brand-600 font-semibold text-[11px] hover:gap-1.5 transition-all">Read More →</a>
+</div>
+</article>
+<article class="card-h bg-white rounded-xl overflow-hidden shadow-sm border border-surface-100 reveal">
+<div class="h-32 bg-gradient-to-br from-violet-500 to-violet-700 flex items-center justify-center relative"><span class="text-3xl">🎨</span><div class="absolute top-2.5 left-2.5 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-violet-600">WEB DESIGN</div></div>
+<div class="p-4">
+<div class="flex items-center gap-2 text-[10px] text-surface-400 mb-1.5"><span>📅 Dec 8, 2024</span><span>⏱️ 6 min read</span></div>
+<h3 class="text-xs font-bold text-surface-900 mb-1.5 leading-tight hover:text-brand-600 transition-colors">Why Your Remodeling Business Needs a Professional Website in Houston</h3>
+<p class="text-surface-500 text-[11px] leading-relaxed mb-2.5">Learn how a professionally designed website can transform your remodeling business.</p>
+<a href="#" class="inline-flex items-center gap-1 text-brand-600 font-semibold text-[11px] hover:gap-1.5 transition-all">Read More →</a>
+</div>
+</article>
+<article class="card-h bg-white rounded-xl overflow-hidden shadow-sm border border-surface-100 reveal">
+<div class="h-32 bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center relative"><span class="text-3xl">📈</span><div class="absolute top-2.5 left-2.5 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-emerald-600">MARKETING</div></div>
+<div class="p-4">
+<div class="flex items-center gap-2 text-[10px] text-surface-400 mb-1.5"><span>📅 Nov 30, 2024</span><span>⏱️ 7 min read</span></div>
+<h3 class="text-xs font-bold text-surface-900 mb-1.5 leading-tight hover:text-brand-600 transition-colors">How Pool Builders in Houston Can Generate Leads With Their Website</h3>
+<p class="text-surface-500 text-[11px] leading-relaxed mb-2.5">Practical strategies for Houston pool builders to turn website visitors into booked consultations.</p>
+<a href="#" class="inline-flex items-center gap-1 text-brand-600 font-semibold text-[11px] hover:gap-1.5 transition-all">Read More →</a>
+</div>
+</article>
+</div>
+</div>
+</section>
 
-        // Sticky Header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+<!-- Service Areas -->
+<section class="py-14 sm:py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-2xl mx-auto mb-8 reveal">
+<div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-3 py-1 mb-3"><span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.15em]">SERVICE AREAS</span></div>
+<h2 class="text-xl sm:text-2xl font-black text-surface-900 mb-2">Areas We Serve Across Houston</h2>
+<p class="text-surface-500 text-xs">We provide web design, SEO, and digital marketing services throughout the entire Houston metropolitan area.</p>
+</div>
+<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5 reveal">
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🏙️</div><div class="font-semibold text-surface-700 text-[11px]">Downtown Houston</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🌳</div><div class="font-semibold text-surface-700 text-[11px]">The Woodlands</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🏡</div><div class="font-semibold text-surface-700 text-[11px]">Sugar Land</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🚂</div><div class="font-semibold text-surface-700 text-[11px]">Katy</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🌊</div><div class="font-semibold text-surface-700 text-[11px]">Pearland</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🌿</div><div class="font-semibold text-surface-700 text-[11px]">Cypress</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🌸</div><div class="font-semibold text-surface-700 text-[11px]">Spring</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🏘️</div><div class="font-semibold text-surface-700 text-[11px]">The Heights</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🏛️</div><div class="font-semibold text-surface-700 text-[11px]">Memorial</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🌆</div><div class="font-semibold text-surface-700 text-[11px]">Bellaire</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">🌾</div><div class="font-semibold text-surface-700 text-[11px]">Humble</div></div>
+<div class="bg-surface-50 rounded-lg p-3 text-center hover:bg-brand-50 hover:shadow-sm transition-all border border-surface-100"><div class="text-base mb-0.5">⚓</div><div class="font-semibold text-surface-700 text-[11px]">Pasadena</div></div>
+</div>
+</div>
+</section>
 
-        // Mobile Navigation
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+<!-- CTA Section -->
+<section id="contact" class="py-14 sm:py-16 bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900 relative overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(34,211,238,0.1),transparent_50%)]"></div>
+<div class="max-w-2xl mx-auto px-4 sm:px-6 text-center relative z-10 reveal">
+<div class="text-3xl mb-3">🚀</div>
+<h2 class="text-2xl sm:text-3xl font-black text-white mb-3 leading-tight">Ready to Dominate Houston Online?</h2>
+<p class="text-sm text-white/70 mb-6 max-w-lg mx-auto">Let's build a website that generates leads, builds trust, and grows your contracting business. Get your free quote today — no obligations.</p>
+<div class="flex flex-col sm:flex-row gap-2.5 justify-center">
+<a href="#quote" class="btn-m px-7 py-2.5 rounded-lg font-bold text-white shadow-xl bg-white text-brand-700 hover:bg-white/95 inline-flex items-center justify-center"><span>Get Your Free Quote →</span></a>
+<a href="tel:8325550190" class="btn-o px-7 py-2.5 rounded-lg font-bold text-white inline-flex items-center justify-center">📞 Call (832) 555-0190</a>
+</div>
+</div>
+</section>
 
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            
-            // Prevent body scrolling when menu is open
-            if (navLinks.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        });
+<!-- Footer -->
+<footer class="bg-brand-950 pt-12 pb-5">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-white/5">
+<div>
+<a href="#" class="flex items-center gap-2 mb-4"><div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-sky-400 rounded-lg flex items-center justify-center"><span class="text-white font-black text-xs">SF</span></div><div class="leading-none"><div class="text-base font-bold text-white">Solid<span class="text-brand-400">frame</span></div><div class="text-[8px] text-white/30 tracking-[0.15em] uppercase -mt-0.5">Web</div></div></a>
+<p class="text-white/40 text-xs leading-relaxed mb-4">Houston's premier web design agency specializing in stunning, lead-generating websites for roofing companies, remodelers, pool builders, and general contractors across Texas.</p>
+<div class="flex gap-2">
+<a href="#" class="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:bg-brand-500 hover:text-white transition-all" aria-label="Facebook"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+<a href="#" class="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:bg-brand-500 hover:text-white transition-all" aria-label="Instagram"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+<a href="#" class="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:bg-brand-500 hover:text-white transition-all" aria-label="X"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-bold text-xs mb-3">Quick Links</h4>
+<ul class="space-y-2">
+<li><a href="#home" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Home</a></li>
+<li><a href="#about" class="text-white/40 hover:text-brand-400 text-xs transition-colors">About Us</a></li>
+<li><a href="#services" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Services</a></li>
+<li><a href="#process" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Our Process</a></li>
+<li><a href="#pricing" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Pricing</a></li>
+<li><a href="#faqs" class="text-white/40 hover:text-brand-400 text-xs transition-colors">FAQs</a></li>
+<li><a href="#blog" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Blog</a></li>
+<li><a href="#contact" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold text-xs mb-3">Our Services</h4>
+<ul class="space-y-2">
+<li><a href="#services" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Custom Web Design</a></li>
+<li><a href="#services" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Web Development</a></li>
+<li><a href="#services" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Houston SEO</a></li>
+<li><a href="#services" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Roofing Websites</a></li>
+<li><a href="#services" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Remodeling Sites</a></li>
+<li><a href="#services" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Pool Builder Sites</a></li>
+<li><a href="#services" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Digital Marketing</a></li>
+<li><a href="#services" class="text-white/40 hover:text-brand-400 text-xs transition-colors">Website Maintenance</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold text-xs mb-3">Newsletter</h4>
+<p class="text-white/40 text-xs mb-2.5">Get the latest web design tips, SEO strategies, and industry insights delivered to your inbox.</p>
+<form class="flex gap-1.5" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Subscribed successfully!');">
+<input type="email" required placeholder="Your email" class="flex-1 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-xs placeholder-white/25 focus:outline-none focus:border-brand-500">
+<button type="submit" class="w-9 h-9 bg-brand-500 rounded-lg flex items-center justify-center text-white hover:bg-brand-600 transition-colors shrink-0" aria-label="Subscribe"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button>
+</form>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-center pt-4 gap-2">
+<p class="text-white/25 text-[11px]">© 2026 Solidframe Web. All rights reserved. | Houston Web Design Agency</p>
+<div class="flex gap-2 text-[11px]">
+<a href="#" class="text-white/25 hover:text-white transition-colors">Privacy Policy</a>
+<span class="text-white/10">|</span>
+<a href="#" class="text-white/25 hover:text-white transition-colors">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        });
+<!-- Back to Top -->
+<button id="backToTop" class="fixed bottom-5 right-5 w-10 h-10 bg-brand-500 rounded-lg flex items-center justify-center text-white shadow-lg shadow-brand-500/30 hover:bg-brand-600 transition-all opacity-0 translate-y-3 pointer-events-none z-30" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
+</button>
 
-        // Smooth Scrolling for Navigation Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+<script>
+// Navbar scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('nav-s',window.scrollY>50);const b=document.getElementById('backToTop');if(window.scrollY>400){b.style.opacity='1';b.style.transform='translateY(0)';b.style.pointerEvents='auto'}else{b.style.opacity='0';b.style.transform='translateY(12px)';b.style.pointerEvents='none'}});
 
-        // Portfolio Filtering
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
+// Mobile menu
+const mT=document.getElementById('menuToggle'),mC=document.getElementById('menuClose'),mM=document.getElementById('mobileMenu');
+function openM(){mM.style.transform='translateX(0)';document.body.style.overflow='hidden'}
+function closeM(){mM.style.transform='translateX(100%)';document.body.style.overflow=''}
+mT.addEventListener('click',openM);mC.addEventListener('click',closeM);
+document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',closeM));
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                const filterValue = this.getAttribute('data-filter');
-                
-                portfolioItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'block';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                        }, 50);
-                    } else {
-                        item.style.opacity = '0';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            });
-        });
+// Scroll reveal
+const rO=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('vis')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>rO.observe(el));
 
-        // Testimonial Carousel
-        const indicators = document.querySelectorAll('.indicator');
-        const slides = document.querySelectorAll('.testimonial-slide');
-        let currentSlide = 0;
-        let slideInterval;
+// FAQ
+function toggleFaq(el){const o=el.classList.contains('open');document.querySelectorAll('.faq-i').forEach(i=>i.classList.remove('open'));if(!o)el.classList.add('open')}
 
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
-            
-            currentSlide = n;
-            if (currentSlide >= slides.length) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = slides.length - 1;
-            
-            slides[currentSlide].classList.add('active');
-            indicators[currentSlide].classList.add('active');
-        }
+// Form
+document.getElementById('quoteForm').addEventListener('submit',function(e){e.preventDefault();this.style.display='none';document.getElementById('formDone').classList.remove('hidden')});
 
-        function startSlideShow() {
-            slideInterval = setInterval(() => {
-                showSlide(currentSlide + 1);
-            }, 5000);
-        }
-
-        function stopSlideShow() {
-            clearInterval(slideInterval);
-        }
-
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                stopSlideShow();
-                showSlide(index);
-                startSlideShow();
-            });
-        });
-
-        // Start the carousel
-        startSlideShow();
-
-        // Pause carousel on hover
-        const carousel = document.querySelector('.testimonial-carousel');
-        carousel.addEventListener('mouseenter', stopSlideShow);
-        carousel.addEventListener('mouseleave', startSlideShow);
-
-        // Form Validation
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Basic validation
-            let isValid = true;
-            const inputs = contactForm.querySelectorAll('input[required], textarea[required], select[required]');
-            
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.style.borderColor = 'red';
-                } else {
-                    input.style.borderColor = '#ddd';
-                }
-            });
-            
-            if (isValid) {
-                // In a real application, you would submit the form data to a server here
-                alert('Thank you for your message! We will contact you soon.');
-                contactForm.reset();
-            } else {
-                alert('Please fill in all required fields.');
-            }
-        });
-
-        // Portfolio Item Click for Modal (conceptual)
-        portfolioItems.forEach(item => {
-            item.addEventListener('click', function() {
-                // This would open a modal with more project details
-                // For this example, we'll just scroll to the contact section
-                document.querySelector('#contact').scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Modal Functionality
-        const modal = document.getElementById('projectModal');
-        const modalClose = document.querySelector('.modal-close');
-        
-        modalClose.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-        
-        window.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // Scroll Indicator
-        const scrollIndicator = document.querySelector('.scroll-indicator');
-        
-        scrollIndicator.addEventListener('click', function() {
-            document.querySelector('#services').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-
-        // Image Lazy Loading Enhancement
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-    </script>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const h=this.getAttribute('href');if(h==='#')return;const t=document.querySelector(h);if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-65,behavior:'smooth'})}})});
+</script>
 </body>
 </html>
+
