@@ -373,19 +373,77 @@
 
   <script src="script.js"></script>
   <script>
-    // FAQ toggle function (ensures it works even if script.js hasn't defined it)
-    function toggleFaq(el) {
-      el.classList.toggle('active');
-      const content = el.querySelector('.faq-content');
-      const toggle = el.querySelector('.faq-toggle');
-      if (el.classList.contains('active')) {
-        content.style.maxHeight = content.scrollHeight + 'px';
-        if (toggle) toggle.textContent = '−';
-      } else {
-        content.style.maxHeight = '0';
-        if (toggle) toggle.textContent = '+';
-      }
+    <script>
+  (function() {
+    // ---- FAQ Accordion Fix (CSS Grid method) ----
+    // 1. Inject required styles if not already present
+    if (!document.getElementById('faq-fix-styles')) {
+      const style = document.createElement('style');
+      style.id = 'faq-fix-styles';
+      style.textContent = `
+        .faq-item { border-bottom: 1px solid #e2e8f0; }
+        .faq-content {
+          display: grid;
+          grid-template-rows: 0fr;
+          transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+          overflow: hidden;
+          padding: 0 !important;
+        }
+        .faq-item.active .faq-content {
+          grid-template-rows: 1fr;
+          padding-top: 12px !important;
+          padding-bottom: 4px !important;
+        }
+        .faq-content > * { min-height: 0; overflow: hidden; }
+        .faq-toggle {
+          transition: transform 0.3s ease;
+          user-select: none;
+          flex-shrink: 0;
+        }
+        .faq-item.active .faq-toggle { transform: rotate(45deg); }
+      `;
+      document.head.appendChild(style);
     }
+
+    // 2. Clean up any existing inline max-height styles
+    document.querySelectorAll('.faq-content').forEach(el => el.style.maxHeight = '');
+
+    // 3. Attach click handlers to all FAQ toggles
+    function initFaqs() {
+      document.querySelectorAll('.faq-item').forEach(item => {
+        const toggle = item.querySelector('.faq-toggle');
+        if (!toggle) return;
+
+        // Remove any existing onclick attribute to avoid double firing
+        item.removeAttribute('onclick');
+        
+        // Clone to remove old listeners
+        const newToggle = toggle.cloneNode(true);
+        toggle.parentNode.replaceChild(newToggle, toggle);
+
+        newToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const faq = item;
+          const isActive = faq.classList.contains('active');
+          
+          // Optional: close other FAQs? (commented out = independent)
+          // document.querySelectorAll('.faq-item.active').forEach(f => { if (f !== faq) f.classList.remove('active'); });
+          
+          faq.classList.toggle('active');
+          newToggle.textContent = isActive ? '+' : '−';
+        });
+
+        // Ensure initial state
+        item.classList.remove('active');
+        newToggle.textContent = '+';
+      });
+    }
+
+    initFaqs();
+    // Re-run if content changes dynamically (e.g., after form success)
+    window.refreshFaqs = initFaqs;
+  })();
+</script>
     // Initialize any pre-opened FAQs? none needed.
   </script>
 </body>
