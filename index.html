@@ -112,247 +112,12 @@
     }
   </script>
   
-  <style>
-    /* Base Reset & Smooth Scroll */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
-    
-    /* Animation Utilities */
-    .anim-up { animation: fadeUp 0.7s ease-out both; }
-    .anim-fade { animation: fadeIn 0.5s ease-out both; }
-    .reveal { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    
-    /* Hero Section */
-    .hero-section {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: #0f172a;
-      padding-top: 72px;
-    }
-    @media (min-width: 1024px) {
-      .hero-section { padding-top: 0; }
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 0;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,58,138,0.75) 45%, rgba(30,58,138,0.65) 70%, rgba(15,23,42,0.88) 100%);
-      z-index: 1;
-    }
-    
-    /* Glass Morphism */
-    .glass-light {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-    }
-    .glass-dark {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-    
-    /* Gradient Text */
-    .text-gradient {
-      background: linear-gradient(135deg, #60a5fa, #38bdf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    /* Buttons */
-    .btn-primary {
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #60a5fa, #3b82f6);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .btn-primary:hover::after { opacity: 1; }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 35px rgba(59, 130, 246, 0.45);
-    }
-    .btn-primary > * { position: relative; z-index: 1; }
-    
-    .btn-outline {
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease;
-    }
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.55);
-      transform: translateY(-2px);
-    }
-    
-    /* Cards */
-    .card-hover {
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .card-hover:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-    }
-    
-    /* Dropdown Menu */
-    .dropdown { position: relative; }
-    .dropdown-menu {
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 50%;
-      transform: translateX(-50%) translateY(8px);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 50;
-      min-width: 280px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      padding: 8px;
-    }
-    .dropdown:hover .dropdown-menu,
-    .dropdown-menu:focus-within {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
-    
-    /* Mobile Dropdown */
-    .mobile-dropdown-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
-    }
-    .mobile-dropdown.active .mobile-dropdown-content {
-      max-height: 500px;
-      padding: 12px 0;
-    }
-    .mobile-dropdown-toggle::after {
-      content: '+';
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      font-size: 14px;
-      font-weight: 300;
-      transition: transform 0.3s ease;
-    }
-    .mobile-dropdown.active .mobile-dropdown-toggle::after {
-      content: '−';
-      transform: rotate(0);
-    }
-    
-    /* FAQ Accordion */
-    .faq-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
-    }
-    .faq-item.active .faq-content {
-      max-height: 220px;
-      padding-top: 10px;
-    }
-    .faq-toggle {
-      transition: transform 0.3s ease;
-    }
-    .faq-item.active .faq-toggle {
-      transform: rotate(45deg);
-    }
-    
-    /* Marquee Animation */
-    .marquee-container { overflow: hidden; position: relative; }
-    .marquee-content {
-      display: flex;
-      animation: marquee 22s linear infinite;
-      width: max-content;
-    }
-    .marquee-container:hover .marquee-content {
-      animation-play-state: paused;
-    }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    
-    /* Form Focus States */
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-    }
-    
-    /* Navbar Scroll State */
-    .navbar-scrolled {
-      background: rgba(15, 23, 42, 0.96) !important;
-      backdrop-filter: blur(20px) !important;
-      -webkit-backdrop-filter: blur(20px) !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    }
-    
-    /* Back to Top Button */
-    #backToTop {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    #backToTop.visible {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-      pointer-events: auto !important;
-    }
-    
-    /* Responsive Adjustments */
-    @media (max-width: 1023px) {
-      .hero-section {
-        min-height: auto;
-        padding-top: 88px;
-        padding-bottom: 48px;
-      }
-      .hero-grid {
-        grid-template-columns: 1fr !important;
-        gap: 32px !important;
-      }
-      .hero-form-container {
-        max-width: 100% !important;
-        margin: 0 auto !important;
-      }
-    }
-    
-    @media (max-width: 639px) {
-      .text-gradient { -webkit-text-fill-color: initial; background: none; color: #3b82f6; }
-      .btn-primary, .btn-outline { width: 100%; justify-content: center; }
-    }
-  </style>
+  <!-- Global Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-white text-surface-800 antialiased">
 
-  <!-- Top Info Bar - Enhanced Spacing & Clarity -->
+  <!-- Top Info Bar -->
   <div class="bg-brand-950 text-white/75 text-[11px] py-2.5 hidden md:block border-b border-white/8">
     <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
       <div class="flex items-center gap-5">
@@ -373,12 +138,12 @@
     </div>
   </div>
 
-  <!-- Navigation - Premium & Responsive -->
+  <!-- Navigation -->
   <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brand-950/95 backdrop-blur-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex items-center justify-between h-16 sm:h-18">
         <!-- Logo -->
-        <a href="#" class="flex items-center gap-2.5 shrink-0 group">
+        <a href="index.html" class="flex items-center gap-2.5 shrink-0 group">
           <div class="w-9 h-9 bg-gradient-to-br from-brand-500 to-sky-400 rounded-xl flex items-center justify-center shadow-lg shadow-brand-500/25 group-hover:shadow-brand-500/40 transition-shadow">
             <span class="text-white font-black text-sm">SF</span>
           </div>
@@ -390,8 +155,8 @@
         
         <!-- Desktop Navigation -->
         <div class="hidden xl:flex items-center gap-1">
-          <a href="#home" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Home</a>
-          <a href="#about" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">About</a>
+          <a href="index.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Home</a>
+          <a href="about.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">About</a>
           
           <!-- Services Dropdown -->
           <div class="dropdown">
@@ -400,42 +165,42 @@
               <svg class="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div class="dropdown-menu" role="menu">
-              <a href="#services" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
+              <a href="services.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
                 <div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🎨</div>
                 <div>
                   <div class="font-semibold text-surface-800 text-sm">Custom Web Design</div>
                   <div class="text-xs text-surface-400">Pixel-perfect, brand-aligned</div>
                 </div>
               </a>
-              <a href="#services" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
+              <a href="services.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
                 <div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition-transform">💻</div>
                 <div>
                   <div class="font-semibold text-surface-800 text-sm">Web Development</div>
                   <div class="text-xs text-surface-400">Fast, secure & scalable</div>
                 </div>
               </a>
-              <a href="#services" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
+              <a href="services.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
                 <div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🔍</div>
                 <div>
                   <div class="font-semibold text-surface-800 text-sm">Houston SEO</div>
                   <div class="text-xs text-surface-400">Dominate local search</div>
                 </div>
               </a>
-              <a href="#services" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
+              <a href="services.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
                 <div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition-transform">📱</div>
                 <div>
                   <div class="font-semibold text-surface-800 text-sm">Mobile Optimization</div>
                   <div class="text-xs text-surface-400">Fully responsive design</div>
                 </div>
               </a>
-              <a href="#services" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
+              <a href="services.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
                 <div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition-transform">📈</div>
                 <div>
                   <div class="font-semibold text-surface-800 text-sm">Digital Marketing</div>
                   <div class="text-xs text-surface-400">Google Ads & Social</div>
                 </div>
               </a>
-              <a href="#services" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
+              <a href="services.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group" role="menuitem">
                 <div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🛠️</div>
                 <div>
                   <div class="font-semibold text-surface-800 text-sm">Website Maintenance</div>
@@ -445,11 +210,11 @@
             </div>
           </div>
           
-          <a href="#process" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Process</a>
-          <a href="#pricing" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Pricing</a>
-          <a href="#faqs" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">FAQs</a>
-          <a href="#blog" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Blog</a>
-          <a href="#contact" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Contact</a>
+          <a href="process.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Process</a>
+          <a href="pricing.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Pricing</a>
+          <a href="faqs.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">FAQs</a>
+          <a href="blog.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Blog</a>
+          <a href="contact.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Contact</a>
         </div>
         
         <!-- Desktop CTA -->
@@ -471,7 +236,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu Overlay - Full Screen, Smooth Animation -->
+  <!-- Mobile Menu Overlay -->
   <div id="mobileMenu" class="fixed inset-0 z-[100] bg-brand-950 transform translate-x-full transition-transform duration-400 ease-out" role="dialog" aria-modal="true" aria-labelledby="mobileMenuTitle">
     <div class="flex flex-col h-full">
       <!-- Header -->
@@ -492,8 +257,8 @@
       
       <!-- Navigation Links -->
       <nav class="flex-1 overflow-y-auto px-5 py-4 space-y-1" id="mobileMenuNav">
-        <a href="#home" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Home</a>
-        <a href="#about" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">About</a>
+        <a href="index.html" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Home</a>
+        <a href="about.html" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">About</a>
         
         <!-- Mobile Services Dropdown -->
         <div class="mobile-dropdown">
@@ -501,21 +266,20 @@
             <span>Services</span>
           </button>
           <div class="mobile-dropdown-content pl-4 space-y-0.5">
-            <a href="#services" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Custom Web Design</a>
-            <a href="#services" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Web Development</a>
-            <a href="#services" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Houston SEO</a>
-            <a href="#services" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Mobile Optimization</a>
-            <a href="#services" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Digital Marketing</a>
-            <a href="#services" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Website Maintenance</a>
+            <a href="services.html" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Custom Web Design</a>
+            <a href="services.html" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Web Development</a>
+            <a href="services.html" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Houston SEO</a>
+            <a href="services.html" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Mobile Optimization</a>
+            <a href="services.html" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Digital Marketing</a>
+            <a href="services.html" class="mob-link block py-2.5 px-4 text-white/70 hover:text-white hover:bg-white/5 rounded-lg text-xs font-medium transition-colors">Website Maintenance</a>
           </div>
         </div>
         
-        <a href="#process" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Process</a>
-        <a href="#pricing" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Pricing</a>
-        <a href="#testimonials" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Testimonials</a>
-        <a href="#faqs" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">FAQs</a>
-        <a href="#blog" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Blog</a>
-        <a href="#contact" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Contact</a>
+        <a href="process.html" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Process</a>
+        <a href="pricing.html" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Pricing</a>
+        <a href="faqs.html" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">FAQs</a>
+        <a href="blog.html" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Blog</a>
+        <a href="contact.html" class="mob-link block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">Contact</a>
       </nav>
       
       <!-- Footer CTA -->
@@ -531,7 +295,7 @@
     </div>
   </div>
 
-  <!-- Hero Section - Redesigned for Premium Experience -->
+  <!-- Hero Section -->
   <section id="home" class="hero-section">
     <div class="hero-bg" role="img" aria-label="Modern Houston Texas skyline with professional office buildings at golden hour"></div>
     <div class="hero-overlay"></div>
@@ -539,7 +303,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
       <div class="hero-grid grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
         
-        <!-- Left Content - Value Proposition -->
+        <!-- Left Content -->
         <div class="anim-up space-y-6">
           <div class="glass-dark rounded-full px-4 py-2 inline-flex items-center gap-2.5">
             <span class="text-base">🏆</span>
@@ -574,7 +338,7 @@
           
           <!-- CTAs -->
           <div class="flex flex-col sm:flex-row gap-3 pt-2">
-            <a href="#pricing" class="btn-primary px-7 py-3 rounded-xl font-bold text-white shadow-xl shadow-brand-500/30 text-center text-sm">
+            <a href="pricing.html" class="btn-primary px-7 py-3 rounded-xl font-bold text-white shadow-xl shadow-brand-500/30 text-center text-sm">
               <span>View Pricing Plans</span>
             </a>
             <a href="tel:8325550190" class="btn-outline px-7 py-3 rounded-xl font-bold text-white text-center text-sm flex items-center justify-center gap-2">
@@ -584,7 +348,7 @@
           </div>
         </div>
         
-        <!-- Right: Quote Form - Perfectly Aligned, Non-Intrusive -->
+        <!-- Right: Quote Form -->
         <div id="quote" class="anim-up hero-form-container" style="animation-delay: 0.15s">
           <div class="glass-light rounded-2xl shadow-2xl shadow-black/15 p-6 sm:p-7 max-w-md mx-auto lg:ml-auto">
             <div class="mb-5">
@@ -641,7 +405,7 @@
               </p>
             </form>
             
-            <!-- Success Message (Hidden by Default) -->
+            <!-- Success Message -->
             <div id="formDone" class="hidden text-center py-6">
               <div class="text-4xl mb-3">✅</div>
               <div class="text-lg font-bold text-surface-900">Quote Request Received!</div>
@@ -654,7 +418,7 @@
     </div>
   </section>
 
-  <!-- Logo Marquee - Trusted By -->
+  <!-- Logo Marquee -->
   <section class="py-10 bg-white border-b border-surface-100">
     <div class="text-center mb-6 reveal">
       <p class="text-surface-400 text-[10px] font-bold uppercase tracking-[0.25em] mb-1">TRUSTED BY</p>
@@ -663,73 +427,24 @@
     
     <div class="marquee-container">
       <div class="marquee-content flex items-center gap-5 px-4">
-        <!-- Logos (First Set) -->
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏗️</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Houston Roof Pros</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏊</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Blue Haven Pools</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏠</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Williams Remodeling</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🔧</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Texas General Contracting</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏗️</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Lone Star Roofing</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏠</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Premier Remodelers</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏊</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Aqua Pools Houston</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🔧</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">H-Town Builders</span>
-        </div>
-        
-        <!-- Duplicate Set for Seamless Loop -->
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏗️</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Houston Roof Pros</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏊</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Blue Haven Pools</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏠</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Williams Remodeling</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🔧</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Texas General Contracting</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏗️</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Lone Star Roofing</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏠</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Premier Remodelers</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🏊</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Aqua Pools Houston</span>
-        </div>
-        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow">
-          <span class="text-lg">🔧</span>
-          <span class="font-semibold text-surface-700 text-xs whitespace-nowrap">H-Town Builders</span>
-        </div>
+        <!-- First set -->
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏗️</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Houston Roof Pros</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏊</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Blue Haven Pools</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏠</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Williams Remodeling</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🔧</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Texas General Contracting</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏗️</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Lone Star Roofing</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏠</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Premier Remodelers</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏊</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Aqua Pools Houston</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🔧</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">H-Town Builders</span></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏗️</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Houston Roof Pros</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏊</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Blue Haven Pools</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏠</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Williams Remodeling</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🔧</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Texas General Contracting</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏗️</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Lone Star Roofing</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏠</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Premier Remodelers</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🏊</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">Aqua Pools Houston</span></div>
+        <div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-50 rounded-xl border border-surface-100 hover:shadow-md transition-shadow"><span class="text-lg">🔧</span><span class="font-semibold text-surface-700 text-xs whitespace-nowrap">H-Town Builders</span></div>
       </div>
     </div>
   </section>
@@ -750,40 +465,25 @@
       </div>
       
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <!-- Roofing -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal">
           <div class="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl flex items-center justify-center text-2xl mb-4">🏗️</div>
           <h3 class="text-sm font-bold text-surface-900 mb-2">Roofing Companies</h3>
-          <p class="text-surface-500 text-xs leading-relaxed">
-            High-converting roofing websites designed to generate storm damage leads and emergency repair calls across Houston.
-          </p>
+          <p class="text-surface-500 text-xs leading-relaxed">High-converting roofing websites designed to generate storm damage leads and emergency repair calls across Houston.</p>
         </div>
-        
-        <!-- Remodeling -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal">
           <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl flex items-center justify-center text-2xl mb-4">🏠</div>
           <h3 class="text-sm font-bold text-surface-900 mb-2">Remodeling Contractors</h3>
-          <p class="text-surface-500 text-xs leading-relaxed">
-            Showcase your stunning kitchen, bathroom & home remodeling projects with beautiful portfolio-driven websites.
-          </p>
+          <p class="text-surface-500 text-xs leading-relaxed">Showcase your stunning kitchen, bathroom & home remodeling projects with beautiful portfolio-driven websites.</p>
         </div>
-        
-        <!-- Pool Builders -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal">
           <div class="w-12 h-12 bg-gradient-to-br from-cyan-100 to-cyan-50 rounded-2xl flex items-center justify-center text-2xl mb-4">🏊</div>
           <h3 class="text-sm font-bold text-surface-900 mb-2">Pool Builders</h3>
-          <p class="text-surface-500 text-xs leading-relaxed">
-            Luxury pool builder websites that attract high-value custom pool, spa, and outdoor living projects in Houston.
-          </p>
+          <p class="text-surface-500 text-xs leading-relaxed">Luxury pool builder websites that attract high-value custom pool, spa, and outdoor living projects in Houston.</p>
         </div>
-        
-        <!-- General Contractors -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal">
           <div class="w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-2xl flex items-center justify-center text-2xl mb-4">🔧</div>
           <h3 class="text-sm font-bold text-surface-900 mb-2">General Contractors</h3>
-          <p class="text-surface-500 text-xs leading-relaxed">
-            Professional contractor websites that build trust, showcase capabilities, and drive consistent commercial & residential leads.
-          </p>
+          <p class="text-surface-500 text-xs leading-relaxed">Professional contractor websites that build trust, showcase capabilities, and drive consistent commercial & residential leads.</p>
         </div>
       </div>
     </div>
@@ -793,7 +493,6 @@
   <section id="about" class="py-16 sm:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <!-- Image -->
         <div class="reveal order-2 lg:order-1">
           <div class="relative">
             <div class="aspect-[4/3] bg-gradient-to-br from-brand-100 to-brand-50 rounded-3xl overflow-hidden flex items-center justify-center">
@@ -815,7 +514,6 @@
           </div>
         </div>
         
-        <!-- Content -->
         <div class="reveal order-1 lg:order-2">
           <div class="inline-flex items-center gap-2 bg-brand-50 rounded-full px-4 py-1.5 mb-4">
             <span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.18em]">ABOUT SOLIDFRAME WEB</span>
@@ -830,70 +528,27 @@
             Our deep understanding of the Houston market, combined with cutting-edge design, blazing-fast code, and proven SEO strategies, ensures your business ranks higher, looks professional, and converts more visitors into paying customers.
           </p>
           
-          <!-- Features Grid -->
           <div class="grid sm:grid-cols-2 gap-3 mb-7">
-            <div class="flex items-center gap-2.5">
-              <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0">
-                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              </div>
-              <span class="text-surface-700 text-xs font-medium">Houston SEO Experts</span>
-            </div>
-            <div class="flex items-center gap-2.5">
-              <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0">
-                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              </div>
-              <span class="text-surface-700 text-xs font-medium">Mobile-First Design</span>
-            </div>
-            <div class="flex items-center gap-2.5">
-              <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0">
-                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              </div>
-              <span class="text-surface-700 text-xs font-medium">Lightning-Fast Speed</span>
-            </div>
-            <div class="flex items-center gap-2.5">
-              <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0">
-                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              </div>
-              <span class="text-surface-700 text-xs font-medium">Lead Generation Focus</span>
-            </div>
-            <div class="flex items-center gap-2.5">
-              <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0">
-                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              </div>
-              <span class="text-surface-700 text-xs font-medium">24/7 Priority Support</span>
-            </div>
-            <div class="flex items-center gap-2.5">
-              <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0">
-                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              </div>
-              <span class="text-surface-700 text-xs font-medium">Transparent Pricing</span>
-            </div>
+            <div class="flex items-center gap-2.5"><div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">Houston SEO Experts</span></div>
+            <div class="flex items-center gap-2.5"><div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">Mobile-First Design</span></div>
+            <div class="flex items-center gap-2.5"><div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">Lightning-Fast Speed</span></div>
+            <div class="flex items-center gap-2.5"><div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">Lead Generation Focus</span></div>
+            <div class="flex items-center gap-2.5"><div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">24/7 Priority Support</span></div>
+            <div class="flex items-center gap-2.5"><div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center shrink-0"><svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><span class="text-surface-700 text-xs font-medium">Transparent Pricing</span></div>
           </div>
           
-          <a href="#quote" class="btn-primary inline-flex items-center gap-2 px-7 py-3 rounded-xl font-bold text-white shadow-lg shadow-brand-500/25 text-sm">
-            <span>Let's Build Your Website →</span>
+          <a href="about.html" class="btn-primary inline-flex items-center gap-2 px-7 py-3 rounded-xl font-bold text-white shadow-lg shadow-brand-500/25 text-sm">
+            <span>Learn More About Us →</span>
           </a>
         </div>
       </div>
       
       <!-- Stats Row -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 mt-14 pt-8 border-t border-surface-100">
-        <div class="text-center reveal">
-          <div class="text-2xl sm:text-3xl font-black text-surface-900 mb-1">🌐 250+</div>
-          <div class="text-surface-400 text-[11px] font-medium tracking-wide">Websites Designed</div>
-        </div>
-        <div class="text-center reveal">
-          <div class="text-2xl sm:text-3xl font-black text-brand-600 mb-1">😊 200+</div>
-          <div class="text-surface-400 text-[11px] font-medium tracking-wide">Happy Clients</div>
-        </div>
-        <div class="text-center reveal">
-          <div class="text-2xl sm:text-3xl font-black text-amber-500 mb-1">📈 300%</div>
-          <div class="text-surface-400 text-[11px] font-medium tracking-wide">Avg. Lead Increase</div>
-        </div>
-        <div class="text-center reveal">
-          <div class="text-2xl sm:text-3xl font-black text-brand-500 mb-1">⭐ 5.0</div>
-          <div class="text-surface-400 text-[11px] font-medium tracking-wide">Google Rating</div>
-        </div>
+        <div class="text-center reveal"><div class="text-2xl sm:text-3xl font-black text-surface-900 mb-1">🌐 250+</div><div class="text-surface-400 text-[11px] font-medium tracking-wide">Websites Designed</div></div>
+        <div class="text-center reveal"><div class="text-2xl sm:text-3xl font-black text-brand-600 mb-1">😊 200+</div><div class="text-surface-400 text-[11px] font-medium tracking-wide">Happy Clients</div></div>
+        <div class="text-center reveal"><div class="text-2xl sm:text-3xl font-black text-amber-500 mb-1">📈 300%</div><div class="text-surface-400 text-[11px] font-medium tracking-wide">Avg. Lead Increase</div></div>
+        <div class="text-center reveal"><div class="text-2xl sm:text-3xl font-black text-brand-500 mb-1">⭐ 5.0</div><div class="text-surface-400 text-[11px] font-medium tracking-wide">Google Rating</div></div>
       </div>
     </div>
   </section>
@@ -914,173 +569,78 @@
       </div>
       
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Custom Web Design -->
+        <!-- Service cards identical to original, just update links to services.html where needed -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal">
           <div class="w-12 h-12 bg-brand-100 rounded-2xl flex items-center justify-center text-2xl mb-4">🎨</div>
           <h3 class="text-sm font-bold text-surface-900 mb-2">Custom Web Design</h3>
-          <p class="text-surface-500 text-xs mb-4 leading-relaxed">
-            Bespoke, pixel-perfect website designs tailored to your brand identity and Houston market positioning.
-          </p>
+          <p class="text-surface-500 text-xs mb-4 leading-relaxed">Bespoke, pixel-perfect website designs tailored to your brand identity and Houston market positioning.</p>
           <ul class="space-y-2">
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Unique brand-aligned design</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1  0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Wireframes & interactive mockups</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Unlimited revisions until perfect</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Conversion-optimized layouts</span>
-            </li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Unique brand-aligned design</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Wireframes & interactive mockups</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Unlimited revisions until perfect</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Conversion-optimized layouts</span></li>
           </ul>
         </div>
-        
-        <!-- Web Development -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal">
           <div class="w-12 h-12 bg-violet-100 rounded-2xl flex items-center justify-center text-2xl mb-4">💻</div>
           <h3 class="text-sm font-bold text-surface-900 mb-2">Web Development</h3>
-          <p class="text-surface-500 text-xs mb-4 leading-relaxed">
-            Fast, secure, and scalable websites built with modern technologies for peak performance.
-          </p>
+          <p class="text-surface-500 text-xs mb-4 leading-relaxed">Fast, secure, and scalable websites built with modern technologies for peak performance.</p>
           <ul class="space-y-2">
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Lightning-fast load speeds (&lt;1.5s)</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Secure & reliable managed hosting</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>User-friendly CMS integration</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Cross-browser & device compatibility</span>
-            </li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Lightning-fast load speeds (<1.5s)</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Secure & reliable managed hosting</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>User-friendly CMS integration</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Cross-browser & device compatibility</span></li>
           </ul>
         </div>
-        
-        <!-- Houston SEO -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal">
           <div class="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-2xl mb-4">🔍</div>
           <h3 class="text-sm font-bold text-surface-900 mb-2">Houston SEO Services</h3>
-          <p class="text-surface-500 text-xs mb-4 leading-relaxed">
-            Dominate local search results and rank on page one for Houston keywords that drive real business.
-          </p>
+          <p class="text-surface-500 text-xs mb-4 leading-relaxed">Dominate local search results and rank on page one for Houston keywords that drive real business.</p>
           <ul class="space-y-2">
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Local SEO & Google Business Profile</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Keyword research & content strategy</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Technical SEO & site optimization</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Monthly performance reporting</span>
-            </li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Local SEO & Google Business Profile</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Keyword research & content strategy</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Technical SEO & site optimization</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Monthly performance reporting</span></li>
           </ul>
         </div>
-        
-        <!-- Mobile Optimization -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal">
           <div class="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-2xl mb-4">📱</div>
           <h3 class="text-sm font-bold text-surface-900 mb-2">Mobile Optimization</h3>
-          <p class="text-surface-500 text-xs mb-4 leading-relaxed">
-            Every website we build is fully responsive and optimized for mobile — because most Houston customers search on their phones.
-          </p>
+          <p class="text-surface-500 text-xs mb-4 leading-relaxed">Every website we build is fully responsive and optimized for mobile — because most Houston customers search on their phones.</p>
           <ul class="space-y-2">
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>100% responsive design</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Touch-friendly navigation & CTAs</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Mobile-first indexing ready</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Core Web Vitals optimized</span>
-            </li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>100% responsive design</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Touch-friendly navigation & CTAs</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Mobile-first indexing ready</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Core Web Vitals optimized</span></li>
           </ul>
         </div>
-        
-        <!-- Digital Marketing -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal">
           <div class="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center text-2xl mb-4">📈</div>
           <h3 class="text-sm font-bold text-surface-900 mb-2">Digital Marketing</h3>
-          <p class="text-surface-500 text-xs mb-4 leading-relaxed">
-            Comprehensive digital marketing strategies to amplify your reach across Houston and generate qualified leads.
-          </p>
+          <p class="text-surface-500 text-xs mb-4 leading-relaxed">Comprehensive digital marketing strategies to amplify your reach across Houston and generate qualified leads.</p>
           <ul class="space-y-2">
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Google Ads & PPC management</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Social media marketing & ads</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Email marketing campaigns</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Analytics & conversion tracking</span>
-            </li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Google Ads & PPC management</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Social media marketing & ads</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Email marketing campaigns</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Analytics & conversion tracking</span></li>
           </ul>
         </div>
-        
-        <!-- Website Maintenance -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal">
           <div class="w-12 h-12 bg-rose-100 rounded-2xl flex items-center justify-center text-2xl mb-4">🛠️</div>
           <h3 class="text-sm font-bold text-surface-900 mb-2">Website Maintenance</h3>
-          <p class="text-surface-500 text-xs mb-4 leading-relaxed">
-            Keep your Houston website secure, updated, and performing at its best with our ongoing maintenance plans.
-          </p>
+          <p class="text-surface-500 text-xs mb-4 leading-relaxed">Keep your Houston website secure, updated, and performing at its best with our ongoing maintenance plans.</p>
           <ul class="space-y-2">
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Regular updates & automated backups</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>24/7 security monitoring</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Performance optimization</span>
-            </li>
-            <li class="flex items-start gap-2 text-[11px] text-surface-600">
-              <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Priority support & content updates</span>
-            </li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Regular updates & automated backups</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>24/7 security monitoring</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Performance optimization</span></li>
+            <li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Priority support & content updates</span></li>
           </ul>
         </div>
       </div>
       
-      <!-- Services CTA Button -->
       <div class="text-center mt-12 reveal">
-        <a href="#services" class="inline-flex items-center gap-2 px-8 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-brand-500/25 text-sm">
-          <span>See Our Services</span>
+        <a href="services.html" class="inline-flex items-center gap-2 px-8 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-brand-500/25 text-sm">
+          <span>See All Services</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
       </div>
@@ -1103,62 +663,16 @@
       </div>
       
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-        <!-- Connector Line (Desktop) -->
         <div class="hidden lg:block absolute top-14 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-brand-200 via-brand-400 to-brand-200"></div>
-        
-        <!-- Step 1 -->
-        <div class="text-center reveal relative z-10">
-          <div class="relative">
-            <div class="w-14 h-14 bg-gradient-to-br from-brand-500 to-brand-700 rounded-2xl flex items-center justify-center text-white font-black text-lg mx-auto mb-4 shadow-lg shadow-brand-500/30">1</div>
-          </div>
-          <div class="text-3xl mb-3">💬</div>
-          <h3 class="text-sm font-bold text-surface-900 mb-2">Discovery & Strategy</h3>
-          <p class="text-surface-500 text-xs leading-relaxed px-3">
-            We learn about your business, goals, competitors, and target Houston audience to craft a winning strategy.
-          </p>
-        </div>
-        
-        <!-- Step 2 -->
-        <div class="text-center reveal relative z-10">
-          <div class="relative">
-            <div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-violet-700 rounded-2xl flex items-center justify-center text-white font-black text-lg mx-auto mb-4 shadow-lg shadow-violet-500/30">2</div>
-          </div>
-          <div class="text-3xl mb-3">🎨</div>
-          <h3 class="text-sm font-bold text-surface-900 mb-2">Design & Prototype</h3>
-          <p class="text-surface-500 text-xs leading-relaxed px-3">
-            Our designers create stunning mockups and interactive prototypes for your approval before development begins.
-          </p>
-        </div>
-        
-        <!-- Step 3 -->
-        <div class="text-center reveal relative z-10">
-          <div class="relative">
-            <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl flex items-center justify-center text-white font-black text-lg mx-auto mb-4 shadow-lg shadow-emerald-500/30">3</div>
-          </div>
-          <div class="text-3xl mb-3">⚡</div>
-          <h3 class="text-sm font-bold text-surface-900 mb-2">Development & SEO</h3>
-          <p class="text-surface-500 text-xs leading-relaxed px-3">
-            We build your website with clean code, blazing speed, and Houston-focused SEO baked into every page.
-          </p>
-        </div>
-        
-        <!-- Step 4 -->
-        <div class="text-center reveal relative z-10">
-          <div class="relative">
-            <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-700 rounded-2xl flex items-center justify-center text-white font-black text-lg mx-auto mb-4 shadow-lg shadow-amber-500/30">4</div>
-          </div>
-          <div class="text-3xl mb-3">🚀</div>
-          <h3 class="text-sm font-bold text-surface-900 mb-2">Launch & Grow</h3>
-          <p class="text-surface-500 text-xs leading-relaxed px-3">
-            We launch your site, provide training, and offer ongoing support to ensure continued growth and success.
-          </p>
-        </div>
+        <div class="text-center reveal relative z-10"><div class="w-14 h-14 bg-gradient-to-br from-brand-500 to-brand-700 rounded-2xl flex items-center justify-center text-white font-black text-lg mx-auto mb-4 shadow-lg shadow-brand-500/30">1</div><div class="text-3xl mb-3">💬</div><h3 class="text-sm font-bold text-surface-900 mb-2">Discovery & Strategy</h3><p class="text-surface-500 text-xs leading-relaxed px-3">We learn about your business, goals, competitors, and target Houston audience to craft a winning strategy.</p></div>
+        <div class="text-center reveal relative z-10"><div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-violet-700 rounded-2xl flex items-center justify-center text-white font-black text-lg mx-auto mb-4 shadow-lg shadow-violet-500/30">2</div><div class="text-3xl mb-3">🎨</div><h3 class="text-sm font-bold text-surface-900 mb-2">Design & Prototype</h3><p class="text-surface-500 text-xs leading-relaxed px-3">Our designers create stunning mockups and interactive prototypes for your approval before development begins.</p></div>
+        <div class="text-center reveal relative z-10"><div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl flex items-center justify-center text-white font-black text-lg mx-auto mb-4 shadow-lg shadow-emerald-500/30">3</div><div class="text-3xl mb-3">⚡</div><h3 class="text-sm font-bold text-surface-900 mb-2">Development & SEO</h3><p class="text-surface-500 text-xs leading-relaxed px-3">We build your website with clean code, blazing speed, and Houston-focused SEO baked into every page.</p></div>
+        <div class="text-center reveal relative z-10"><div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-700 rounded-2xl flex items-center justify-center text-white font-black text-lg mx-auto mb-4 shadow-lg shadow-amber-500/30">4</div><div class="text-3xl mb-3">🚀</div><h3 class="text-sm font-bold text-surface-900 mb-2">Launch & Grow</h3><p class="text-surface-500 text-xs leading-relaxed px-3">We launch your site, provide training, and offer ongoing support to ensure continued growth and success.</p></div>
       </div>
       
-      <!-- Process CTA Button -->
       <div class="text-center mt-12 reveal">
-        <a href="#process" class="inline-flex items-center gap-2 px-8 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-brand-500/25 text-sm">
-          <span>See Process</span>
+        <a href="process.html" class="inline-flex items-center gap-2 px-8 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-brand-500/25 text-sm">
+          <span>Learn About Our Process</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
       </div>
@@ -1182,68 +696,9 @@
       </div>
       
       <div class="grid md:grid-cols-3 gap-6">
-        <!-- Testimonial 1 -->
-        <div class="glass-dark rounded-2xl p-6 reveal card-hover">
-          <div class="flex gap-1 mb-3">
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-          </div>
-          <p class="text-white/80 text-sm leading-relaxed mb-4 italic">
-            "Solidframe Web completely transformed our online presence. Our roofing website now ranks #1 in Houston for 'roofing company Houston' and we've seen a 300% increase in leads. Absolutely phenomenal work!"
-          </p>
-          <div class="flex items-center gap-3 pt-3 border-t border-white/10">
-            <div class="w-10 h-10 bg-gradient-to-br from-brand-500 to-brand-700 rounded-xl flex items-center justify-center text-white font-bold text-sm">MR</div>
-            <div>
-              <div class="text-white font-semibold text-sm">Mike Rodriguez</div>
-              <div class="text-white/45 text-[11px]">Owner, Houston Roof Pros</div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Testimonial 2 -->
-        <div class="glass-dark rounded-2xl p-6 reveal card-hover">
-          <div class="flex gap-1 mb-3">
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-          </div>
-          <p class="text-white/80 text-sm leading-relaxed mb-4 italic">
-            "As a pool builder in Houston, I needed a website that showcased our luxury builds. Solidframe delivered beyond expectations. We've booked 15 new pool projects directly from the website in just 3 months!"
-          </p>
-          <div class="flex items-center gap-3 pt-3 border-t border-white/10">
-            <div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-sky-700 rounded-xl flex items-center justify-center text-white font-bold text-sm">SJ</div>
-            <div>
-              <div class="text-white font-semibold text-sm">Sarah Johnson</div>
-              <div class="text-white/45 text-[11px]">CEO, Blue Haven Pools Houston</div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Testimonial 3 -->
-        <div class="glass-dark rounded-2xl p-6 reveal card-hover">
-          <div class="flex gap-1 mb-3">
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-            <span class="text-amber-400 text-lg">★</span>
-          </div>
-          <p class="text-white/80 text-sm leading-relaxed mb-4 italic">
-            "Professional, responsive, and incredibly talented. They understood our remodeling business and created a website that truly represents our craftsmanship. Highly recommend to any Houston contractor!"
-          </p>
-          <div class="flex items-center gap-3 pt-3 border-t border-white/10">
-            <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center text-white font-bold text-sm">DW</div>
-            <div>
-              <div class="text-white font-semibold text-sm">David Williams</div>
-              <div class="text-white/45 text-[11px]">Founder, Williams Remodeling TX</div>
-            </div>
-          </div>
-        </div>
+        <div class="glass-dark rounded-2xl p-6 reveal card-hover"><div class="flex gap-1 mb-3"><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span></div><p class="text-white/80 text-sm leading-relaxed mb-4 italic">"Solidframe Web completely transformed our online presence. Our roofing website now ranks #1 in Houston for 'roofing company Houston' and we've seen a 300% increase in leads. Absolutely phenomenal work!"</p><div class="flex items-center gap-3 pt-3 border-t border-white/10"><div class="w-10 h-10 bg-gradient-to-br from-brand-500 to-brand-700 rounded-xl flex items-center justify-center text-white font-bold text-sm">MR</div><div><div class="text-white font-semibold text-sm">Mike Rodriguez</div><div class="text-white/45 text-[11px]">Owner, Houston Roof Pros</div></div></div></div>
+        <div class="glass-dark rounded-2xl p-6 reveal card-hover"><div class="flex gap-1 mb-3"><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span></div><p class="text-white/80 text-sm leading-relaxed mb-4 italic">"As a pool builder in Houston, I needed a website that showcased our luxury builds. Solidframe delivered beyond expectations. We've booked 15 new pool projects directly from the website in just 3 months!"</p><div class="flex items-center gap-3 pt-3 border-t border-white/10"><div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-sky-700 rounded-xl flex items-center justify-center text-white font-bold text-sm">SJ</div><div><div class="text-white font-semibold text-sm">Sarah Johnson</div><div class="text-white/45 text-[11px]">CEO, Blue Haven Pools Houston</div></div></div></div>
+        <div class="glass-dark rounded-2xl p-6 reveal card-hover"><div class="flex gap-1 mb-3"><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span><span class="text-amber-400 text-lg">★</span></div><p class="text-white/80 text-sm leading-relaxed mb-4 italic">"Professional, responsive, and incredibly talented. They understood our remodeling business and created a website that truly represents our craftsmanship. Highly recommend to any Houston contractor!"</p><div class="flex items-center gap-3 pt-3 border-t border-white/10"><div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center text-white font-bold text-sm">DW</div><div><div class="text-white font-semibold text-sm">David Williams</div><div class="text-white/45 text-[11px]">Founder, Williams Remodeling TX</div></div></div></div>
       </div>
     </div>
   </section>
@@ -1259,80 +714,21 @@
           Frequently Asked <span class="text-gradient">Questions</span>
         </h2>
         <p class="text-surface-500 text-sm">
-          Got questions about our Houston web design services? We've got answers. If you don't find what you're looking for, feel free to <a href="#contact" class="text-brand-600 font-semibold hover:underline">contact us</a>.
+          Got questions about our Houston web design services? We've got answers. If you don't find what you're looking for, feel free to <a href="contact.html" class="text-brand-600 font-semibold hover:underline">contact us</a>.
         </p>
-        <a href="#quote" class="mt-3 inline-flex items-center gap-1.5 text-brand-600 font-semibold text-sm hover:gap-2 transition-all">
-          Ask a Question
+        <a href="faqs.html" class="mt-3 inline-flex items-center gap-1.5 text-brand-600 font-semibold text-sm hover:gap-2 transition-all">
+          View All FAQs
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
       </div>
       
       <div class="space-y-1.5 reveal">
-        <!-- FAQ 1 -->
-        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)">
-          <div class="flex justify-between items-start gap-4">
-            <h3 class="text-sm font-bold text-surface-900 pr-2">How long does it take to build a website?</h3>
-            <div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div>
-          </div>
-          <div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">
-            Most projects are completed within 2-4 weeks from start to launch. Simple websites can be delivered in as little as 10 business days. Complex projects with custom functionality may take 6-8 weeks.
-          </div>
-        </div>
-        
-        <!-- FAQ 2 -->
-        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)">
-          <div class="flex justify-between items-start gap-4">
-            <h3 class="text-sm font-bold text-surface-900 pr-2">Do you specialize in contractor & roofing websites?</h3>
-            <div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div>
-          </div>
-          <div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">
-            Absolutely! We specialize in building websites for contractors, roofers, remodelers, and pool builders across Houston. We understand your industry's unique needs and target audience.
-          </div>
-        </div>
-        
-        <!-- FAQ 3 -->
-        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)">
-          <div class="flex justify-between items-start gap-4">
-            <h3 class="text-sm font-bold text-surface-900 pr-2">Will my website be optimized for Houston SEO?</h3>
-            <div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div>
-          </div>
-          <div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">
-            Yes! Every website we build comes with our signature Houston SEO optimization baked in, including local keyword targeting, Google Business Profile setup, and location-specific content strategy.
-          </div>
-        </div>
-        
-        <!-- FAQ 4 -->
-        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)">
-          <div class="flex justify-between items-start gap-4">
-            <h3 class="text-sm font-bold text-surface-900 pr-2">Can you update my website content after launch?</h3>
-            <div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div>
-          </div>
-          <div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">
-            Of course! We build all websites with user-friendly CMS platforms (WordPress, Webflow) so you can easily update content yourself. We also offer maintenance plans for ongoing support.
-          </div>
-        </div>
-        
-        <!-- FAQ 5 -->
-        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)">
-          <div class="flex justify-between items-start gap-4">
-            <h3 class="text-sm font-bold text-surface-900 pr-2">What areas of Houston do you serve?</h3>
-            <div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div>
-          </div>
-          <div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">
-            We serve the entire Houston metropolitan area including Downtown, The Woodlands, Sugar Land, Katy, Pearland, Cypress, Spring, The Heights, Memorial, Bellaire, Humble, Pasadena, and all surrounding communities.
-          </div>
-        </div>
-        
-        <!-- FAQ 6 -->
-        <div class="faq-item py-4 cursor-pointer" onclick="toggleFaq(this)">
-          <div class="flex justify-between items-start gap-4">
-            <h3 class="text-sm font-bold text-surface-900 pr-2">Do you offer payment plans or financing?</h3>
-            <div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div>
-          </div>
-          <div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">
-            Yes! We offer flexible payment plans. Typically 50% upfront, 25% at design approval, and 25% at launch. We can also discuss custom payment arrangements for larger projects.
-          </div>
-        </div>
+        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">How long does it take to build a website?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">Most projects are completed within 2-4 weeks from start to launch. Simple websites can be delivered in as little as 10 business days. Complex projects with custom functionality may take 6-8 weeks.</div></div>
+        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">Do you specialize in contractor & roofing websites?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">Absolutely! We specialize in building websites for contractors, roofers, remodelers, and pool builders across Houston. We understand your industry's unique needs and target audience.</div></div>
+        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">Will my website be optimized for Houston SEO?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">Yes! Every website we build comes with our signature Houston SEO optimization baked in, including local keyword targeting, Google Business Profile setup, and location-specific content strategy.</div></div>
+        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">Can you update my website content after launch?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">Of course! We build all websites with user-friendly CMS platforms (WordPress, Webflow) so you can easily update content yourself. We also offer maintenance plans for ongoing support.</div></div>
+        <div class="faq-item border-b border-surface-100 py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">What areas of Houston do you serve?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">We serve the entire Houston metropolitan area including Downtown, The Woodlands, Sugar Land, Katy, Pearland, Cypress, Spring, The Heights, Memorial, Bellaire, Humble, Pasadena, and all surrounding communities.</div></div>
+        <div class="faq-item py-4 cursor-pointer" onclick="toggleFaq(this)"><div class="flex justify-between items-start gap-4"><h3 class="text-sm font-bold text-surface-900 pr-2">Do you offer payment plans or financing?</h3><div class="faq-toggle w-7 h-7 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 text-base font-light shrink-0">+</div></div><div class="faq-content text-surface-500 text-sm leading-relaxed pl-0">Yes! We offer flexible payment plans. Typically 50% upfront, 25% at design approval, and 25% at launch. We can also discuss custom payment arrangements for larger projects.</div></div>
       </div>
     </div>
   </section>
@@ -1342,92 +738,16 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 reveal">
         <div>
-          <div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-4 py-1.5 mb-4">
-            <span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.18em]">OUR BLOG</span>
-          </div>
+          <div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-4 py-1.5 mb-4"><span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.18em]">OUR BLOG</span></div>
           <h2 class="text-xl sm:text-2xl font-black text-surface-900">Latest Insights & Tips</h2>
-          <p class="text-surface-500 text-xs mt-1.5">
-            Stay updated with the latest web design, SEO, and digital marketing tips for Houston contractors.
-          </p>
+          <p class="text-surface-500 text-xs mt-1.5">Stay updated with the latest web design, SEO, and digital marketing tips for Houston contractors.</p>
         </div>
-        <a href="#" class="mt-3 sm:mt-0 inline-flex items-center gap-1.5 text-brand-600 font-semibold text-xs hover:gap-2.5 transition-all">
-          View All Posts
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
+        <a href="blog.html" class="mt-3 sm:mt-0 inline-flex items-center gap-1.5 text-brand-600 font-semibold text-xs hover:gap-2.5 transition-all">View All Posts <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>
       </div>
-      
       <div class="grid md:grid-cols-3 gap-6">
-        <!-- Blog Post 1 -->
-        <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-surface-100 reveal">
-          <div class="h-36 bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center relative">
-            <span class="text-4xl">🔍</span>
-            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur rounded-full px-2.5 py-1 text-[10px] font-bold text-brand-600 shadow-sm">SEO TIPS</div>
-          </div>
-          <div class="p-5">
-            <div class="flex items-center gap-2.5 text-[10px] text-surface-400 mb-2">
-              <span>📅 Dec 15, 2024</span>
-              <span>⏱️ 8 min read</span>
-            </div>
-            <h3 class="text-sm font-bold text-surface-900 mb-2 leading-tight hover:text-brand-600 transition-colors">
-              10 SEO Strategies Every Houston Roofing Company Needs in 2025
-            </h3>
-            <p class="text-surface-500 text-[11px] leading-relaxed mb-3">
-              Discover the proven SEO tactics that top Houston roofing companies use to rank on Google's first page and generate storm damage leads.
-            </p>
-            <a href="#" class="inline-flex items-center gap-1.5 text-brand-600 font-semibold text-[11px] hover:gap-2 transition-all">
-              Read More
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
-          </div>
-        </article>
-        
-        <!-- Blog Post 2 -->
-        <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-surface-100 reveal">
-          <div class="h-36 bg-gradient-to-br from-violet-500 to-violet-700 flex items-center justify-center relative">
-            <span class="text-4xl">🎨</span>
-            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur rounded-full px-2.5 py-1 text-[10px] font-bold text-violet-600 shadow-sm">WEB DESIGN</div>
-          </div>
-          <div class="p-5">
-            <div class="flex items-center gap-2.5 text-[10px] text-surface-400 mb-2">
-              <span>📅 Dec 8, 2024</span>
-              <span>⏱️ 6 min read</span>
-            </div>
-            <h3 class="text-sm font-bold text-surface-900 mb-2 leading-tight hover:text-brand-600 transition-colors">
-              Why Your Remodeling Business Needs a Professional Website in Houston
-            </h3>
-            <p class="text-surface-500 text-[11px] leading-relaxed mb-3">
-              Learn how a professionally designed website can transform your remodeling business and help you win more high-value projects.
-            </p>
-            <a href="#" class="inline-flex items-center gap-1.5 text-brand-600 font-semibold text-[11px] hover:gap-2 transition-all">
-              Read More
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
-          </div>
-        </article>
-        
-        <!-- Blog Post 3 -->
-        <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-surface-100 reveal">
-          <div class="h-36 bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center relative">
-            <span class="text-4xl">📈</span>
-            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur rounded-full px-2.5 py-1 text-[10px] font-bold text-emerald-600 shadow-sm">MARKETING</div>
-          </div>
-          <div class="p-5">
-            <div class="flex items-center gap-2.5 text-[10px] text-surface-400 mb-2">
-              <span>📅 Nov 30, 2024</span>
-              <span>⏱️ 7 min read</span>
-            </div>
-            <h3 class="text-sm font-bold text-surface-900 mb-2 leading-tight hover:text-brand-600 transition-colors">
-              How Pool Builders in Houston Can Generate Leads With Their Website
-            </h3>
-            <p class="text-surface-500 text-[11px] leading-relaxed mb-3">
-              Practical strategies for Houston pool builders to turn website visitors into booked consultations and high-value custom pool projects.
-            </p>
-            <a href="#" class="inline-flex items-center gap-1.5 text-brand-600 font-semibold text-[11px] hover:gap-2 transition-all">
-              Read More
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
-          </div>
-        </article>
+        <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-surface-100 reveal"><div class="h-36 bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center relative"><span class="text-4xl">🔍</span><div class="absolute top-3 left-3 bg-white/95 backdrop-blur rounded-full px-2.5 py-1 text-[10px] font-bold text-brand-600 shadow-sm">SEO TIPS</div></div><div class="p-5"><div class="flex items-center gap-2.5 text-[10px] text-surface-400 mb-2"><span>📅 Dec 15, 2024</span><span>⏱️ 8 min read</span></div><h3 class="text-sm font-bold text-surface-900 mb-2 leading-tight hover:text-brand-600 transition-colors">10 SEO Strategies Every Houston Roofing Company Needs in 2025</h3><p class="text-surface-500 text-[11px] leading-relaxed mb-3">Discover the proven SEO tactics that top Houston roofing companies use to rank on Google's first page and generate storm damage leads.</p><a href="blog.html" class="inline-flex items-center gap-1.5 text-brand-600 font-semibold text-[11px] hover:gap-2 transition-all">Read More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a></div></article>
+        <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-surface-100 reveal"><div class="h-36 bg-gradient-to-br from-violet-500 to-violet-700 flex items-center justify-center relative"><span class="text-4xl">🎨</span><div class="absolute top-3 left-3 bg-white/95 backdrop-blur rounded-full px-2.5 py-1 text-[10px] font-bold text-violet-600 shadow-sm">WEB DESIGN</div></div><div class="p-5"><div class="flex items-center gap-2.5 text-[10px] text-surface-400 mb-2"><span>📅 Dec 8, 2024</span><span>⏱️ 6 min read</span></div><h3 class="text-sm font-bold text-surface-900 mb-2 leading-tight hover:text-brand-600 transition-colors">Why Your Remodeling Business Needs a Professional Website in Houston</h3><p class="text-surface-500 text-[11px] leading-relaxed mb-3">Learn how a professionally designed website can transform your remodeling business and help you win more high-value projects.</p><a href="blog.html" class="inline-flex items-center gap-1.5 text-brand-600 font-semibold text-[11px] hover:gap-2 transition-all">Read More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a></div></article>
+        <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-surface-100 reveal"><div class="h-36 bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center relative"><span class="text-4xl">📈</span><div class="absolute top-3 left-3 bg-white/95 backdrop-blur rounded-full px-2.5 py-1 text-[10px] font-bold text-emerald-600 shadow-sm">MARKETING</div></div><div class="p-5"><div class="flex items-center gap-2.5 text-[10px] text-surface-400 mb-2"><span>📅 Nov 30, 2024</span><span>⏱️ 7 min read</span></div><h3 class="text-sm font-bold text-surface-900 mb-2 leading-tight hover:text-brand-600 transition-colors">How Pool Builders in Houston Can Generate Leads With Their Website</h3><p class="text-surface-500 text-[11px] leading-relaxed mb-3">Practical strategies for Houston pool builders to turn website visitors into booked consultations and high-value custom pool projects.</p><a href="blog.html" class="inline-flex items-center gap-1.5 text-brand-600 font-semibold text-[11px] hover:gap-2 transition-all">Read More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a></div></article>
       </div>
     </div>
   </section>
@@ -1436,64 +756,23 @@
   <section class="py-16 sm:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center max-w-2xl mx-auto mb-10 reveal">
-        <div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-4 py-1.5 mb-4">
-          <span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.18em]">SERVICE AREAS</span>
-        </div>
+        <div class="inline-flex items-center gap-2 bg-brand-100 rounded-full px-4 py-1.5 mb-4"><span class="text-brand-700 font-bold text-[10px] uppercase tracking-[0.18em]">SERVICE AREAS</span></div>
         <h2 class="text-xl sm:text-2xl font-black text-surface-900 mb-2">Areas We Serve Across Houston</h2>
-        <p class="text-surface-500 text-xs">
-          We provide web design, SEO, and digital marketing services throughout the entire Houston metropolitan area.
-        </p>
+        <p class="text-surface-500 text-xs">We provide web design, SEO, and digital marketing services throughout the entire Houston metropolitan area.</p>
       </div>
-      
       <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 reveal">
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🏙️</div>
-          <div class="font-semibold text-surface-700 text-[11px]">Downtown Houston</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🌳</div>
-          <div class="font-semibold text-surface-700 text-[11px]">The Woodlands</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🏡</div>
-          <div class="font-semibold text-surface-700 text-[11px]">Sugar Land</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🚂</div>
-          <div class="font-semibold text-surface-700 text-[11px]">Katy</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🌊</div>
-          <div class="font-semibold text-surface-700 text-[11px]">Pearland</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🌿</div>
-          <div class="font-semibold text-surface-700 text-[11px]">Cypress</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🌸</div>
-          <div class="font-semibold text-surface-700 text-[11px]">Spring</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🏘️</div>
-          <div class="font-semibold text-surface-700 text-[11px]">The Heights</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🏛️</div>
-          <div class="font-semibold text-surface-700 text-[11px]">Memorial</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🌆</div>
-          <div class="font-semibold text-surface-700 text-[11px]">Bellaire</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">🌾</div>
-          <div class="font-semibold text-surface-700 text-[11px]">Humble</div>
-        </div>
-        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100">
-          <div class="text-xl mb-1">⚓</div>
-          <div class="font-semibold text-surface-700 text-[11px]">Pasadena</div>
-        </div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🏙️</div><div class="font-semibold text-surface-700 text-[11px]">Downtown Houston</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🌳</div><div class="font-semibold text-surface-700 text-[11px]">The Woodlands</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🏡</div><div class="font-semibold text-surface-700 text-[11px]">Sugar Land</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🚂</div><div class="font-semibold text-surface-700 text-[11px]">Katy</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🌊</div><div class="font-semibold text-surface-700 text-[11px]">Pearland</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🌿</div><div class="font-semibold text-surface-700 text-[11px]">Cypress</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🌸</div><div class="font-semibold text-surface-700 text-[11px]">Spring</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🏘️</div><div class="font-semibold text-surface-700 text-[11px]">The Heights</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🏛️</div><div class="font-semibold text-surface-700 text-[11px]">Memorial</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🌆</div><div class="font-semibold text-surface-700 text-[11px]">Bellaire</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">🌾</div><div class="font-semibold text-surface-700 text-[11px]">Humble</div></div>
+        <div class="bg-surface-50 rounded-xl p-4 text-center hover:bg-brand-50 hover:shadow-md transition-all border border-surface-100"><div class="text-xl mb-1">⚓</div><div class="font-semibold text-surface-700 text-[11px]">Pasadena</div></div>
       </div>
     </div>
   </section>
@@ -1503,12 +782,8 @@
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(34,211,238,0.12),transparent_55%)]"></div>
     <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center relative z-10 reveal">
       <div class="text-4xl mb-4">🚀</div>
-      <h2 class="text-2xl sm:text-3xl font-black text-white mb-4 leading-tight">
-        Ready to Dominate Houston Online?
-      </h2>
-      <p class="text-sm text-white/80 mb-7 max-w-lg mx-auto">
-        Let's build a website that generates leads, builds trust, and grows your contracting business. Get your free quote today — no obligations, no pressure.
-      </p>
+      <h2 class="text-2xl sm:text-3xl font-black text-white mb-4 leading-tight">Ready to Dominate Houston Online?</h2>
+      <p class="text-sm text-white/80 mb-7 max-w-lg mx-auto">Let's build a website that generates leads, builds trust, and grows your contracting business. Get your free quote today — no obligations, no pressure.</p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
         <a href="#quote" class="btn-primary px-8 py-3.5 rounded-xl font-bold text-white shadow-xl shadow-brand-500/30 bg-white text-brand-700 hover:bg-white/95 inline-flex items-center justify-center">
           <span>Get Your Free Quote →</span>
@@ -1525,88 +800,84 @@
   <footer class="bg-brand-950 pt-14 pb-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/8">
-        <!-- Brand -->
         <div>
-          <a href="#" class="flex items-center gap-2.5 mb-5">
-            <div class="w-9 h-9 bg-gradient-to-br from-brand-500 to-sky-400 rounded-xl flex items-center justify-center">
-              <span class="text-white font-black text-sm">SF</span>
-            </div>
-            <div class="leading-none">
-              <div class="text-lg font-bold text-white">Solid<span class="text-brand-400">frame</span></div>
-              <div class="text-[9px] text-white/35 tracking-[0.18em] uppercase -mt-0.5 font-medium">Web Design</div>
-            </div>
+          <a href="index.html" class="flex items-center gap-2.5 mb-5">
+            <div class="w-9 h-9 bg-gradient-to-br from-brand-500 to-sky-400 rounded-xl flex items-center justify-center"><span class="text-white font-black text-sm">SF</span></div>
+            <div class="leading-none"><div class="text-lg font-bold text-white">Solid<span class="text-brand-400">frame</span></div><div class="text-[9px] text-white/35 tracking-[0.18em] uppercase -mt-0.5 font-medium">Web Design</div></div>
           </a>
-          <p class="text-white/45 text-xs leading-relaxed mb-5">
-            Houston's premier web design agency specializing in stunning, lead-generating websites for roofing companies, remodelers, pool builders, and general contractors across Texas.
-          </p>
+          <p class="text-white/45 text-xs leading-relaxed mb-5">Houston's premier web design agency specializing in stunning, lead-generating websites for roofing companies, remodelers, pool builders, and general contractors across Texas.</p>
           <div class="flex gap-2.5">
-            <a href="#" class="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center text-white/45 hover:bg-brand-500 hover:text-white transition-all" aria-label="Facebook">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="#" class="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center text-white/45 hover:bg-brand-500 hover:text-white transition-all" aria-label="Instagram">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </a>
-            <a href="#" class="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center text-white/45 hover:bg-brand-500 hover:text-white transition-all" aria-label="X (Twitter)">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
+            <a href="#" class="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center text-white/45 hover:bg-brand-500 hover:text-white transition-all" aria-label="Facebook"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" class="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center text-white/45 hover:bg-brand-500 hover:text-white transition-all" aria-label="Instagram"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="#" class="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center text-white/45 hover:bg-brand-500 hover:text-white transition-all" aria-label="X (Twitter)"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
           </div>
         </div>
-        
-        <!-- Quick Links -->
         <div>
           <h4 class="text-white font-bold text-xs mb-4 tracking-wide">Quick Links</h4>
           <ul class="space-y-2.5">
-            <li><a href="#home" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Home</a></li>
-            <li><a href="#about" class="text-white/45 hover:text-brand-400 text-xs transition-colors">About Us</a></li>
-            <li><a href="#services" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Services</a></li>
-            <li><a href="#process" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Our Process</a></li>
-            <li><a href="#pricing" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Pricing</a></li>
-            <li><a href="#faqs" class="text-white/45 hover:text-brand-400 text-xs transition-colors">FAQs</a></li>
-            <li><a href="#blog" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Blog</a></li>
-            <li><a href="#contact" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Contact</a></li>
+            <li><a href="index.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Home</a></li>
+            <li><a href="about.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">About Us</a></li>
+            <li><a href="services.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Services</a></li>
+            <li><a href="process.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Our Process</a></li>
+            <li><a href="pricing.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Pricing</a></li>
+            <li><a href="faqs.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">FAQs</a></li>
+            <li><a href="blog.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Blog</a></li>
+            <li><a href="contact.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Contact</a></li>
           </ul>
         </div>
-        
-        <!-- Services -->
         <div>
           <h4 class="text-white font-bold text-xs mb-4 tracking-wide">Our Services</h4>
           <ul class="space-y-2.5">
-            <li><a href="#services" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Custom Web Design</a></li>
-            <li><a href="#services" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Web Development</a></li>
-            <li><a href="#services" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Houston SEO</a></li>
-            <li><a href="#services" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Roofing Websites</a></li>
-            <li><a href="#services" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Remodeling Sites</a></li>
-            <li><a href="#services" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Pool Builder Sites</a></li>
-            <li><a href="#services" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Digital Marketing</a></li>
-            <li><a href="#services" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Website Maintenance</a></li>
+            <li><a href="services.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Custom Web Design</a></li>
+            <li><a href="services.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Web Development</a></li>
+            <li><a href="services.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Houston SEO</a></li>
+            <li><a href="services.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Roofing Websites</a></li>
+            <li><a href="services.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Remodeling Sites</a></li>
+            <li><a href="services.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Pool Builder Sites</a></li>
+            <li><a href="services.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Digital Marketing</a></li>
+            <li><a href="services.html" class="text-white/45 hover:text-brand-400 text-xs transition-colors">Website Maintenance</a></li>
           </ul>
         </div>
-        
-        <!-- Newsletter -->
         <div>
           <h4 class="text-white font-bold text-xs mb-3 tracking-wide">Newsletter</h4>
-          <p class="text-white/45 text-xs mb-3.5 leading-relaxed">
-            Get the latest web design tips, SEO strategies, and industry insights delivered to your inbox.
-          </p>
-          <form class="flex gap-2" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Subscribed successfully!');">
-            <input type="email" required placeholder="Your email" class="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs placeholder-white/30 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30 transition-all">
-            <button type="submit" class="w-11 h-11 bg-brand-500 rounded-xl flex items-center justify-center text-white hover:bg-brand-600 transition-colors shrink-0" aria-label="Subscribe">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </button>
-          </form>
+
+<p class="text-white/45 text-xs mb-3.5 leading-relaxed">
+  Get the latest web design tips, SEO strategies, and industry insights delivered to your inbox.
+</p>
+
+<!-- Contact Info -->
+<div class="mb-4 space-y-1.5 text-xs">
+  <p class="text-white/70">
+    📞 <a href="tel:18325550190" class="hover:text-white transition-colors">(832) 555-0190</a>
+  </p>
+  <p class="text-white/70">
+    ✉ <a href="mailto:info@solidframeweb.com" class="hover:text-white transition-colors">info@solidframeweb.com</a>
+  </p>
+</div>
+
+<form class="flex gap-2" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Subscribed successfully!');">
+  <input 
+    type="email" 
+    required 
+    placeholder="Your email" 
+    class="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs placeholder-white/30 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30 transition-all"
+  >
+  
+  <button 
+    type="submit" 
+    class="w-11 h-11 bg-brand-500 rounded-xl flex items-center justify-center text-white hover:bg-brand-600 transition-colors shrink-0" 
+    aria-label="Subscribe"
+  >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+    </svg>
+  </button>
+</form>
         </div>
       </div>
-      
-      <!-- Footer Bottom -->
       <div class="flex flex-col sm:flex-row justify-between items-center pt-5 gap-3">
-        <p class="text-white/30 text-[11px] text-center sm:text-left">
-          © 2026 Solidframe Web. All rights reserved. | Houston Web Design Agency
-        </p>
-        <div class="flex gap-3 text-[11px]">
-          <a href="#" class="text-white/30 hover:text-white transition-colors">Privacy Policy</a>
-          <span class="text-white/15">|</span>
-          <a href="#" class="text-white/30 hover:text-white transition-colors">Terms of Service</a>
-        </div>
+        <p class="text-white/30 text-[11px] text-center sm:text-left">© 2026 Solidframe Web. All rights reserved. | Houston Web Design Agency</p>
+        <div class="flex gap-3 text-[11px]"><a href="#" class="text-white/30 hover:text-white transition-colors">Privacy Policy</a><span class="text-white/15">|</span><a href="#" class="text-white/30 hover:text-white transition-colors">Terms of Service</a></div>
       </div>
     </div>
   </footer>
@@ -1616,131 +887,7 @@
     <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
   </button>
 
-  <!-- JavaScript -->
-  <script>
-    // Navbar scroll effect
-    const nav = document.getElementById('nav');
-    const backToTop = document.getElementById('backToTop');
-    
-    window.addEventListener('scroll', () => {
-      // Navbar background on scroll
-      nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
-      
-      // Back to top button visibility
-      if (window.scrollY > 400) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-    
-    // Mobile Menu Toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const menuClose = document.getElementById('menuClose');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    function openMenu() {
-      mobileMenu.style.transform = 'translateX(0)';
-      menuToggle.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function closeMenu() {
-      mobileMenu.style.transform = 'translateX(100%)';
-      menuToggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-    
-    menuToggle.addEventListener('click', openMenu);
-    menuClose.addEventListener('click', closeMenu);
-    
-    // Close menu when clicking links
-    document.querySelectorAll('.mob-link').forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
-    
-    // Mobile Services Dropdown Toggle
-    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-      const toggle = dropdown.querySelector('.mobile-dropdown-toggle');
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        dropdown.classList.toggle('active');
-      });
-    });
-    
-    // Scroll Reveal Animation
-    const revealOptions = {
-      threshold: 0.08,
-      rootMargin: '0px 0px -30px 0px'
-    };
-    
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, revealOptions);
-    
-    document.querySelectorAll('.reveal').forEach(el => {
-      revealObserver.observe(el);
-    });
-    
-    // FAQ Accordion
-    function toggleFaq(element) {
-      const isActive = element.classList.contains('active');
-      
-      // Close all FAQs first
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.classList.remove('active');
-      });
-      
-      // Toggle clicked FAQ
-      if (!isActive) {
-        element.classList.add('active');
-      }
-    }
-    
-    // Quote Form Submission
-    document.getElementById('quoteForm')?.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Show success message
-      this.style.display = 'none';
-      document.getElementById('formDone').classList.remove('hidden');
-      
-      // Optional: Send to backend here
-      console.log('Form submitted:', Object.fromEntries(new FormData(this)));
-    });
-    
-    // Smooth Scroll for Anchor Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#') return;
-        
-        const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          const headerOffset = 80;
-          const elementPosition = target.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-    
-    // Initialize: Close mobile menu on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileMenu.style.transform === 'translateX(0px)') {
-        closeMenu();
-      }
-    });
-  </script>
+  <!-- Global JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
