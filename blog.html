@@ -396,77 +396,94 @@
   </footer>
 
   <!-- Back to Top -->
-  <button id="backToTop" class="fixed bottom-6 right-6 w-11 h-11 bg-brand-500 rounded-xl flex items-center justify-center text-white shadow-lg hover:bg-brand-600 transition-all opacity-0 translate-y-4 pointer-events-none z-40" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg></button>
+<button id="backToTop" class="fixed bottom-6 right-6 w-11 h-11 bg-brand-500 rounded-xl flex items-center justify-center text-white shadow-lg hover:bg-brand-600 transition-all opacity-0 translate-y-4 pointer-events-none z-40" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
+</button>
 
-  <!-- Global Script -->
+<!-- Global Script -->
 <script src="script.js"></script>
 
-<!-- Blog Page Specific Fix -->
+<!-- GUARANTEED BLOG READ MORE / LESS FIX -->
 <script>
-  (function() {
-    // ---- Blog Read More / Read Less (Robust) ----
-    function toggleBlogPost(btn) {
-      const card = btn.closest('.blog-card');
-      if (!card) return;
-      
-      const content = card.querySelector('.blog-full-content');
-      const btnText = btn.querySelector('span');
-      const icon = btn.querySelector('svg');
-      
-      const isExpanded = card.classList.contains('expanded');
-      
-      if (!isExpanded) {
-        // Expand: set max-height to scrollHeight
-        content.style.maxHeight = content.scrollHeight + 'px';
-        card.classList.add('expanded');
-        if (btnText) btnText.textContent = 'Read Less';
-        if (icon) icon.style.transform = 'rotate(180deg)';
-      } else {
-        // Collapse
-        content.style.maxHeight = '0';
-        card.classList.remove('expanded');
-        if (btnText) btnText.textContent = 'Read More';
-        if (icon) icon.style.transform = 'rotate(0deg)';
-      }
+(function() {
+  // Ensure the function is globally available (though we'll use listeners instead of inline onclick)
+  window.toggleBlogPost = function(btn) {
+    const card = btn.closest('.blog-card');
+    if (!card) return;
+    const content = card.querySelector('.blog-full-content');
+    const span = btn.querySelector('span');
+    const svg = btn.querySelector('svg');
+    const isExpanded = card.classList.contains('expanded');
+
+    if (!isExpanded) {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      card.classList.add('expanded');
+      if (span) span.textContent = 'Read Less';
+      if (svg) svg.style.transform = 'rotate(180deg)';
+    } else {
+      content.style.maxHeight = '0';
+      card.classList.remove('expanded');
+      if (span) span.textContent = 'Read More';
+      if (svg) svg.style.transform = 'rotate(0deg)';
     }
+  };
 
-    // Expose to global scope for inline onclick
-    window.toggleBlogPost = toggleBlogPost;
+  // Initialize all blog cards
+  function initBlog() {
+    document.querySelectorAll('.blog-card').forEach(card => {
+      const content = card.querySelector('.blog-full-content');
+      const btn = card.querySelector('.read-more-btn');
+      if (!content || !btn) return;
 
-    // Initialize all blog cards: ensure collapsed state and clean up any residual styles
-    function initBlogCards() {
-      document.querySelectorAll('.blog-card').forEach(card => {
-        const content = card.querySelector('.blog-full-content');
-        const btn = card.querySelector('.read-more-btn');
-        
-        if (content) {
-          // Force collapsed state
-          content.style.maxHeight = '0';
-          card.classList.remove('expanded');
-        }
-        
-        if (btn) {
-          const btnText = btn.querySelector('span');
-          const icon = btn.querySelector('svg');
-          if (btnText) btnText.textContent = 'Read More';
-          if (icon) icon.style.transform = 'rotate(0deg)';
-          
-          // Remove any existing onclick attribute to avoid double firing
-          // (We keep the onclick attribute but ensure our function handles it)
+      // Reset to collapsed state
+      content.style.maxHeight = '0';
+      card.classList.remove('expanded');
+
+      // Update button text and icon
+      const span = btn.querySelector('span');
+      const svg = btn.querySelector('svg');
+      if (span) span.textContent = 'Read More';
+      if (svg) svg.style.transform = 'rotate(0deg)';
+
+      // Remove any existing onclick attribute (cleanup)
+      btn.removeAttribute('onclick');
+
+      // Replace button with a clone to remove all previous listeners
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+
+      // Attach fresh click listener
+      newBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const currentCard = this.closest('.blog-card');
+        if (!currentCard) return;
+        const cont = currentCard.querySelector('.blog-full-content');
+        const sp = this.querySelector('span');
+        const ic = this.querySelector('svg');
+        const expanded = currentCard.classList.contains('expanded');
+
+        if (!expanded) {
+          cont.style.maxHeight = cont.scrollHeight + 'px';
+          currentCard.classList.add('expanded');
+          if (sp) sp.textContent = 'Read Less';
+          if (ic) ic.style.transform = 'rotate(180deg)';
+        } else {
+          cont.style.maxHeight = '0';
+          currentCard.classList.remove('expanded');
+          if (sp) sp.textContent = 'Read More';
+          if (ic) ic.style.transform = 'rotate(0deg)';
         }
       });
-    }
+    });
+  }
 
-    // Run on DOM ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initBlogCards);
-    } else {
-      initBlogCards();
-    }
-    
-    // Optional: Re-run if dynamic content added
-    window.refreshBlog = initBlogCards;
-  })();
+  // Run after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBlog);
+  } else {
+    initBlog();
+  }
+})();
 </script>
 </body>
 </html>
