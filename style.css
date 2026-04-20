@@ -545,3 +545,12 @@ footer a:hover {
 .faq-item.active .faq-toggle {
   transform: rotate(45deg);
 }
+
+/* About section image */
+.about-image {
+  transition: transform 0.3s ease;
+}
+
+.about-image:hover {
+  transform: scale(1.02);
+}
