@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog | Houston Web Design & SEO Insights for Contractors | Solidframe Web</title>
   <meta name="description" content="Actionable tips on web design, SEO, and digital marketing for Houston roofing, remodeling, pool builders & general contractors. Stay ahead of the competition.">
-  <meta name="keywords" content="Houston web design blog, contractor SEO tips, roofing website marketing, Houston SEO strategies, contractor lead generation">
+  <meta name="keywords" content="Houston web design blog, contractor SEO tips, roofing website marketing, Houston SEO strategies, contractor lead generation, pool builder leads, Google Business Profile optimization, website speed">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.solidframeweb.com/blog">
   
@@ -69,7 +69,7 @@
       transition: max-height 0.4s ease-out, margin 0.3s ease;
     }
     .blog-card.expanded .blog-full-content {
-      max-height: 500px; /* enough for content */
+      max-height: 800px; /* increased for longer content */
       margin-top: 1rem;
     }
     .read-more-btn {
@@ -79,7 +79,7 @@
 </head>
 <body class="bg-white text-surface-800 antialiased">
 
-   <!-- Top Info Bar -->
+   <!-- Top Info Bar (same as before) -->
 <div class="bg-brand-950 text-white/75 text-[11px] py-2.5 hidden md:block border-b border-white/8">
   <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
     <div class="flex items-center gap-5">
@@ -100,11 +100,10 @@
   </div>
 </div>
 
-<!-- Navigation -->
+<!-- Navigation (same as before, active on Blog) -->
 <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brand-950/95 backdrop-blur-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     <div class="flex items-center justify-between h-16 sm:h-18">
-      <!-- Logo -->
       <a href="index.html" class="flex items-center gap-2.5 shrink-0 group">
         <div class="w-9 h-9 bg-gradient-to-br from-brand-500 to-sky-400 rounded-xl flex items-center justify-center shadow-lg shadow-brand-500/25 group-hover:shadow-brand-500/40 transition-shadow">
           <span class="text-white font-black text-sm">SF</span>
@@ -115,10 +114,9 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation -->
       <div class="hidden xl:flex items-center gap-1">
         <a href="index.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Home</a>
-        <a href="about.html"  class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5"">About</a>
+        <a href="about.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">About</a>
 
         <div class="dropdown">
           <button class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1 group">
@@ -126,6 +124,7 @@
             <svg class="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="dropdown-menu" role="menu">
+            <!-- dropdown links same as before -->
             <a href="services.html#custom-web-design" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group"><div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🎨</div><div><div class="font-semibold text-surface-800 text-sm">Custom Web Design</div><div class="text-xs text-surface-400">Pixel-perfect, brand-aligned</div></div></a>
             <a href="services.html#web-development" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group"><div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition-transform">💻</div><div><div class="font-semibold text-surface-800 text-sm">Web Development</div><div class="text-xs text-surface-400">Fast, secure & scalable</div></div></a>
             <a href="services.html#houston-seo" class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50 transition-colors group"><div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🔍</div><div><div class="font-semibold text-surface-800 text-sm">Houston SEO</div><div class="text-xs text-surface-400">Dominate local search</div></div></a>
@@ -140,11 +139,10 @@
         <a href="process.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Process</a>
         <a href="pricing.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Pricing</a>
         <a href="faqs.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">FAQs</a>
-        <a href="blog.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Blog</a>
+        <a href="blog.html" class="px-4 py-2 text-white text-sm font-medium bg-white/10 rounded-lg">Blog</a>
         <a href="contact.html" class="px-4 py-2 text-white/85 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5">Contact</a>
       </div>
 
-      <!-- Desktop CTA -->
       <div class="hidden xl:flex items-center gap-3">
         <a href="tel:8325550190" class="flex items-center gap-1.5 text-white/85 hover:text-white text-sm font-semibold transition-colors px-3 py-2 rounded-lg hover:bg-white/5">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
@@ -155,7 +153,6 @@
         </a>
       </div>
 
-      <!-- Mobile Menu Toggle -->
       <button id="menuToggle" class="xl:hidden p-2 text-white rounded-xl hover:bg-white/10 transition-colors" aria-label="Open menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
@@ -163,7 +160,7 @@
   </div>
 </nav>
 
-<!-- Mobile Menu Overlay -->
+<!-- Mobile Menu Overlay (same as before) -->
 <div id="mobileMenu" class="fixed inset-0 z-[100] bg-brand-950 transform translate-x-full transition-transform duration-400 ease-out" role="dialog" aria-modal="true">
   <div class="flex flex-col h-full">
     <div class="flex justify-between items-center p-5 pb-4 border-b border-white/10">
@@ -204,7 +201,7 @@
       <a href="process.html" class="block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium">Process</a>
       <a href="pricing.html" class="block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium">Pricing</a>
       <a href="faqs.html" class="block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium">FAQs</a>
-      <a href="blog.html" class="block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium">Blog</a>
+      <a href="blog.html" class="block py-3 px-4 text-white bg-white/10 rounded-xl text-sm font-medium">Blog</a>
       <a href="contact.html" class="block py-3 px-4 text-white/90 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium">Contact</a>
     </nav>
 
@@ -237,12 +234,12 @@
     <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent z-10"></div>
   </section>
 
-  <!-- Blog Grid -->
+  <!-- Blog Grid with DETAILED Content -->
   <section class="py-16 sm:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <!-- Blog Post 1 -->
+        <!-- Blog Post 1: SEO Strategies -->
         <article class="blog-card bg-white rounded-2xl shadow-sm border border-surface-100 overflow-hidden flex flex-col reveal">
           <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1581091870622-1c6b7d7f6e7e?auto=format&fit=crop&w=800&q=80');">
             <span class="absolute top-4 left-4 bg-brand-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">SEO</span>
@@ -254,8 +251,17 @@
             </div>
             <h2 class="text-lg font-black text-surface-900 mb-2 leading-tight">10 SEO Strategies Every Houston Roofing Company Needs in 2025</h2>
             <p class="text-surface-500 text-sm leading-relaxed mb-3">Discover the proven SEO tactics that top Houston roofing companies use to rank on Google's first page and generate more storm damage leads.</p>
-            <div class="blog-full-content text-surface-600 text-sm leading-relaxed">
-              This comprehensive guide covers everything from local keyword research to advanced schema markup. We'll show you how to optimize your site for "roofing company Houston" and related terms, build local citations, and leverage customer reviews to dominate the search results. Additionally, learn how to create location-specific landing pages for areas like The Woodlands, Katy, and Sugar Land to capture even more targeted traffic.
+            <div class="blog-full-content text-surface-600 text-sm leading-relaxed space-y-2">
+              <p><strong>1. Hyper-Local Keyword Targeting:</strong> Instead of just "roofing company Houston," target neighborhoods like "roof repair The Woodlands" or "roof replacement Katy." Use tools like Google Keyword Planner to find high-intent, low-competition phrases.</p>
+              <p><strong>2. Service-Specific Landing Pages:</strong> Create dedicated pages for each service: roof repair, roof replacement, storm damage inspection, commercial roofing. Each page should have unique content optimized for that service + location.</p>
+              <p><strong>3. Google Business Profile Optimization:</strong> Fully complete your profile with categories, services, photos, and weekly posts. Encourage customers to leave reviews—respond to every review, positive or negative.</p>
+              <p><strong>4. Local Citations & NAP Consistency:</strong> Ensure your Name, Address, Phone number is identical across Yelp, BBB, Angi, HomeAdvisor, and local directories. Use a service like BrightLocal to manage citations.</p>
+              <p><strong>5. Schema Markup for Local Business:</strong> Implement LocalBusiness and RoofingContractor schema to help search engines understand your service area, hours, and reviews. This can boost your visibility in local pack results.</p>
+              <p><strong>6. Mobile-First Speed Optimization:</strong> Most emergency roof searches happen on phones. Compress images, use lazy loading, and leverage browser caching to achieve sub‑2‑second load times.</p>
+              <p><strong>7. Content Marketing for Storm Season:</strong> Publish guides like "What to Do After a Houston Hail Storm" or "How to File an Insurance Claim for Roof Damage." These attract backlinks and position you as an authority.</p>
+              <p><strong>8. Backlink Building from Local Partners:</strong> Partner with insurance agents, real estate agents, and home inspectors for mutual referrals and guest blog opportunities. Earn links from local news sites and chambers of commerce.</p>
+              <p><strong>9. Video Testimonials & Project Walkthroughs:</strong> Embed YouTube videos of satisfied customers and drone footage of completed roofs. Videos increase dwell time and trust.</p>
+              <p><strong>10. Track Calls & Form Submissions:</strong> Use call tracking numbers and Google Analytics events to measure which keywords and pages are driving actual leads, not just traffic.</p>
             </div>
             <div class="mt-4 pt-3 border-t border-surface-100 flex justify-between items-center">
               <button class="read-more-btn text-brand-600 font-semibold text-sm hover:gap-1 transition-all flex items-center gap-1" onclick="toggleBlogPost(this)">
@@ -267,7 +273,7 @@
           </div>
         </article>
         
-        <!-- Blog Post 2 -->
+        <!-- Blog Post 2: Web Design for Remodelers -->
         <article class="blog-card bg-white rounded-2xl shadow-sm border border-surface-100 overflow-hidden flex flex-col reveal">
           <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80');">
             <span class="absolute top-4 left-4 bg-violet-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">WEB DESIGN</span>
@@ -278,9 +284,16 @@
               <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 6 min read</span>
             </div>
             <h2 class="text-lg font-black text-surface-900 mb-2 leading-tight">Why Your Remodeling Business Needs a Professional Website in Houston</h2>
-            <p class="text-surface-500 text-sm leading-relaxed mb-3">Learn how a professionally designed website can transform your remodeling business and attract high-value clients across Houston, Texas.</p>
-            <div class="blog-full-content text-surface-600 text-sm leading-relaxed">
-              A well-crafted site builds trust and showcases your work effectively. We'll discuss the importance of portfolio galleries, before-and-after sliders, and clear calls-to-action that convert visitors into qualified leads. Plus, we'll cover mobile optimization — because most Houston homeowners browse on their phones. Don't let an outdated website cost you projects.
+            <p class="text-surface-500 text-sm leading-relaxed mb-3">Learn how a professionally designed website can transform your remodeling business and attract high-value clients across Houston.</p>
+            <div class="blog-full-content text-surface-600 text-sm leading-relaxed space-y-2">
+              <p>In Houston's competitive remodeling market, homeowners research extensively before hiring. A professional website serves as your 24/7 showroom and credibility builder.</p>
+              <p><strong>First Impressions Matter:</strong> 75% of users judge a company's credibility based on website design. A clean, modern site with high‑quality project photos immediately signals professionalism and quality craftsmanship.</p>
+              <p><strong>Showcase Your Portfolio Effectively:</strong> Use before‑and‑after sliders, categorized galleries (kitchens, bathrooms, additions), and detailed case studies. Include project costs, timelines, and challenges overcome to build trust.</p>
+              <p><strong>Mobile Optimization is Critical:</strong> Over 60% of Houston homeowners browse on mobile devices. Ensure your site loads fast, has click‑to‑call buttons, and forms are easy to fill out on a phone.</p>
+              <p><strong>Lead Capture Systems:</strong> Implement prominent "Get a Quote" buttons, a simple contact form (name, phone, project type), and an optional live chat. Offer a free consultation or estimate guide in exchange for email addresses.</p>
+              <p><strong>Local SEO Integration:</strong> Your website should be optimized for "kitchen remodel Houston," "bathroom renovation Sugar Land," etc. Include service area pages for each major Houston suburb you serve.</p>
+              <p><strong>Testimonials & Reviews:</strong> Feature video testimonials and integrate Google Reviews. Real customer stories are powerful conversion tools.</p>
+              <p>Investing in a professional website isn't an expense—it's a lead‑generation asset that pays for itself with just one or two additional projects.</p>
             </div>
             <div class="mt-4 pt-3 border-t border-surface-100 flex justify-between items-center">
               <button class="read-more-btn text-brand-600 font-semibold text-sm hover:gap-1 transition-all flex items-center gap-1" onclick="toggleBlogPost(this)">
@@ -292,7 +305,7 @@
           </div>
         </article>
         
-        <!-- Blog Post 3 -->
+        <!-- Blog Post 3: Pool Builder Lead Generation -->
         <article class="blog-card bg-white rounded-2xl shadow-sm border border-surface-100 overflow-hidden flex flex-col reveal">
           <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?auto=format&fit=crop&w=800&q=80');">
             <span class="absolute top-4 left-4 bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">MARKETING</span>
@@ -304,8 +317,15 @@
             </div>
             <h2 class="text-lg font-black text-surface-900 mb-2 leading-tight">How Pool Builders in Houston Can Generate Leads With Their Website</h2>
             <p class="text-surface-500 text-sm leading-relaxed mb-3">Practical strategies for Houston pool builders to turn website visitors into booked consultations and high-value custom pool projects.</p>
-            <div class="blog-full-content text-surface-600 text-sm leading-relaxed">
-              We'll explore how to use 3D renderings, virtual tours, and customer testimonials to build credibility. Additionally, we'll cover the importance of local SEO for terms like "custom pool builder Houston" and how to use Google Ads to target affluent neighborhoods. Your website can be your best salesperson — we'll show you how.
+            <div class="blog-full-content text-surface-600 text-sm leading-relaxed space-y-2">
+              <p>Houston's hot climate makes pools a desirable addition, but competition is fierce. Your website must do more than look pretty—it must actively generate qualified leads.</p>
+              <p><strong>1. High-End Visual Storytelling:</strong> Invest in professional photography and drone footage of completed pools. Use 3D renderings or virtual tours to help clients visualize their dream backyard. A "Project Gallery" should be front and center.</p>
+              <p><strong>2. Targeted Landing Pages for Affluent Areas:</strong> Create separate pages optimized for "custom pool builder The Woodlands," "pool construction Memorial," "pool renovation River Oaks." Mention local landmarks and architectural styles.</p>
+              <p><strong>3. Financing & Cost Guides:</strong> Pools are a significant investment. Provide a downloadable guide like "The True Cost of Building a Pool in Houston" and clearly mention financing options. This builds trust and qualifies leads.</p>
+              <p><strong>4. Interactive Quote Forms:</strong> Instead of a generic contact form, use a multi‑step form asking about pool type, size, features (spa, waterfall, lighting), and budget range. This pre‑qualifies leads and shows you understand their needs.</p>
+              <p><strong>5. Google Ads & Local Service Ads:</strong> Target high‑intent keywords like "pool builders near me" and "inground pool cost Houston." Use location targeting to focus on zip codes with higher home values.</p>
+              <p><strong>6. Social Proof & Awards:</strong> Display badges from industry associations (e.g., Pool & Hot Tub Alliance), Houzz awards, and featured projects. Video testimonials from happy homeowners are gold.</p>
+              <p><strong>7. Seasonal Content Marketing:</strong> Publish articles like "Best Pool Designs for Houston Summers" or "When to Schedule Your Pool Opening in Texas." This attracts organic traffic and positions you as an expert.</p>
             </div>
             <div class="mt-4 pt-3 border-t border-surface-100 flex justify-between items-center">
               <button class="read-more-btn text-brand-600 font-semibold text-sm hover:gap-1 transition-all flex items-center gap-1" onclick="toggleBlogPost(this)">
@@ -317,7 +337,7 @@
           </div>
         </article>
         
-        <!-- Blog Post 4 -->
+        <!-- Blog Post 4: Lead Capture for GCs -->
         <article class="blog-card bg-white rounded-2xl shadow-sm border border-surface-100 overflow-hidden flex flex-col reveal">
           <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1504328341004-2f50b2a5c6d9?auto=format&fit=crop&w=800&q=80');">
             <span class="absolute top-4 left-4 bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">LEAD GENERATION</span>
@@ -329,8 +349,13 @@
             </div>
             <h2 class="text-lg font-black text-surface-900 mb-2 leading-tight">5 Lead Capture Strategies Every General Contractor Should Implement</h2>
             <p class="text-surface-500 text-sm leading-relaxed mb-3">From click-to-call buttons to estimate request forms, learn the essential lead capture elements that turn website visitors into paying clients.</p>
-            <div class="blog-full-content text-surface-600 text-sm leading-relaxed">
-              We'll cover placement best practices, compelling CTAs, and how to reduce friction in your forms. Plus, discover how to use exit-intent popups and live chat to capture leads before they leave. These tactics are proven to increase conversion rates for Houston contractors.
+            <div class="blog-full-content text-surface-600 text-sm leading-relaxed space-y-2">
+              <p><strong>1. Click-to-Call Buttons:</strong> Make your phone number a prominent, tappable button on mobile. Use "Call Now for a Free Estimate" as the CTA. Track calls with a dynamic number to measure ROI.</p>
+              <p><strong>2. Simplified Estimate Request Forms:</strong> Ask only for name, phone, email, project type, and zip code. Longer forms kill conversions. Use conditional logic if you need more detail, but keep the first step easy.</p>
+              <p><strong>3. Live Chat & Chatbots:</strong> Implement a live chat service (or AI chatbot) to answer common questions and capture contact info 24/7. Even if you can't answer immediately, the chatbot can schedule a callback.</p>
+              <p><strong>4. Exit-Intent Popups:</strong> When a visitor is about to leave, offer a valuable resource like "10 Questions to Ask Before Hiring a General Contractor" in exchange for their email. This captures leads that would otherwise be lost.</p>
+              <p><strong>5. Gated Content & Case Studies:</strong> Create detailed case studies of past projects (e.g., "Whole Home Renovation in The Heights") and require an email to download. This attracts serious prospects and builds your email list.</p>
+              <p>Bonus: Add a "Request a Bid" button in your header and footer. Make it impossible to miss.</p>
             </div>
             <div class="mt-4 pt-3 border-t border-surface-100 flex justify-between items-center">
               <button class="read-more-btn text-brand-600 font-semibold text-sm hover:gap-1 transition-all flex items-center gap-1" onclick="toggleBlogPost(this)">
@@ -342,7 +367,7 @@
           </div>
         </article>
         
-        <!-- Blog Post 5 -->
+        <!-- Blog Post 5: Google Business Profile -->
         <article class="blog-card bg-white rounded-2xl shadow-sm border border-surface-100 overflow-hidden flex flex-col reveal">
           <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=800&q=80');">
             <span class="absolute top-4 left-4 bg-cyan-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">LOCAL SEO</span>
@@ -353,9 +378,16 @@
               <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 6 min read</span>
             </div>
             <h2 class="text-lg font-black text-surface-900 mb-2 leading-tight">How to Optimize Your Google Business Profile for More Local Jobs</h2>
-            <p class="text-surface-500 text-sm leading-relaxed mb-3">Your Google Business Profile is a powerful tool for attracting Houston homeowners. Learn how to fully optimize it for maximum visibility in local search and Google Maps.</p>
-            <div class="blog-full-content text-surface-600 text-sm leading-relaxed">
-              We'll cover adding services, uploading project photos, responding to reviews, and posting regular updates. A well-optimized profile can drive more calls and direction requests than your website alone.
+            <p class="text-surface-500 text-sm leading-relaxed mb-3">Your Google Business Profile is a powerful tool for attracting Houston homeowners. Learn how to fully optimize it for maximum visibility.</p>
+            <div class="blog-full-content text-surface-600 text-sm leading-relaxed space-y-2">
+              <p>A well-optimized Google Business Profile (formerly Google My Business) is often the first thing potential customers see. It can drive more calls and direction requests than your website alone.</p>
+              <p><strong>Complete Every Section:</strong> Fill out your business name, address, phone number, website, hours, categories (primary: "General Contractor," additional: "Kitchen Remodeler," "Bathroom Remodeler," etc.), and service area (list all Houston neighborhoods you serve).</p>
+              <p><strong>Add High-Quality Photos & Videos:</strong> Upload photos of your team, completed projects, before‑and‑after shots, and even a short welcome video. Update photos regularly—Google favors active profiles.</p>
+              <p><strong>Use Google Posts Weekly:</strong> Share updates about recent projects, seasonal tips, or special offers. Posts appear directly in your profile and can include a call‑to‑action button like "Call Now" or "Learn More."</p>
+              <p><strong>Collect and Respond to Reviews:</strong> Actively ask happy clients to leave a review. Respond to every review—thank positive reviewers and address negative ones professionally. This shows you care about customer feedback.</p>
+              <p><strong>Enable Messaging:</strong> Turn on the messaging feature so potential clients can text you directly from your profile. Respond quickly to inquiries.</p>
+              <p><strong>Add Products/Services:</strong> List your specific services with descriptions and prices (if applicable). This helps Google match your profile to relevant searches.</p>
+              <p><strong>Q&A Section:</strong> Populate the Q&A section with common questions and answers. You can even post questions yourself and answer them to provide helpful information upfront.</p>
             </div>
             <div class="mt-4 pt-3 border-t border-surface-100 flex justify-between items-center">
               <button class="read-more-btn text-brand-600 font-semibold text-sm hover:gap-1 transition-all flex items-center gap-1" onclick="toggleBlogPost(this)">
@@ -367,7 +399,7 @@
           </div>
         </article>
         
-        <!-- Blog Post 6 -->
+        <!-- Blog Post 6: Website Speed -->
         <article class="blog-card bg-white rounded-2xl shadow-sm border border-surface-100 overflow-hidden flex flex-col reveal">
           <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80');">
             <span class="absolute top-4 left-4 bg-rose-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">PERFORMANCE</span>
@@ -379,8 +411,22 @@
             </div>
             <h2 class="text-lg font-black text-surface-900 mb-2 leading-tight">Why Website Speed Matters for Houston Contractors (And How to Fix It)</h2>
             <p class="text-surface-500 text-sm leading-relaxed mb-3">Slow websites lose leads. Discover why speed is critical for mobile users and SEO, and learn actionable steps to improve your load times.</p>
-            <div class="blog-full-content text-surface-600 text-sm leading-relaxed">
-              We'll explain how to optimize images, leverage caching, and choose fast hosting. Even a one-second delay can reduce conversions by 7%. Don't let a sluggish site cost you business.
+            <div class="blog-full-content text-surface-600 text-sm leading-relaxed space-y-2">
+              <p>Google research shows that as page load time goes from 1 to 3 seconds, the probability of a bounce increases by 32%. For contractors, a slow site means lost emergency calls and frustrated homeowners.</p>
+              <p><strong>Why Speed Matters:</strong> 
+                <br>• <strong>SEO:</strong> Google uses page speed as a ranking factor. Faster sites rank higher.
+                <br>• <strong>User Experience:</strong> 53% of mobile users abandon a site that takes longer than 3 seconds to load.
+                <br>• <strong>Conversion Rate:</strong> A 1‑second delay can reduce conversions by up to 7%.
+              </p>
+              <p><strong>How to Improve Your Website Speed:</strong>
+                <br>• <strong>Optimize Images:</strong> Compress images before uploading (use TinyPNG or ShortPixel). Use modern formats like WebP. Implement lazy loading so images only load when they come into view.
+                <br>• <strong>Leverage Browser Caching:</strong> Set expiration dates for static resources so returning visitors load your site faster.
+                <br>• <strong>Minify CSS, JavaScript, and HTML:</strong> Remove unnecessary characters and whitespace from code.
+                <br>• <strong>Use a Content Delivery Network (CDN):</strong> A CDN stores copies of your site on servers worldwide, delivering content from the closest server to the user.
+                <br>• <strong>Choose Fast Hosting:</strong> Avoid cheap shared hosting. Invest in managed WordPress hosting or a VPS optimized for speed.
+                <br>• <strong>Reduce Plugins:</strong> Only keep essential plugins and delete inactive ones.
+              </p>
+              <p>Test your site with Google PageSpeed Insights and GTmetrix to get specific recommendations. A faster website directly translates to more leads and higher revenue.</p>
             </div>
             <div class="mt-4 pt-3 border-t border-surface-100 flex justify-between items-center">
               <button class="read-more-btn text-brand-600 font-semibold text-sm hover:gap-1 transition-all flex items-center gap-1" onclick="toggleBlogPost(this)">
@@ -395,7 +441,7 @@
     </div>
   </section>
 
-  <!-- CTA Section -->
+  <!-- CTA Section (unchanged) -->
   <section class="py-16 sm:py-20 bg-gradient-to-br from-brand-600 via-brand-700 to-brand-800 text-white relative overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(34,211,238,0.12),transparent_55%)]"></div>
     <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center relative z-10 reveal">
@@ -408,7 +454,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer (unchanged) -->
   <footer class="bg-brand-950 pt-14 pb-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/8">
@@ -427,95 +473,70 @@
     </div>
   </footer>
 
-  <!-- Back to Top -->
-<button id="backToTop" class="fixed bottom-6 right-6 w-11 h-11 bg-brand-500 rounded-xl flex items-center justify-center text-white shadow-lg hover:bg-brand-600 transition-all opacity-0 translate-y-4 pointer-events-none z-40" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
-</button>
+  <!-- Back to Top & Scripts (unchanged) -->
+  <button id="backToTop" class="fixed bottom-6 right-6 w-11 h-11 bg-brand-500 rounded-xl flex items-center justify-center text-white shadow-lg hover:bg-brand-600 transition-all opacity-0 translate-y-4 pointer-events-none z-40" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg></button>
 
-<!-- Global Script -->
-<script src="script.js"></script>
-
-<!-- GUARANTEED BLOG READ MORE / LESS FIX -->
-<script>
-(function() {
-  // Ensure the function is globally available (though we'll use listeners instead of inline onclick)
-  window.toggleBlogPost = function(btn) {
-    const card = btn.closest('.blog-card');
-    if (!card) return;
-    const content = card.querySelector('.blog-full-content');
-    const span = btn.querySelector('span');
-    const svg = btn.querySelector('svg');
-    const isExpanded = card.classList.contains('expanded');
-
-    if (!isExpanded) {
-      content.style.maxHeight = content.scrollHeight + 'px';
-      card.classList.add('expanded');
-      if (span) span.textContent = 'Read Less';
-      if (svg) svg.style.transform = 'rotate(180deg)';
-    } else {
-      content.style.maxHeight = '0';
-      card.classList.remove('expanded');
-      if (span) span.textContent = 'Read More';
-      if (svg) svg.style.transform = 'rotate(0deg)';
-    }
-  };
-
-  // Initialize all blog cards
-  function initBlog() {
-    document.querySelectorAll('.blog-card').forEach(card => {
-      const content = card.querySelector('.blog-full-content');
-      const btn = card.querySelector('.read-more-btn');
-      if (!content || !btn) return;
-
-      // Reset to collapsed state
-      content.style.maxHeight = '0';
-      card.classList.remove('expanded');
-
-      // Update button text and icon
-      const span = btn.querySelector('span');
-      const svg = btn.querySelector('svg');
-      if (span) span.textContent = 'Read More';
-      if (svg) svg.style.transform = 'rotate(0deg)';
-
-      // Remove any existing onclick attribute (cleanup)
-      btn.removeAttribute('onclick');
-
-      // Replace button with a clone to remove all previous listeners
-      const newBtn = btn.cloneNode(true);
-      btn.parentNode.replaceChild(newBtn, btn);
-
-      // Attach fresh click listener
-      newBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const currentCard = this.closest('.blog-card');
-        if (!currentCard) return;
-        const cont = currentCard.querySelector('.blog-full-content');
-        const sp = this.querySelector('span');
-        const ic = this.querySelector('svg');
-        const expanded = currentCard.classList.contains('expanded');
-
-        if (!expanded) {
-          cont.style.maxHeight = cont.scrollHeight + 'px';
-          currentCard.classList.add('expanded');
-          if (sp) sp.textContent = 'Read Less';
-          if (ic) ic.style.transform = 'rotate(180deg)';
+  <script src="script.js"></script>
+  <script>
+    (function() {
+      window.toggleBlogPost = function(btn) {
+        const card = btn.closest('.blog-card');
+        if (!card) return;
+        const content = card.querySelector('.blog-full-content');
+        const span = btn.querySelector('span');
+        const svg = btn.querySelector('svg');
+        const isExpanded = card.classList.contains('expanded');
+        if (!isExpanded) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          card.classList.add('expanded');
+          if (span) span.textContent = 'Read Less';
+          if (svg) svg.style.transform = 'rotate(180deg)';
         } else {
-          cont.style.maxHeight = '0';
-          currentCard.classList.remove('expanded');
-          if (sp) sp.textContent = 'Read More';
-          if (ic) ic.style.transform = 'rotate(0deg)';
+          content.style.maxHeight = '0';
+          card.classList.remove('expanded');
+          if (span) span.textContent = 'Read More';
+          if (svg) svg.style.transform = 'rotate(0deg)';
         }
-      });
-    });
-  }
-
-  // Run after DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBlog);
-  } else {
-    initBlog();
-  }
-})();
-</script>
+      };
+      function initBlog() {
+        document.querySelectorAll('.blog-card').forEach(card => {
+          const content = card.querySelector('.blog-full-content');
+          const btn = card.querySelector('.read-more-btn');
+          if (!content || !btn) return;
+          content.style.maxHeight = '0';
+          card.classList.remove('expanded');
+          const span = btn.querySelector('span');
+          const svg = btn.querySelector('svg');
+          if (span) span.textContent = 'Read More';
+          if (svg) svg.style.transform = 'rotate(0deg)';
+          btn.removeAttribute('onclick');
+          const newBtn = btn.cloneNode(true);
+          btn.parentNode.replaceChild(newBtn, btn);
+          newBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const currentCard = this.closest('.blog-card');
+            if (!currentCard) return;
+            const cont = currentCard.querySelector('.blog-full-content');
+            const sp = this.querySelector('span');
+            const ic = this.querySelector('svg');
+            const expanded = currentCard.classList.contains('expanded');
+            if (!expanded) {
+              cont.style.maxHeight = cont.scrollHeight + 'px';
+              currentCard.classList.add('expanded');
+              if (sp) sp.textContent = 'Read Less';
+              if (ic) ic.style.transform = 'rotate(180deg)';
+            } else {
+              cont.style.maxHeight = '0';
+              currentCard.classList.remove('expanded');
+              if (sp) sp.textContent = 'Read More';
+              if (ic) ic.style.transform = 'rotate(0deg)';
+            }
+          });
+        });
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initBlog);
+      else initBlog();
+    })();
+  </script>
 </body>
 </html>
