@@ -639,3 +639,45 @@ footer a:hover {
 .faq-item.active .faq-toggle {
   transform: rotate(45deg);
 }
+/* ============================================
+   TOP INFO BAR – FIXED & VISIBLE
+   ============================================ */
+
+/* Make the top bar fixed so it doesn't scroll away */
+.bg-brand-950.text-white\/75 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 51; /* above nav which is z-50 */
+}
+
+/* Push the navigation bar down by the height of the top bar (only on desktop) */
+@media (min-width: 768px) {
+  #nav {
+    top: 36px; /* height of top bar (py-2.5 = 10px × 2 + text line-height ≈ 36px) */
+  }
+  
+  /* Adjust mobile menu overlay to account for top bar */
+  #mobileMenu {
+    padding-top: 36px;
+  }
+  
+  /* Smooth scroll padding to account for both bars */
+  html {
+    scroll-padding-top: 116px; /* top bar + nav height */
+  }
+}
+
+/* On mobile, the top bar is hidden, so reset nav top position */
+@media (max-width: 767px) {
+  #nav {
+    top: 0;
+  }
+  #mobileMenu {
+    padding-top: 0;
+  }
+  html {
+    scroll-padding-top: 80px;
+  }
+}
