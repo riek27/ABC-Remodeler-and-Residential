@@ -1,9 +1,9 @@
 /* ============================================
-   SOLIDFRAME WEB - GLOBAL STYLESHEET
-   Premium Agency Design for Multi-Page Website
+   SOLIDFRAME WEB - COMPLETE GLOBAL STYLESHEET
+   Clean, modern, and fully responsive
    ============================================ */
 
-/* Base Reset & Smooth Scroll */
+/* ---------- RESET & BASE ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -12,20 +12,47 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 100px; /* accounts for fixed nav + top bar */
 }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #fff;
+  color: #1e293b;
 }
 
-/* ============================================
-   CUSTOM UTILITIES (complement Tailwind)
-   ============================================ */
+body.menu-open {
+  overflow: hidden;
+}
 
-/* Glass Morphism Effects */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a, button {
+  transition: all 0.2s ease;
+}
+
+/* ---------- CUSTOM SCROLLBAR ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ---------- GLASS EFFECTS ---------- */
 .glass-light {
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
@@ -40,7 +67,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* Gradient Text */
+/* ---------- GRADIENT TEXT ---------- */
 .text-gradient {
   background: linear-gradient(135deg, #60a5fa, #38bdf8);
   -webkit-background-clip: text;
@@ -48,18 +75,18 @@ body {
   background-clip: text;
 }
 
-/* ============================================
-   BUTTONS
-   ============================================ */
-
+/* ---------- BUTTONS ---------- */
 .btn-primary {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  border: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-weight: 600;
 }
 
 .btn-primary::after {
@@ -87,10 +114,12 @@ body {
 
 .btn-outline {
   border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-weight: 600;
 }
 
 .btn-outline:hover {
@@ -99,10 +128,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* ============================================
-   CARDS
-   ============================================ */
-
+/* ---------- CARDS ---------- */
 .card-hover {
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -112,10 +138,7 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
-/* ============================================
-   DROPDOWN MENU (Desktop)
-   ============================================ */
-
+/* ---------- DESKTOP DROPDOWN ---------- */
 .dropdown {
   position: relative;
 }
@@ -144,19 +167,31 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
-/* ============================================
-   MOBILE DROPDOWN (Accordion)
-   ============================================ */
+/* ---------- MOBILE MENU ---------- */
+#mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #0f172a;
+  transform: translateX(100%);
+  transition: transform 0.4s ease-out;
+  overflow-y: auto;
+}
 
+#mobileMenu.open {
+  transform: translateX(0);
+}
+
+/* ---------- MOBILE DROPDOWN (accordion) ---------- */
 .mobile-dropdown-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+  transition: max-height 0.35s ease, padding 0.3s ease;
 }
 
 .mobile-dropdown.active .mobile-dropdown-content {
   max-height: 500px;
-  padding: 12px 0;
+  padding: 8px 0;
 }
 
 .mobile-dropdown-toggle::after {
@@ -179,130 +214,28 @@ body {
   transform: rotate(0);
 }
 
-/* ============================================
-   FAQ ACCORDION – ROBUST FIX
-   ============================================ */
-.faq-item {
-  border-bottom: 1px solid #e2e8f0;
+/* ---------- TOP INFO BAR & NAV OFFSET ---------- */
+/* Top bar is hidden on mobile (hidden md:block), visible on desktop */
+@media (min-width: 768px) {
+  #nav {
+    top: 36px; /* height of the information bar */
+  }
+  #mobileMenu {
+    padding-top: 36px; /* push content below the top bar */
+  }
 }
 
-.faq-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  padding: 0 !important;
+/* When top bar is not visible, nav sits at top */
+@media (max-width: 767px) {
+  #nav {
+    top: 0;
+  }
+  #mobileMenu {
+    padding-top: 0;
+  }
 }
 
-.faq-item.active .faq-content {
-  grid-template-rows: 1fr;
-  padding-top: 12px !important;
-  padding-bottom: 4px !important;
-}
-
-.faq-content > div {
-  min-height: 0;
-  overflow: hidden;
-}
-
-.faq-toggle {
-  transition: transform 0.3s ease;
-  user-select: none;
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #eff6ff;
-  border-radius: 9999px;
-  color: #2563eb;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.faq-item.active .faq-toggle {
-  transform: rotate(45deg);
-  background-color: #dbeafe;
-}
-
-/* ============================================
-   BLOG READ MORE
-   ============================================ */
-
-.blog-full-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out, margin 0.3s ease;
-}
-
-.blog-card.expanded .blog-full-content {
-  max-height: 500px;
-  margin-top: 1rem;
-}
-
-/* ============================================
-   MARQUEE ANIMATION (Trusted By)
-   ============================================ */
-
-.marquee-container {
-  overflow: hidden;
-  position: relative;
-}
-
-.marquee-content {
-  display: flex;
-  animation: marquee 22s linear infinite;
-  width: max-content;
-}
-
-.marquee-container:hover .marquee-content {
-  animation-play-state: paused;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-
-.anim-up {
-  animation: fadeUp 0.7s ease-out both;
-}
-
-.anim-fade {
-  animation: fadeIn 0.5s ease-out both;
-}
-
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-/* Reveal on scroll (used with Intersection Observer) */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ============================================
-   NAVBAR SCROLL STATE
-   ============================================ */
-
+/* Navbar scroll state (applied via JS) */
 .navbar-scrolled {
   background: rgba(15, 23, 42, 0.96) !important;
   backdrop-filter: blur(20px) !important;
@@ -311,27 +244,7 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* ============================================
-   BACK TO TOP BUTTON
-   ============================================ */
-
-#backToTop {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-  transform: translateY(16px);
-  pointer-events: none;
-}
-
-#backToTop.visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  pointer-events: auto !important;
-}
-
-/* ============================================
-   HERO SECTION SPECIFIC
-   ============================================ */
-
+/* ---------- HERO SECTION ---------- */
 .hero-section {
   position: relative;
   min-height: 100vh;
@@ -354,119 +267,203 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,58,138,0.75) 45%, rgba(30,58,138,0.65) 70%, rgba(15,23,42,0.88) 100%);
+  background: linear-gradient(135deg, 
+    rgba(15,23,42,0.92) 0%, 
+    rgba(30,58,138,0.75) 45%, 
+    rgba(30,58,138,0.65) 70%, 
+    rgba(15,23,42,0.88) 100%);
   z-index: 1;
 }
-/* ============================================
-   HOMEPAGE HERO BACKGROUND IMAGE (only index.html)
-   ============================================ */
+
+/* Homepage specific hero background */
 #home .hero-bg {
   background-image: url('assets/frame.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
-/* ============================================
-   FORM FOCUS STATES
-   ============================================ */
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-
-/* ============================================
-   MOBILE MENU OVERLAY
-   ============================================ */
-
-#mobileMenu {
-  transition: transform 0.4s ease-out;
-}
-
-/* ============================================
-   RESPONSIVE ADJUSTMENTS
-   ============================================ */
-
-@media (min-width: 1024px) {
-  .hero-section {
-    padding-top: 0;
-  }
-}
-
+/* Hero content stacking on mobile */
 @media (max-width: 1023px) {
   .hero-section {
     min-height: auto;
     padding-top: 88px;
     padding-bottom: 48px;
   }
-  
   .hero-grid {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
   }
-  
   .hero-form-container {
     max-width: 100% !important;
     margin: 0 auto !important;
   }
 }
 
-@media (max-width: 639px) {
-  .text-gradient {
-    -webkit-text-fill-color: initial;
-    background: none;
-    color: #3b82f6;
-  }
-  
-  .btn-primary,
-  .btn-outline {
-    width: 100%;
-    justify-content: center;
-  }
+/* ---------- FORM FOCUS ---------- */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-/* ============================================
-   ADDITIONAL ENHANCEMENTS
-   ============================================ */
-
-/* Smooth transitions for interactive elements */
-a, button {
-  transition: all 0.2s ease;
+/* ---------- MARQUEE (trusted by) ---------- */
+.marquee-container {
+  overflow: hidden;
+  position: relative;
+}
+.marquee-content {
+  display: flex;
+  animation: marquee 22s linear infinite;
+  width: max-content;
+}
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-/* Custom scrollbar (optional) */
-::-webkit-scrollbar {
-  width: 8px;
+/* ---------- FAQ ACCORDION (uses grid trick, no JS needed) ---------- */
+.faq-item {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
-
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #94a3b8;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-
-/* Fix for mobile menu body overflow */
-body.menu-open {
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
   overflow: hidden;
 }
-
-/* Blog card image container consistent height */
-.blog-card .h-48 {
-  height: 12rem;
+.faq-item.active .faq-content {
+  grid-template-rows: 1fr;
+  padding-top: 12px;
+}
+.faq-toggle {
+  user-select: none;
+  transition: transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #eff6ff;
+  border-radius: 9999px;
+  color: #2563eb;
+  font-size: 18px;
+  font-weight: 300;
+}
+.faq-item.active .faq-toggle {
+  transform: rotate(45deg);
+  background: #dbeafe;
 }
 
-/* Pricing card popular badge positioning */
+/* ---------- BLOG CARDS ---------- */
+.blog-full-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.blog-card.expanded .blog-full-content {
+  /* max-height set by JS */
+  margin-top: 1rem;
+}
+
+/* ---------- ABOUT SECTION IMAGE ---------- */
+.about-image {
+  transition: transform 0.3s ease;
+}
+.about-image:hover {
+  transform: scale(1.02);
+}
+
+/* Fix for the aspect-ratio container on the homepage about block */
+#about .aspect-\[4\/3\] {
+  position: relative;
+  width: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+#about .aspect-\[4\/3\] img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+#about .aspect-\[4\/3\]:hover img {
+  transform: scale(1.02);
+}
+
+/* Floating experience badge */
+#about .absolute.-bottom-4 {
+  bottom: -1rem;
+  right: 1.25rem;
+}
+@media (max-width: 640px) {
+  #about .absolute.-bottom-4 {
+    right: 0.5rem;
+    bottom: -0.5rem;
+  }
+}
+
+/* ---------- ANIMATIONS ---------- */
+.anim-up {
+  animation: fadeUp 0.7s ease-out both;
+}
+.anim-fade {
+  animation: fadeIn 0.5s ease-out both;
+}
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Reveal on scroll (Intersection Observer) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- BACK TO TOP ---------- */
+#backToTop {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  background: #3b82f6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 20px rgba(59,130,246,0.3);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 40;
+}
+#backToTop.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ---------- PRICING BADGE ---------- */
 .pricing-popular-badge {
   position: absolute;
   top: -12px;
@@ -483,201 +480,42 @@ body.menu-open {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Ensure images have proper alt fallback but look clean */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Contact form success message */
-#formSuccess,
-#formDone {
-  transition: opacity 0.3s;
-}
-
-/* Dropdown menu item hover */
-.dropdown-menu a:hover {
-  background-color: #eff6ff;
-}
-
-/* Footer link hover */
+/* ---------- FOOTER ENHANCEMENTS ---------- */
 footer a:hover {
   color: #60a5fa;
 }
 
-
-/* ============================================
-   BLOG READ MORE (improved)
-   ============================================ */
-.blog-full-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
-  margin: 0;
-}
-
-.blog-card.expanded .blog-full-content {
-  /* max-height set dynamically via JS */
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-/* FAQ Accordion – fully expandable */
-.faq-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0 !important;
-}
-
-.faq-item.active .faq-content {
-  /* max-height is set dynamically via JS to scrollHeight */
-  padding-top: 12px !important;
-  padding-bottom: 4px !important;
-}
-
-.faq-toggle {
-  transition: transform 0.3s ease;
-  user-select: none;
-  flex-shrink: 0;
-}
-
-.faq-item.active .faq-toggle {
-  transform: rotate(45deg);
-}
-
-/* About section image */
-.about-image {
-  transition: transform 0.3s ease;
-}
-
-.about-image:hover {
-  transform: scale(1.02);
-}
-
-/* ============================================
-   HOMEPAGE ABOUT SECTION – POLISHED LAYOUT
-   ============================================ */
-
-/* Ensure the image container keeps its aspect ratio and the image covers properly */
-#about .aspect-\[4\/3\] {
-  position: relative;
-  width: 100%;
-}
-
-#about .aspect-\[4\/3\] img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-/* Subtle zoom on hover – optional but adds a premium feel */
-#about .aspect-\[4\/3\]:hover img {
-  transform: scale(1.02);
-}
-
-/* Floating badge – keep it anchored and readable */
-#about .absolute.-bottom-4 {
-  bottom: -1rem;
-  right: 1.25rem;
-}
-
-/* Make the badge slightly responsive */
-@media (max-width: 640px) {
-  #about .absolute.-bottom-4 {
-    right: 0.5rem;
-    bottom: -0.5rem;
+/* ---------- GLOBAL RESPONSIVE TWEAKS ---------- */
+@media (max-width: 639px) {
+  .text-gradient {
+    -webkit-text-fill-color: initial;
+    background: none;
+    color: #3b82f6; /* fallback for mobile Safari */
   }
-  #about .max-w-xs {
-    max-width: 180px;
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
   }
 }
 
-/* Improve spacing between text and image on mobile */
-@media (max-width: 1023px) {
-  #about .grid {
-    gap: 2rem;
-  }
-  #about .order-2 {
-    margin-top: 0;
-  }
+/* Smooth out transitions on all interactive elements */
+a, button, .faq-toggle, .dropdown-menu {
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 }
 
-/* Ensure the "Learn More About Us" button stays inline and centered on small screens if needed */
-#about .btn-primary {
-  white-space: nowrap;
-}
-@media (max-width: 480px) {
-  #about .btn-primary {
-    white-space: normal;
-    text-align: center;
-  }
+/* Ensure dropdown menu items are clickable */
+.dropdown-menu a:hover {
+  background-color: #eff6ff;
 }
 
-/* Optional: add a soft glow to the image shadow for depth */
-#about .shadow-lg {
-  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+/* Blog card image consistency */
+.blog-card .h-48 {
+  height: 12rem;
 }
 
-.faq-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s ease-out;
-  overflow: hidden;
-}
-.faq-item.active .faq-content {
-  grid-template-rows: 1fr;
-  padding-top: 8px;
-}
-.faq-toggle {
-  transition: transform 0.2s;
-}
-.faq-item.active .faq-toggle {
-  transform: rotate(45deg);
-}
-/* ============================================
-   TOP INFO BAR – FIXED & VISIBLE
-   ============================================ */
-
-/* Make the top bar fixed so it doesn't scroll away */
-.bg-brand-950.text-white\/75 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 51; /* above nav which is z-50 */
-}
-
-/* Push the navigation bar down by the height of the top bar (only on desktop) */
-@media (min-width: 768px) {
-  #nav {
-    top: 36px; /* height of top bar (py-2.5 = 10px × 2 + text line-height ≈ 36px) */
-  }
-  
-  /* Adjust mobile menu overlay to account for top bar */
-  #mobileMenu {
-    padding-top: 36px;
-  }
-  
-  /* Smooth scroll padding to account for both bars */
-  html {
-    scroll-padding-top: 116px; /* top bar + nav height */
-  }
-}
-
-/* On mobile, the top bar is hidden, so reset nav top position */
-@media (max-width: 767px) {
-  #nav {
-    top: 0;
-  }
-  #mobileMenu {
-    padding-top: 0;
-  }
-  html {
-    scroll-padding-top: 80px;
-  }
+/* Form success message */
+#formDone {
+  transition: opacity 0.3s;
 }
