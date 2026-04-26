@@ -1,6 +1,6 @@
 /* ============================================
-   SOLIDFRAME WEB - COMPLETE GLOBAL STYLESHEET
-   Clean, modern, and fully responsive
+   SOLIDFRAME WEB – COMPLETE STYLESHEET
+   Clean, modern, fully responsive
    ============================================ */
 
 /* ---------- RESET & BASE ---------- */
@@ -12,7 +12,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px; /* accounts for fixed nav + top bar */
+  scroll-padding-top: 116px;  /* nav + top bar (desktop) – will be overriden on mobile */
 }
 
 body {
@@ -24,7 +24,7 @@ body {
 }
 
 body.menu-open {
-  overflow: hidden;
+  overflow: hidden;  /* prevent background scroll when mobile menu is open */
 }
 
 img {
@@ -167,7 +167,11 @@ a, button {
   transform: translateX(-50%) translateY(0);
 }
 
-/* ---------- MOBILE MENU ---------- */
+.dropdown-menu a:hover {
+  background-color: #eff6ff;
+}
+
+/* ---------- MOBILE MENU OVERLAY ---------- */
 #mobileMenu {
   position: fixed;
   inset: 0;
@@ -215,17 +219,27 @@ a, button {
 }
 
 /* ---------- TOP INFO BAR & NAV OFFSET ---------- */
-/* Top bar is hidden on mobile (hidden md:block), visible on desktop */
+/* The top bar is fixed on desktop (hidden on mobile) */
+.bg-brand-950.text-white\/75 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 51;       /* above the nav */
+}
+
 @media (min-width: 768px) {
   #nav {
-    top: 36px; /* height of the information bar */
+    top: 36px;       /* height of the info bar */
   }
   #mobileMenu {
-    padding-top: 36px; /* push content below the top bar */
+    padding-top: 36px;
+  }
+  html {
+    scroll-padding-top: 116px;  /* top bar + nav height */
   }
 }
 
-/* When top bar is not visible, nav sits at top */
 @media (max-width: 767px) {
   #nav {
     top: 0;
@@ -233,9 +247,12 @@ a, button {
   #mobileMenu {
     padding-top: 0;
   }
+  html {
+    scroll-padding-top: 80px;   /* only nav height */
+  }
 }
 
-/* Navbar scroll state (applied via JS) */
+/* ---------- NAVBAR SCROLL STATE ---------- */
 .navbar-scrolled {
   background: rgba(15, 23, 42, 0.96) !important;
   backdrop-filter: blur(20px) !important;
@@ -280,7 +297,14 @@ a, button {
   background-image: url('assets/frame.jpg');
 }
 
-/* Hero content stacking on mobile */
+/* On desktop, hero padding-top can be removed */
+@media (min-width: 1024px) {
+  .hero-section {
+    padding-top: 0;
+  }
+}
+
+/* On tablets/mobiles, reduce height */
 @media (max-width: 1023px) {
   .hero-section {
     min-height: auto;
@@ -306,7 +330,7 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-/* ---------- MARQUEE (trusted by) ---------- */
+/* ---------- MARQUEE ---------- */
 .marquee-container {
   overflow: hidden;
   position: relative;
@@ -324,22 +348,25 @@ textarea:focus {
   100% { transform: translateX(-50%); }
 }
 
-/* ---------- FAQ ACCORDION (uses grid trick, no JS needed) ---------- */
+/* ---------- FAQ ACCORDION (grid method – no duplicate) ---------- */
 .faq-item {
   border-bottom: 1px solid #e2e8f0;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
+
 .faq-content {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.35s ease;
   overflow: hidden;
 }
+
 .faq-item.active .faq-content {
   grid-template-rows: 1fr;
   padding-top: 12px;
 }
+
 .faq-toggle {
   user-select: none;
   transition: transform 0.2s;
@@ -353,7 +380,9 @@ textarea:focus {
   color: #2563eb;
   font-size: 18px;
   font-weight: 300;
+  flex-shrink: 0;
 }
+
 .faq-item.active .faq-toggle {
   transform: rotate(45deg);
   background: #dbeafe;
@@ -364,13 +393,18 @@ textarea:focus {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
+  margin: 0;
 }
 .blog-card.expanded .blog-full-content {
-  /* max-height set by JS */
+  /* max-height set dynamically by JS */
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.blog-card .h-48 {
+  height: 12rem;
 }
 
-/* ---------- ABOUT SECTION IMAGE ---------- */
+/* ---------- ABOUT SECTION IMAGES ---------- */
 .about-image {
   transition: transform 0.3s ease;
 }
@@ -378,7 +412,6 @@ textarea:focus {
   transform: scale(1.02);
 }
 
-/* Fix for the aspect-ratio container on the homepage about block */
 #about .aspect-\[4\/3\] {
   position: relative;
   width: 100%;
@@ -397,8 +430,6 @@ textarea:focus {
 #about .aspect-\[4\/3\]:hover img {
   transform: scale(1.02);
 }
-
-/* Floating experience badge */
 #about .absolute.-bottom-4 {
   bottom: -1rem;
   right: 1.25rem;
@@ -426,7 +457,7 @@ textarea:focus {
   100% { opacity: 1; }
 }
 
-/* Reveal on scroll (Intersection Observer) */
+/* Reveal on scroll (works with Intersection Observer) */
 .reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -480,12 +511,12 @@ textarea:focus {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* ---------- FOOTER ENHANCEMENTS ---------- */
+/* ---------- FOOTER ---------- */
 footer a:hover {
   color: #60a5fa;
 }
 
-/* ---------- GLOBAL RESPONSIVE TWEAKS ---------- */
+/* ---------- SMALL SCREEN TWEAKS ---------- */
 @media (max-width: 639px) {
   .text-gradient {
     -webkit-text-fill-color: initial;
@@ -499,23 +530,7 @@ footer a:hover {
   }
 }
 
-/* Smooth out transitions on all interactive elements */
-a, button, .faq-toggle, .dropdown-menu {
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-}
-
-/* Ensure dropdown menu items are clickable */
-.dropdown-menu a:hover {
-  background-color: #eff6ff;
-}
-
-/* Blog card image consistency */
-.blog-card .h-48 {
-  height: 12rem;
-}
-
-/* Form success message */
+/* ---------- MISC ---------- */
 #formDone {
   transition: opacity 0.3s;
 }
