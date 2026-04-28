@@ -1,8 +1,7 @@
 /**
  * Solidframe Web - Global JavaScript
- * Enhanced with robust FAQ & Blog toggles, mobile menu, reveal animations.
+ * Enhanced with Netlify form handling, robust FAQ & Blog toggles, mobile menu, reveal animations.
  */
-
 (function() {
   'use strict';
 
@@ -19,7 +18,7 @@
     if (nav) nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
     if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 400);
   }
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
 
   // ---------- Mobile Menu ----------
@@ -42,7 +41,7 @@
   if (menuToggle) menuToggle.addEventListener('click', openMobileMenu);
   if (menuClose) menuClose.addEventListener('click', closeMobileMenu);
 
-  document.querySelectorAll('.mob-link').forEach(link => {
+  document.querySelectorAll('.mob-link, #mobileMenu a').forEach(link => {
     link.addEventListener('click', closeMobileMenu);
   });
 
@@ -63,41 +62,33 @@
   });
 
   // ---------- FAQ Accordion (CSS Grid Method – flawless) ----------
-function initFaqItems() {
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const toggleBtn = item.querySelector('.faq-toggle');
-    const contentWrapper = item.querySelector('.faq-content');
-    if (!toggleBtn || !contentWrapper) return;
+  function initFaqItems() {
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const toggleBtn = item.querySelector('.faq-toggle');
+      const contentWrapper = item.querySelector('.faq-content');
+      if (!toggleBtn || !contentWrapper) return;
 
-    // Remove any existing click listeners by cloning
-    const newToggle = toggleBtn.cloneNode(true);
-    toggleBtn.parentNode.replaceChild(newToggle, toggleBtn);
+      // Remove any existing click listeners by cloning
+      const newToggle = toggleBtn.cloneNode(true);
+      toggleBtn.parentNode.replaceChild(newToggle, toggleBtn);
 
-    // Set initial state
-    item.classList.remove('active');
-    newToggle.textContent = '+';
+      // Set initial state
+      item.classList.remove('active');
+      newToggle.textContent = '+';
 
-    newToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isActive = item.classList.contains('active');
-      
-      // Optional: close other FAQs (comment out to keep independent)
-      // document.querySelectorAll('.faq-item.active').forEach(f => {
-      //   if (f !== item) f.classList.remove('active');
-      // });
-      
-      item.classList.toggle('active');
-      newToggle.textContent = item.classList.contains('active') ? '−' : '+';
+      newToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        item.classList.toggle('active');
+        newToggle.textContent = item.classList.contains('active') ? '−' : '+';
+      });
     });
-  });
-}
+  }
 
-// Run on DOM ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initFaqItems);
-} else {
-  initFaqItems();
-}
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFaqItems);
+  } else {
+    initFaqItems();
+  }
 
   // ---------- Blog Read More / Read Less ----------
   function initBlogCards() {
@@ -106,7 +97,6 @@ if (document.readyState === 'loading') {
       const content = card.querySelector('.blog-full-content');
       if (!btn || !content) return;
 
-      // Remove existing listeners
       const newBtn = btn.cloneNode(true);
       btn.parentNode.replaceChild(newBtn, btn);
 
@@ -129,12 +119,10 @@ if (document.readyState === 'loading') {
         }
       });
 
-      // Ensure collapsed initially
       content.style.maxHeight = '0';
     });
   }
 
-  // Expose global toggle for inline usage
   window.toggleBlogPost = function(btn) {
     const card = btn.closest('.blog-card');
     if (!card) return;
@@ -169,18 +157,51 @@ if (document.readyState === 'loading') {
     revealElements.forEach(el => observer.observe(el));
   }
 
-  // ---------- Form Handling ----------
-  function handleForm(form, successEl) {
+  // ---------- Netlify Form Handling (AJAX + fallback) ----------
+  function setupNetlifyForm(formId, successElId, resetAfterMs = 5000) {
+    const form = document.getElementById(formId);
+    const successEl = document.getElementById(successElId);
     if (!form || !successEl) return;
-    form.addEventListener('submit', (e) => {
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      form.style.display = 'none';
-      successEl.classList.remove('hidden');
-      console.log('Form submitted:', new FormData(form));
+
+      const formData = new FormData(form);
+      const urlEncoded = new URLSearchParams(formData).toString();
+
+      try {
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: urlEncoded,
+        });
+
+        if (!response.ok) throw new Error(`Status ${response.status}`);
+
+        // Success – show green pop‑up
+        form.style.display = 'none';
+        successEl.classList.remove('hidden');
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Auto‑hide after specified time and reset form
+        setTimeout(() => {
+          successEl.classList.add('hidden');
+          form.style.display = '';
+          form.reset();
+        }, resetAfterMs);
+
+      } catch (error) {
+        console.warn('AJAX submission failed, falling back to normal form submit.', error);
+        // Remove AJAX listener to avoid infinite loop, then submit normally
+        form.removeEventListener('submit', arguments.callee);
+        form.submit();
+      }
     });
   }
-  handleForm(document.getElementById('quoteForm'), document.getElementById('formDone'));
-  handleForm(document.getElementById('contactForm'), document.getElementById('formSuccess'));
+
+  // Initialize both forms on the page (they can be on different pages)
+  setupNetlifyForm('quoteForm', 'formDone');
+  setupNetlifyForm('contactForm', 'formSuccess');
 
   // ---------- Smooth Scroll ----------
   document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
@@ -201,12 +222,10 @@ if (document.readyState === 'loading') {
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
-  // ---------- Initialize everything ----------
+  // ---------- Initialization ----------
   initFaqItems();
   initBlogCards();
 
-  // Re-run initialization if content changes dynamically (e.g., after form success)
-  // Not needed for static pages, but safe.
   window.refreshToggles = function() {
     initFaqItems();
     initBlogCards();
