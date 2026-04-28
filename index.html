@@ -344,7 +344,7 @@
             </a>
           </div>
         </div>
-        <!-- Right Quote Form (Netlify) -->
+        <!-- Hero Quote Form (Netlify) -->
 <div id="quote" class="anim-up hero-form-container" style="animation-delay:0.15s">
   <div class="glass-light rounded-2xl shadow-2xl shadow-black/15 p-6 sm:p-7 max-w-md mx-auto lg:ml-auto">
     <div class="mb-5">
@@ -352,12 +352,10 @@
         <span>🚀</span>
         <span class="text-brand-700 text-[11px] font-bold uppercase tracking-wider">Get Your Free Quote</span>
       </div>
-      <p class="text-surface-500 text-xs">We respond within 2 hours — no obligations, no pressure</p>
+      <p class="text-surface-500 text-xs">We respond within 24 hours — no obligations, no pressure</p>
     </div>
 
-    <!-- Netlify Form -->
     <form name="quote" method="POST" data-netlify="true" netlify netlify-honeypot="bot-field" id="quoteForm" class="space-y-3.5">
-      <!-- Hidden Netlify fields -->
       <input type="hidden" name="form-name" value="quote">
       <p class="hidden">
         <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
@@ -408,17 +406,14 @@
       </p>
     </form>
 
-    <!-- Green success pop-up (hidden by default) -->
+    <!-- Green success pop-up -->
     <div id="formDone" class="hidden text-center py-4 px-2 bg-emerald-50 border border-emerald-300 rounded-2xl mt-4">
       <div class="text-4xl mb-2">✅</div>
       <div class="text-lg font-bold text-emerald-700">Thank You!</div>
-      <div class="text-emerald-600 text-sm">We’ll reach out within 2 hours.</div>
+      <div class="text-emerald-600 text-sm">We’ll reach out within 24 hours.</div>
     </div>
   </div>
 </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Logo Marquee -->
   <section class="py-10 bg-white border-b border-surface-100">
@@ -757,125 +752,134 @@
     <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
   </button>
 
-  <!-- JavaScript -->
   <script>
-    // Mobile menu
-    const menuToggle = document.getElementById('menuToggle');
-    const menuClose = document.getElementById('menuClose');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const body = document.body;
-    function openMenu() { mobileMenu.classList.add('open'); body.classList.add('menu-open'); }
-    function closeMenu() { mobileMenu.classList.remove('open'); body.classList.remove('menu-open'); }
-    menuToggle?.addEventListener('click', openMenu);
-    menuClose?.addEventListener('click', closeMenu);
-    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  // Mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const menuClose = document.getElementById('menuClose');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const body = document.body;
 
-    // Mobile dropdown
-    document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
-      btn.addEventListener('click', () => btn.closest('.mobile-dropdown').classList.toggle('active'));
-    });
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    body.classList.add('menu-open');
+  }
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    body.classList.remove('menu-open');
+  }
 
-    // Navbar scroll & top bar offset
-    function updateNav() {
-      const nav = document.getElementById('nav');
-      if (window.innerWidth >= 768) {
-        nav.style.top = '36px';
-        document.documentElement.style.scrollPaddingTop = '116px';
-      } else {
-        nav.style.top = '0';
-        document.documentElement.style.scrollPaddingTop = '80px';
-      }
-      if (window.scrollY > 20) nav.classList.add('navbar-scrolled');
-      else nav.classList.remove('navbar-scrolled');
-      const backToTop = document.getElementById('backToTop');
-      if (window.scrollY > 600) backToTop.classList.add('visible');
-      else backToTop.classList.remove('visible');
-    }
-    window.addEventListener('scroll', updateNav);
-    window.addEventListener('resize', updateNav);
-    updateNav();
+  menuToggle?.addEventListener('click', openMenu);
+  menuClose?.addEventListener('click', closeMenu);
+  mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-    // Reveal on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // FAQ Accordion
-    (function() {
-      if (!document.getElementById('faq-guarantee-css')) {
-        const style = document.createElement('style');
-        style.id = 'faq-guarantee-css';
-        style.textContent = `.faq-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; overflow: hidden; } .faq-item.active .faq-content { grid-template-rows: 1fr; padding-top: 12px; } .faq-toggle { transition: transform 0.2s; cursor: pointer; user-select: none; } .faq-item.active .faq-toggle { transform: rotate(45deg); }`;
-        document.head.appendChild(style);
-      }
-      function initFaqs() {
-        const faqItems = document.querySelectorAll('.faq-item');
-        if (!faqItems.length) return;
-        faqItems.forEach((item) => {
-          const toggle = item.querySelector('.faq-toggle');
-          const content = item.querySelector('.faq-content');
-          if (!toggle || !content) return;
-          item.removeAttribute('onclick');
-          item.classList.remove('active');
-          toggle.textContent = '+';
-          const newToggle = toggle.cloneNode(true);
-          toggle.parentNode.replaceChild(newToggle, toggle);
-          newToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const faq = item;
-            faq.classList.toggle('active');
-            newToggle.textContent = faq.classList.contains('active') ? '−' : '+';
-          });
-        });
-      }
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initFaqs);
-      else initFaqs();
-    })();
-    // ---------- NETLIFY FORM HANDLER (Hero Quote) ----------
-const quoteForm = document.getElementById('quoteForm');
-const formDone = document.getElementById('formDone');
-
-if (quoteForm && formDone) {
-  quoteForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(quoteForm);
-    const urlEncoded = new URLSearchParams(formData).toString();
-
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: urlEncoded,
-      });
-
-      if (!response.ok) {
-        throw new Error('Response not OK');
-      }
-
-      // Success – show green pop‑up
-      quoteForm.style.display = 'none';
-      formDone.classList.remove('hidden');
-      formDone.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      // Auto‑hide after 5 seconds and reset
-      setTimeout(() => {
-        formDone.classList.add('hidden');
-        quoteForm.style.display = '';
-        quoteForm.reset();
-      }, 5000);
-
-    } catch (error) {
-      console.warn('AJAX submission failed, falling back to normal form submit.');
-      // Remove AJAX listener, then submit normally
-      quoteForm.removeEventListener('submit', arguments.callee);
-      quoteForm.submit();
-    }
+  // Mobile dropdown accordion
+  document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+    btn.addEventListener('click', () => btn.closest('.mobile-dropdown').classList.toggle('active'));
   });
-}
-}
-  </script>
+
+  // Navbar scroll & top bar offset
+  function updateNav() {
+    const nav = document.getElementById('nav');
+    if (window.innerWidth >= 768) {
+      nav.style.top = '36px';
+      document.documentElement.style.scrollPaddingTop = '116px';
+    } else {
+      nav.style.top = '0';
+      document.documentElement.style.scrollPaddingTop = '80px';
+    }
+    if (window.scrollY > 20) nav.classList.add('navbar-scrolled');
+    else nav.classList.remove('navbar-scrolled');
+
+    const backToTop = document.getElementById('backToTop');
+    if (window.scrollY > 600) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
+  }
+  window.addEventListener('scroll', updateNav);
+  window.addEventListener('resize', updateNav);
+  updateNav();
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // FAQ Accordion
+  (function() {
+    if (!document.getElementById('faq-guarantee-css')) {
+      const style = document.createElement('style');
+      style.id = 'faq-guarantee-css';
+      style.textContent = `.faq-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; overflow: hidden; } .faq-item.active .faq-content { grid-template-rows: 1fr; padding-top: 12px; } .faq-toggle { transition: transform 0.2s; cursor: pointer; user-select: none; } .faq-item.active .faq-toggle { transform: rotate(45deg); }`;
+      document.head.appendChild(style);
+    }
+    function initFaqs() {
+      const faqItems = document.querySelectorAll('.faq-item');
+      if (!faqItems.length) return;
+      faqItems.forEach((item) => {
+        const toggle = item.querySelector('.faq-toggle');
+        const content = item.querySelector('.faq-content');
+        if (!toggle || !content) return;
+        item.removeAttribute('onclick');
+        item.classList.remove('active');
+        toggle.textContent = '+';
+        const newToggle = toggle.cloneNode(true);
+        toggle.parentNode.replaceChild(newToggle, toggle);
+        newToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const faq = item;
+          faq.classList.toggle('active');
+          newToggle.textContent = faq.classList.contains('active') ? '−' : '+';
+        });
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initFaqs);
+    else initFaqs();
+  })();
+
+  // ---------- NETLIFY FORM HANDLER (Hero Quote) ----------
+  const quoteForm = document.getElementById('quoteForm');
+  const formDone = document.getElementById('formDone');
+
+  if (quoteForm && formDone) {
+    quoteForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(quoteForm);
+      const urlEncoded = new URLSearchParams(formData).toString();
+
+      try {
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: urlEncoded,
+        });
+
+        if (!response.ok) {
+          throw new Error('Response not OK');
+        }
+
+        // Success – show green pop‑up
+        quoteForm.style.display = 'none';
+        formDone.classList.remove('hidden');
+        formDone.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Auto‑hide after 5 seconds and reset
+        setTimeout(() => {
+          formDone.classList.add('hidden');
+          quoteForm.style.display = '';
+          quoteForm.reset();
+        }, 5000);
+      } catch (error) {
+        console.warn('AJAX submission failed, falling back to normal form submit.');
+        // Remove AJAX listener, then submit normally (Netlify will still capture it)
+        quoteForm.removeEventListener('submit', arguments.callee);
+        quoteForm.submit();
+      }
+    });
+  }
+</script>
 </body>
 
 
