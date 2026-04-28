@@ -344,76 +344,74 @@
             </a>
           </div>
         </div>
-        <!-- Hero Quote Form (Netlify) -->
-<div id="quote" class="anim-up hero-form-container" style="animation-delay:0.15s">
-  <div class="glass-light rounded-2xl shadow-2xl shadow-black/15 p-6 sm:p-7 max-w-md mx-auto lg:ml-auto">
-    <div class="mb-5">
-      <div class="inline-flex items-center gap-2 bg-brand-50 rounded-full px-3.5 py-1.5 mb-2">
-        <span>🚀</span>
-        <span class="text-brand-700 text-[11px] font-bold uppercase tracking-wider">Get Your Free Quote</span>
-      </div>
-      <p class="text-surface-500 text-xs">We respond within 24 hours — no obligations, no pressure</p>
-    </div>
 
-    <form name="quote" method="POST" data-netlify="true" netlify netlify-honeypot="bot-field" id="quoteForm" class="space-y-3.5">
-      <input type="hidden" name="form-name" value="quote">
-      <p class="hidden">
-        <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
-      </p>
+        <!-- Right Quote Form (Netlify) -->
+        <div id="quote" class="anim-up hero-form-container" style="animation-delay:0.15s">
+          <div class="glass-light rounded-2xl shadow-2xl shadow-black/15 p-6 sm:p-7 max-w-md mx-auto lg:ml-auto">
+            <div class="mb-5">
+              <div class="inline-flex items-center gap-2 bg-brand-50 rounded-full px-3.5 py-1.5 mb-2">
+                <span>🚀</span>
+                <span class="text-brand-700 text-[11px] font-bold uppercase tracking-wider">Get Your Free Quote</span>
+              </div>
+              <p class="text-surface-500 text-xs">We respond within 24 hours — no obligations, no pressure</p>
+            </div>
 
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <label for="quoteName" class="block text-[11px] font-bold text-surface-700 mb-1.5 uppercase tracking-wide">Full Name <span class="text-red-500">*</span></label>
-          <input type="text" id="quoteName" name="name" required placeholder="John Doe" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-sm focus:ring-2 focus:ring-brand-500/20 transition-all">
+            <form name="quote" method="POST" data-netlify="true" netlify netlify-honeypot="bot-field" id="quoteForm" class="space-y-3.5">
+              <input type="hidden" name="form-name" value="quote">
+              <p class="hidden">
+                <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
+              </p>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="quoteName" class="block text-[11px] font-bold text-surface-700 mb-1.5 uppercase tracking-wide">Full Name <span class="text-red-500">*</span></label>
+                  <input type="text" id="quoteName" name="name" required placeholder="John Doe" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-sm focus:ring-2 focus:ring-brand-500/20 transition-all">
+                </div>
+                <div>
+                  <label for="quoteEmail" class="block text-[11px] font-bold text-surface-700 mb-1.5 uppercase tracking-wide">Email <span class="text-red-500">*</span></label>
+                  <input type="email" id="quoteEmail" name="email" required placeholder="john@company.com" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-sm focus:ring-2 focus:ring-brand-500/20 transition-all">
+                </div>
+              </div>
+              <div>
+                <label for="quotePhone" class="block text-[11px] font-bold text-surface-700 mb-1.5 uppercase tracking-wide">Phone <span class="text-red-500">*</span></label>
+                <input type="tel" id="quotePhone" name="phone" required placeholder="(832) 555-0190" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-sm focus:ring-2 focus:ring-brand-500/20 transition-all">
+              </div>
+              <div>
+                <label for="quoteService" class="block text-[11px] font-bold text-surface-700 mb-1.5 uppercase tracking-wide">Service Needed</label>
+                <select id="quoteService" name="service" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-50 border border-surface-200 text-surface-700 text-sm appearance-none cursor-pointer focus:ring-2 focus:ring-brand-500/20 transition-all">
+                  <option value="">Select a service...</option>
+                  <option value="web_design">Custom Web Design</option>
+                  <option value="web_dev">Web Development</option>
+                  <option value="houston_seo">Houston SEO Services</option>
+                  <option value="mobile_opt">Mobile Optimization</option>
+                  <option value="digital_marketing">Digital Marketing</option>
+                  <option value="maintenance">Website Maintenance</option>
+                  <option value="complete_package">Complete Package</option>
+                </select>
+              </div>
+              <div>
+                <label for="quoteMessage" class="block text-[11px] font-bold text-surface-700 mb-1.5 uppercase tracking-wide">Project Details</label>
+                <textarea id="quoteMessage" name="message" rows="3" placeholder="Tell us about your project goals..." class="w-full px-3.5 py-2.5 rounded-xl bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-sm resize-none focus:ring-2 focus:ring-brand-500/20 transition-all"></textarea>
+              </div>
+              <button type="submit" class="btn-primary w-full py-3.5 rounded-xl font-bold text-white shadow-lg shadow-brand-500/25 text-sm mt-1">
+                <span class="flex items-center justify-center gap-2">🚀 Get My Free Quote</span>
+              </button>
+              <p class="text-[10px] text-center text-surface-400 flex items-center justify-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+                Your information is 100% secure and never shared
+              </p>
+            </form>
+
+            <div id="formDone" class="hidden text-center py-4 px-2 bg-emerald-50 border border-emerald-300 rounded-2xl mt-4">
+              <div class="text-4xl mb-2">✅</div>
+              <div class="text-lg font-bold text-emerald-700">Thank You!</div>
+              <div class="text-emerald-600 text-sm">We’ll reach out within 24 hours.</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label for="quoteEmail" class="block text-[11px] font-bold text-surface-700 mb-1.5 uppercase tracking-wide">Email <span class="text-red-500">*</span></label>
-          <input type="email" id="quoteEmail" name="email" required placeholder="john@company.com" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-sm focus:ring-2 focus:ring-brand-500/20 transition-all">
-        </div>
       </div>
-
-      <div>
-        <label for="quotePhone" class="block text-[11px] font-bold text-surface-700 mb-1.5 uppercase tracking-wide">Phone <span class="text-red-500">*</span></label>
-        <input type="tel" id="quotePhone" name="phone" required placeholder="(832) 555-0190" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-sm focus:ring-2 focus:ring-brand-500/20 transition-all">
-      </div>
-
-      <div>
-        <label for="quoteService" class="block text-[11px] font-bold text-surface-700 mb-1.5 uppercase tracking-wide">Service Needed</label>
-        <select id="quoteService" name="service" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-50 border border-surface-200 text-surface-700 text-sm appearance-none cursor-pointer focus:ring-2 focus:ring-brand-500/20 transition-all">
-          <option value="">Select a service...</option>
-          <option value="web_design">Custom Web Design</option>
-          <option value="web_dev">Web Development</option>
-          <option value="houston_seo">Houston SEO Services</option>
-          <option value="mobile_opt">Mobile Optimization</option>
-          <option value="digital_marketing">Digital Marketing</option>
-          <option value="maintenance">Website Maintenance</option>
-          <option value="complete_package">Complete Package</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="quoteMessage" class="block text-[11px] font-bold text-surface-700 mb-1.5 uppercase tracking-wide">Project Details</label>
-        <textarea id="quoteMessage" name="message" rows="3" placeholder="Tell us about your project goals..." class="w-full px-3.5 py-2.5 rounded-xl bg-surface-50 border border-surface-200 text-surface-800 placeholder-surface-400 text-sm resize-none focus:ring-2 focus:ring-brand-500/20 transition-all"></textarea>
-      </div>
-
-      <button type="submit" class="btn-primary w-full py-3.5 rounded-xl font-bold text-white shadow-lg shadow-brand-500/25 text-sm mt-1">
-        <span class="flex items-center justify-center gap-2">🚀 Get My Free Quote</span>
-      </button>
-
-      <p class="text-[10px] text-center text-surface-400 flex items-center justify-center gap-1.5">
-        <svg class="w-3.5 h-3.5 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
-        Your information is 100% secure and never shared
-      </p>
-    </form>
-
-    <!-- Green success pop-up -->
-    <div id="formDone" class="hidden text-center py-4 px-2 bg-emerald-50 border border-emerald-300 rounded-2xl mt-4">
-      <div class="text-4xl mb-2">✅</div>
-      <div class="text-lg font-bold text-emerald-700">Thank You!</div>
-      <div class="text-emerald-600 text-sm">We’ll reach out within 24 hours.</div>
     </div>
-  </div>
-</div>
+  </section>
 
   <!-- Logo Marquee -->
   <section class="py-10 bg-white border-b border-surface-100">
@@ -512,7 +510,7 @@
         <p class="text-surface-500 text-sm">From custom design to SEO domination, we provide everything your contracting business needs to thrive online.</p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Service cards (same as original) -->
+        <!-- Service cards -->
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal"><div class="w-12 h-12 bg-brand-100 rounded-2xl flex items-center justify-center text-2xl mb-4">🎨</div><h3 class="text-sm font-bold text-surface-900 mb-2">Custom Web Design</h3><p class="text-surface-500 text-xs mb-4 leading-relaxed">Bespoke, pixel-perfect website designs tailored to your brand identity and Houston market positioning.</p><ul class="space-y-2"><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Unique brand-aligned design</span></li><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Wireframes & interactive mockups</span></li><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Unlimited revisions until perfect</span></li><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Conversion-optimized layouts</span></li></ul></div>
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal"><div class="w-12 h-12 bg-violet-100 rounded-2xl flex items-center justify-center text-2xl mb-4">💻</div><h3 class="text-sm font-bold text-surface-900 mb-2">Web Development</h3><p class="text-surface-500 text-xs mb-4 leading-relaxed">Fast, secure, and scalable websites built with modern technologies for peak performance.</p><ul class="space-y-2"><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Lightning-fast load speeds (<1.5s)</span></li><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Secure & reliable managed hosting</span></li><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Built with HTML, Tailwind CSS & JavaScript</span></li><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Cross-browser & device compatibility</span></li></ul></div>
         <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-surface-100 reveal"><div class="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-2xl mb-4">🔍</div><h3 class="text-sm font-bold text-surface-900 mb-2">Houston SEO Services</h3><p class="text-surface-500 text-xs mb-4 leading-relaxed">Dominate local search results and rank on page one for Houston keywords that drive real business.</p><ul class="space-y-2"><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Local SEO & Google Business Profile</span></li><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Keyword research & content strategy</span></li><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Technical SEO & site optimization</span></li><li class="flex items-start gap-2 text-[11px] text-surface-600"><svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Monthly performance reporting</span></li></ul></div>
@@ -752,140 +750,120 @@
     <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
   </button>
 
+  <!-- JavaScript -->
   <script>
-  // Mobile menu
-  const menuToggle = document.getElementById('menuToggle');
-  const menuClose = document.getElementById('menuClose');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const body = document.body;
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const menuClose = document.getElementById('menuClose');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const body = document.body;
+    function openMenu() { mobileMenu.classList.add('open'); body.classList.add('menu-open'); }
+    function closeMenu() { mobileMenu.classList.remove('open'); body.classList.remove('menu-open'); }
+    menuToggle?.addEventListener('click', openMenu);
+    menuClose?.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-  function openMenu() {
-    mobileMenu.classList.add('open');
-    body.classList.add('menu-open');
-  }
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    body.classList.remove('menu-open');
-  }
-
-  menuToggle?.addEventListener('click', openMenu);
-  menuClose?.addEventListener('click', closeMenu);
-  mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-
-  // Mobile dropdown accordion
-  document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
-    btn.addEventListener('click', () => btn.closest('.mobile-dropdown').classList.toggle('active'));
-  });
-
-  // Navbar scroll & top bar offset
-  function updateNav() {
-    const nav = document.getElementById('nav');
-    if (window.innerWidth >= 768) {
-      nav.style.top = '36px';
-      document.documentElement.style.scrollPaddingTop = '116px';
-    } else {
-      nav.style.top = '0';
-      document.documentElement.style.scrollPaddingTop = '80px';
-    }
-    if (window.scrollY > 20) nav.classList.add('navbar-scrolled');
-    else nav.classList.remove('navbar-scrolled');
-
-    const backToTop = document.getElementById('backToTop');
-    if (window.scrollY > 600) backToTop.classList.add('visible');
-    else backToTop.classList.remove('visible');
-  }
-  window.addEventListener('scroll', updateNav);
-  window.addEventListener('resize', updateNav);
-  updateNav();
-
-  // Reveal on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+    // Mobile dropdown
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.mobile-dropdown').classList.toggle('active'));
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // FAQ Accordion
-  (function() {
-    if (!document.getElementById('faq-guarantee-css')) {
-      const style = document.createElement('style');
-      style.id = 'faq-guarantee-css';
-      style.textContent = `.faq-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; overflow: hidden; } .faq-item.active .faq-content { grid-template-rows: 1fr; padding-top: 12px; } .faq-toggle { transition: transform 0.2s; cursor: pointer; user-select: none; } .faq-item.active .faq-toggle { transform: rotate(45deg); }`;
-      document.head.appendChild(style);
+    // Navbar scroll & top bar offset
+    function updateNav() {
+      const nav = document.getElementById('nav');
+      if (window.innerWidth >= 768) {
+        nav.style.top = '36px';
+        document.documentElement.style.scrollPaddingTop = '116px';
+      } else {
+        nav.style.top = '0';
+        document.documentElement.style.scrollPaddingTop = '80px';
+      }
+      if (window.scrollY > 20) nav.classList.add('navbar-scrolled');
+      else nav.classList.remove('navbar-scrolled');
+      const backToTop = document.getElementById('backToTop');
+      if (window.scrollY > 600) backToTop.classList.add('visible');
+      else backToTop.classList.remove('visible');
     }
-    function initFaqs() {
-      const faqItems = document.querySelectorAll('.faq-item');
-      if (!faqItems.length) return;
-      faqItems.forEach((item) => {
-        const toggle = item.querySelector('.faq-toggle');
-        const content = item.querySelector('.faq-content');
-        if (!toggle || !content) return;
-        item.removeAttribute('onclick');
-        item.classList.remove('active');
-        toggle.textContent = '+';
-        const newToggle = toggle.cloneNode(true);
-        toggle.parentNode.replaceChild(newToggle, toggle);
-        newToggle.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const faq = item;
-          faq.classList.toggle('active');
-          newToggle.textContent = faq.classList.contains('active') ? '−' : '+';
+    window.addEventListener('scroll', updateNav);
+    window.addEventListener('resize', updateNav);
+    updateNav();
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // FAQ Accordion
+    (function() {
+      if (!document.getElementById('faq-guarantee-css')) {
+        const style = document.createElement('style');
+        style.id = 'faq-guarantee-css';
+        style.textContent = `.faq-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; overflow: hidden; } .faq-item.active .faq-content { grid-template-rows: 1fr; padding-top: 12px; } .faq-toggle { transition: transform 0.2s; cursor: pointer; user-select: none; } .faq-item.active .faq-toggle { transform: rotate(45deg); }`;
+        document.head.appendChild(style);
+      }
+      function initFaqs() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        if (!faqItems.length) return;
+        faqItems.forEach((item) => {
+          const toggle = item.querySelector('.faq-toggle');
+          const content = item.querySelector('.faq-content');
+          if (!toggle || !content) return;
+          item.removeAttribute('onclick');
+          item.classList.remove('active');
+          toggle.textContent = '+';
+          const newToggle = toggle.cloneNode(true);
+          toggle.parentNode.replaceChild(newToggle, toggle);
+          newToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const faq = item;
+            faq.classList.toggle('active');
+            newToggle.textContent = faq.classList.contains('active') ? '−' : '+';
+          });
         });
-      });
-    }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initFaqs);
-    else initFaqs();
-  })();
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initFaqs);
+      else initFaqs();
+    })();
 
-  // ---------- NETLIFY FORM HANDLER (Hero Quote) ----------
-  const quoteForm = document.getElementById('quoteForm');
-  const formDone = document.getElementById('formDone');
+    // ---------- NETLIFY FORM HANDLER (Hero Quote) ----------
+    const quoteForm = document.getElementById('quoteForm');
+    const formDone = document.getElementById('formDone');
 
-  if (quoteForm && formDone) {
-    quoteForm.addEventListener('submit', async (e) => {
+    function handleQuoteSubmit(e) {
       e.preventDefault();
-
       const formData = new FormData(quoteForm);
       const urlEncoded = new URLSearchParams(formData).toString();
 
-      try {
-        const response = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: urlEncoded,
-        });
-
-        if (!response.ok) {
-          throw new Error('Response not OK');
-        }
-
-        // Success – show green pop‑up
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: urlEncoded,
+      })
+      .then(response => {
+        if (!response.ok) throw new Error('Response not OK');
+        // Success – show green pop-up
         quoteForm.style.display = 'none';
         formDone.classList.remove('hidden');
         formDone.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-        // Auto‑hide after 5 seconds and reset
+        // Auto-hide after 5 seconds and reset
         setTimeout(() => {
           formDone.classList.add('hidden');
           quoteForm.style.display = '';
           quoteForm.reset();
         }, 5000);
-      } catch (error) {
+      })
+      .catch(error => {
         console.warn('AJAX submission failed, falling back to normal form submit.');
-        // Remove AJAX listener, then submit normally (Netlify will still capture it)
-        quoteForm.removeEventListener('submit', arguments.callee);
+        // Fallback: remove AJAX handler and submit normally
+        quoteForm.removeEventListener('submit', handleQuoteSubmit);
         quoteForm.submit();
-      }
-    });
-  }
-</script>
+      });
+    }
+
+    if (quoteForm && formDone) {
+      quoteForm.addEventListener('submit', handleQuoteSubmit);
+    }
+  </script>
 </body>
-
-
-
-
-
-
-  
 </html>
