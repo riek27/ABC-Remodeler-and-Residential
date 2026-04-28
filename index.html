@@ -832,7 +832,7 @@
       if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initFaqs);
       else initFaqs();
     })();
-    // ---------- NETLIFY FORM HANDLER (Green Pop-up, auto‑hide) ----------
+    // ---------- NETLIFY FORM HANDLER (Hero Quote) ----------
 const quoteForm = document.getElementById('quoteForm');
 const formDone = document.getElementById('formDone');
 
@@ -840,7 +840,6 @@ if (quoteForm && formDone) {
   quoteForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Build URL‑encoded string (Netlify requires this)
     const formData = new FormData(quoteForm);
     const urlEncoded = new URLSearchParams(formData).toString();
 
@@ -851,26 +850,38 @@ if (quoteForm && formDone) {
         body: urlEncoded,
       });
 
-      if (response.ok) {
-        // Hide the form, show the green pop‑up
-        quoteForm.style.display = 'none';
-        formDone.classList.remove('hidden');
-        formDone.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-        // Auto‑hide after 5 seconds and reset the form
-        setTimeout(() => {
-          formDone.classList.add('hidden');          // hide pop‑up
-          quoteForm.style.display = '';               // show form again
-          quoteForm.reset();                          // clear all fields
-        }, 5000);
-      } else {
-        alert('Something went wrong. Please try again later.');
+      if (!response.ok) {
+        throw new Error('Response not OK');
       }
+
+      // Success – show green pop‑up
+      quoteForm.style.display = 'none';
+      formDone.classList.remove('hidden');
+      formDone.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Auto‑hide after 5 seconds and reset
+      setTimeout(() => {
+        formDone.classList.add('hidden');
+        quoteForm.style.display = '';
+        quoteForm.reset();
+      }, 5000);
+
     } catch (error) {
-      alert('Network error. Please check your connection and try again.');
+      console.warn('AJAX submission failed, falling back to normal form submit.');
+      // Remove AJAX listener, then submit normally
+      quoteForm.removeEventListener('submit', arguments.callee);
+      quoteForm.submit();
     }
   });
 }
+}
   </script>
 </body>
+
+
+
+
+
+
+  
 </html>
