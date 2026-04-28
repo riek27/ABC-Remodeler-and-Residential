@@ -793,3 +793,51 @@ textarea:focus-visible {
 footer form button {
   flex-shrink: 0;
 }
+
+/* ============================================
+   CONTACT PAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Hero overlay customisation */
+.contact-hero .hero-overlay {
+  background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,58,138,0.75) 70%);
+}
+
+/* Map container – responsive height */
+.map-container {
+  height: 400px;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 640px) {
+  .map-container {
+    height: 280px;
+  }
+}
+
+/* Make the contact form success message stand out */
+#formSuccess {
+  transition: opacity 0.3s ease;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+/* Instagram button hover */
+.instagram-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(168,85,247,0.3);
+}
+
+/* Smooth focus for all contact inputs (already in global but reinforce) */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+/* Fix for mobile menu z-index override */
+#mobileMenu {
+  z-index: 1000;
+}
