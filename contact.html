@@ -249,15 +249,13 @@
             </div>
           </div>
           
-          <!-- Right: Contact Form (Netlify) -->
+          <!-- Contact Form (Netlify) -->
 <div class="lg:col-span-2 reveal">
   <div class="bg-white rounded-2xl shadow-xl border border-surface-100 p-6 sm:p-8" id="quote">
     <h2 class="text-2xl font-black text-surface-900 mb-2">Send a Message</h2>
     <p class="text-surface-500 text-sm mb-6">We’ll get back to you within 24 hours. Tell us about your project and we’ll help you create a website that brings real leads.</p>
 
-    <!-- Netlify Form -->
     <form name="contact" method="POST" data-netlify="true" netlify netlify-honeypot="bot-field" id="contactForm" class="space-y-5">
-      <!-- Hidden Netlify fields -->
       <input type="hidden" name="form-name" value="contact">
       <p class="hidden">
         <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
@@ -310,16 +308,14 @@
       </p>
     </form>
 
-    <!-- Success pop-up (green) -->
+    <!-- Green success pop‑up -->
     <div id="formSuccess" class="hidden text-center py-4 px-2 bg-emerald-50 border border-emerald-300 rounded-2xl mt-4">
       <div class="text-4xl mb-2">✅</div>
-      <div class="text-lg font-bold text-emerald-700">Thank You!</div>
-      <div class="text-emerald-600 text-sm">Your message has been received successfully. We’ll get back to you within 24 hours.</div>
+      <div class="text-lg font-bold text-emerald-700">Message Sent!</div>
+      <div class="text-emerald-600 text-sm">We’ll get back to you within 24 hours. Thank you!</div>
     </div>
   </div>
 </div>
-      </div>
-    </section>
 
     <!-- Google Map Section -->
     <section class="pb-16 sm:pb-20">
@@ -398,46 +394,6 @@
         form.style.display = 'none';
         successMsg.classList.remove('hidden');
         // Optional: console.log('Form submitted');
-      });
-      // ---------- Netlify Contact Form (Green pop-up, auto‑hide) ----------
-const contactForm = document.getElementById('contactForm');
-const formSuccess = document.getElementById('formSuccess');
-
-if (contactForm && formSuccess) {
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // Build URL‑encoded string (Netlify requires this format)
-    const formData = new FormData(contactForm);
-    const urlEncoded = new URLSearchParams(formData).toString();
-
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: urlEncoded,
-      });
-
-      if (response.ok) {
-        // Hide form, show green pop‑up
-        contactForm.style.display = 'none';
-        formSuccess.classList.remove('hidden');
-        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-        // Auto‑hide after 5 seconds and reset the form
-        setTimeout(() => {
-          formSuccess.classList.add('hidden');        // hide pop‑up
-          contactForm.style.display = '';             // show form again
-          contactForm.reset();                        // clear all fields
-        }, 5000);
-      } else {
-        alert('Something went wrong. Please try again later.');
-      }
-    } catch (error) {
-      alert('Network error. Please check your connection and try again.');
-    }
-  });
-}
     }
   </script>
 </body>
