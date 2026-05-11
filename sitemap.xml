@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home -->
+  <url>
+    <loc>https://solidframeweb.com/</loc>
+  </url>
+
+  <!-- Pages -->
+  <url>
+    <loc>https://solidframeweb.com/about.html</loc>
+  </url>
+
+  <url>
+    <loc>https://solidframeweb.com/services.html</loc>
+  </url>
+
+  <url>
+    <loc>https://solidframeweb.com/process.html</loc>
+  </url>
+
+  <url>
+    <loc>https://solidframeweb.com/pricing.html</loc>
+  </url>
+
+  <url>
+    <loc>https://solidframeweb.com/faqs.html</loc>
+  </url>
+
+  <url>
+    <loc>https://solidframeweb.com/blog.html</loc>
+  </url>
+
+  <url>
+    <loc>https://solidframeweb.com/contact.html</loc>
+  </url>
+
+</urlset>
